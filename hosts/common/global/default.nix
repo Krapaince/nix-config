@@ -3,6 +3,7 @@
     ./fish.nix
     ./locale.nix
     ./nix.nix
+    ./openssh.nix
   ];
 
   nixpkgs = {

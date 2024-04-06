@@ -12,5 +12,8 @@
     packages = [ pkgs.home-manager ];
   }
 
+  # TODO: Unique key per host/user couple
+  openssh.authorizedKeys.keys = [ (builtins.readFile ../../../home/krapaince/) ];
+
   home-manager.users.krapaince = import ../../../home/krapaince/${config.networking.hostName}.nix;
 }
