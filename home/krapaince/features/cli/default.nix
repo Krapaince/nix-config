@@ -10,6 +10,7 @@
     bottom
     delta
     eza
+    gitui
     jq
     ripgrep
 
