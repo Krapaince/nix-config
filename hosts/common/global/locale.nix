@@ -11,11 +11,9 @@
       LC_TELEPHONE = "fr_FR.UTF-8";
       LC_TIME = "fr_FR.UTF-8";
     };
-    supportedLocales = lib.mkDefault [
-      "en_US.UTF-8/UTF-8"
-      "fr_FR.UTF-8/UTF-8"
-    ];
-  }
+    supportedLocales =
+      lib.mkDefault [ "en_US.UTF-8/UTF-8" "fr_FR.UTF-8/UTF-8" ];
+  };
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = lib.mkDefault "Europe/Paris";
 }

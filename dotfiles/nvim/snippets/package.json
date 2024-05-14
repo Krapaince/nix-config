@@ -1,0 +1,26 @@
+{
+  "name": "krapaince-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "yaml",
+        "path": "./yaml.json"
+      },
+      {
+        "language": "c",
+        "path": "./c.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./cpp.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
+      }
+    ]
+  }
+}

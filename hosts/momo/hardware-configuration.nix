@@ -16,7 +16,7 @@
       grub.enable = false;
       generic-extlinux-compatible = {
         enable = true;
-	      configurationLimit = 10;
+        configurationLimit = 10;
       };
     };
   };
@@ -31,11 +31,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-label/swap";
-    }
-  ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   nixpkgs.hostPlatform = "aarch64-linux";
   powerManagement.cpuFreqGovernor = "ondemand";

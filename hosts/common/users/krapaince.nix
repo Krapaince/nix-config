@@ -1,19 +1,17 @@
-{ pkgs, config, ... }:
-{
-  users.mutableUsers = false;
+{ pkgs, config, ... }: {
+  users.mutableUsers = true;
   users.users.krapaince = {
     isNormalUser = true;
-    shell = pkgs.fish
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
+    shell = pkgs.fish;
+    extraGroups = [ "networkmanager" "wheel" ];
 
-    packages = [ pkgs.home-manager ];
-  }
+    # TODO: Unique key per host/user couple
+    initialPassword = "password";
+    openssh.authorizedKeys.keyFiles = [ ../../../home/krapaince/ssh.pub ];
 
-  # TODO: Unique key per host/user couple
-  openssh.authorizedKeys.keys = [ (builtins.readFile ../../../home/krapaince/) ];
+    packages = with pkgs; [ home-manager ];
+  };
 
-  home-manager.users.krapaince = import ../../../home/krapaince/${config.networking.hostName}.nix;
+  home-manager.users.krapaince =
+    import ../../../home/krapaince/${config.networking.hostName}.nix;
 }

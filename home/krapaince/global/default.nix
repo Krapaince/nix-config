@@ -1,14 +1,16 @@
-{ lib, pkgs, config, ...}: {
+{ lib, pkgs, config, ...}: let
+  homeManagerModules = builtins.attrValues (import ../../../modules/home-manager);
+in {
   imports = [
     ../features/cli
     ../features/nvim
-  ];
+  ] ++ (homeManagerModules);
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      warn-dirty = false;
     };
   };
 

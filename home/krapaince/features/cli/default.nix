@@ -1,8 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./bat.nix
-    ./fish.nix
-  ];
+  imports = [ ./fish.nix ./git.nix ];
 
   home.packages = with pkgs; [
     bat
@@ -13,8 +10,6 @@
     gitui
     jq
     ripgrep
-
-    nil
-    nixfmt
+    swaynotificationcenter
   ];
 }

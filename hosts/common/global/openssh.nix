@@ -1,11 +1,10 @@
 { outputs, lib, config, ... }:
 
 let
-  inherit (config.networking) hostname;
+  inherit (config.networking) hostName;
   hosts = outputs.nixosConfigurations;
   pubKey = host: ../../${host}/ssh_host_rsa_key.pub;
-in
-{
+in {
   services.openssh = {
     enable = true;
     settings = {
@@ -24,12 +23,10 @@ in
   };
 
   programs.ssh = {
-    knownHosts = builtins.mapAttrs
-      (name: _: {
-        pubicKeyfile = pubKey name;
-        extraHostNames =
-          (lib.optional (name == hostName) "localhost"); # Alias for localhost if it's the same host
-      })
-      hosts;
+    knownHosts = builtins.mapAttrs (name: _: {
+      publicKeyFile = pubKey name;
+      extraHostNames = (lib.optional (name == hostName)
+        "localhost"); # Alias for localhost if it's the same host
+    }) hosts;
   };
 }
