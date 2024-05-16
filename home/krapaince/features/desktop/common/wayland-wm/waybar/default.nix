@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ config, lib, ... }: {
   systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
 
   programs.waybar = {
@@ -182,5 +182,210 @@
         modules-right = [ "clock" ];
       }
     ];
+    style = # css
+      ''
+        ${builtins.readFile ./color.css}
+
+        * {
+          font-family: ${config.fontProfiles.regular.family};
+          font-size: 12px;
+          border: none;
+          border-radius: 0;
+          background-color: transparent;
+          padding: 0;
+          margin: 0;
+        }
+
+        window#waybar {
+          background: transparent;
+          margin-left: 1px;
+          margin-right: 1px;
+          margin-bottom: 20px;
+          margin-top: 20px;
+        }
+
+        #backlight,
+        #battery,
+        #bluetooth.connected,
+        #clock,
+        #cpu,
+        #custom-audio-idle-inhibitor,
+        #custom-cpu-temperature,
+        #custom-media,
+        #custom-notification,
+        #disk,
+        #language,
+        #memory,
+        #network
+        #mpd,
+        #network,
+        #pulseaudio,
+        #submap,
+        #tray,
+        #window,
+        #workspaces {
+          margin: 0 4px;
+          padding: 0 12px;
+          background: @bg_primary_darker;
+          border-radius: 26px;
+          color: @fg_primary;
+        }
+
+        #submap {
+          color: @red;
+        }
+
+        #pulseaudio.muted {
+          color: @grey;
+        }
+
+        #custom-notification.dnd-none,
+        #custom-notification.dnd-notification
+        {
+          color: @grey;
+        }
+
+        #disk {
+          color: @orange;
+        }
+
+        #battery {
+          color: @bg_primary_darker;
+        }
+
+        #battery.full {
+          background-color: @grshade5;
+        }
+
+        #battery.good {
+          background-color: @green;
+        }
+
+        #battery.ok {
+          background-color: @lime;
+        }
+
+        #battery.warning {
+          background-color: @yellow;
+        }
+
+        #battery.bad {
+          background-color: @amber;
+        }
+
+        #battery.critical {
+          background-color: @orange;
+        }
+
+        @keyframes blink {
+            to {
+                background-color: transparent;
+            }
+        }
+
+        #battery.critical:not(.Unknown) {
+            background-color: @orange;
+            animation-name: blink;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        #custom-cpu-temperature.max,
+        #cpu.max {
+          color: @amshade1;
+        }
+
+        #custom-cpu-temperature.high,
+        #cpu.high {
+          color: @amshade3;
+        }
+
+        #custom-cpu-temperature.medium,
+        #cpu.medium {
+          color: @amshade5;
+        }
+
+        #custom-cpu-temperature.light,
+        #cpu.light {
+          color: @amshade7;
+        }
+
+        #custom-cpu-temperature.idle,
+        #cpu.idle {
+          color: @amshade48
+        }
+
+        #memory.problem {
+          color: @lbshade4;
+        }
+
+        #memory.full {
+          color: @yeshade1;
+        }
+
+        #memory.half-full {
+          color: @yeshade3;
+        }
+
+        #memory.half {
+          color: @yeshade5;
+        }
+
+        #memory.half-empty {
+          color: @yeshade6;
+        }
+
+        #memory.empty {
+          color: @yeshade8;
+        }
+
+        #workspaces {
+        	background: @bg_primary_darker;
+        	border-radius: 26px;
+        	margin-bottom: 0;
+        	margin-left: 12px;
+          padding: 0 0px;
+        }
+
+        #workspaces button {
+        	background: transparent;
+        	color: @fg_primary;
+        	transition: none;
+          padding: 0 10px;
+        }
+
+        /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+        #workspaces button:hover {
+          box-shadow: inherit;
+          text-shadow: inherit;
+        }
+
+        #workspaces button.urgent {
+          border-radius: 26px;
+          background-color: @blue;
+        }
+
+        @define-color active_workspace_color #bf8300;
+        @keyframes workspace-active {
+          from {
+            background-color: @bg_primary_darker;
+          }
+          to {
+            background-color: @active_workspace_color;
+          }
+        }
+
+        #workspaces button.active {
+          color: @bg_primary_darker;
+          border-radius: 26px;
+          font-weight: bold;
+          background-color: @active_workspace_color;
+          animation-name: workspace-active;
+          animation-duration: 0.2s;
+          animation-timing-function: linear;
+        }
+      '';
   };
 }
