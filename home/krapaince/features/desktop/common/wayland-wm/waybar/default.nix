@@ -5,6 +5,8 @@
     enable = true;
     systemd.enable = true;
     settings = let
+      network-interfaces = config.waybar.network-interfaces;
+
       common_modules = {
         clock = {
           interval = 60;
@@ -102,13 +104,13 @@
         margin-top = 2;
         modules-left = [ "disk" ];
         modules-center = [ "custom/media" ];
-        modules-right = [
-          "network#net-wired"
-          "network#net-wireless"
-          "temperature#cpu"
-          "cpu"
-          "memory"
-        ];
+        modules-right = (if (network-interfaces.wired.name != null) then
+          [ "network#net-wired" ]
+        else
+          [ ]) ++ (if (network-interfaces.wireless.name != null) then
+            [ "network#net-wireless" ]
+          else
+            [ ]) ++ [ "temperature#cpu" "cpu" "memory" ];
         disk = {
           interval = 10;
           format = "🖴 {free}";
@@ -127,15 +129,13 @@
           on-click = "playerctl play-pause"; # TODO
         };
         "network#net-wired" = {
-          interface =
-            "{{@@ wired_network_interface @@}}"; # TODO replace with network interface
+          interface = "${toString network-interfaces.wired.name}";
           interval = 1;
           format-ethernet = "󰈀   {bandwidthDownOctets}  {bandwidthUpOctets}";
           format-disconnected = "";
         };
         "network#net-wireless" = {
-          interface =
-            "{{@@ wireless_network_interface @@}}"; # TODO replace with network interface
+          interface = "${toString network-interfaces.wireless.name}";
           interval = 1;
           format-wifi =
             " {essid}  {bandwidthDownOctets}  {bandwidthUpOctets}";
@@ -208,7 +208,7 @@
         #clock,
         #cpu,
         #custom-audio-idle-inhibitor,
-        #custom-cpu-temperature,
+        #temperature,
         #custom-media,
         #custom-notification,
         #disk,

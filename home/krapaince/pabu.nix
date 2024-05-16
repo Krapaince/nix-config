@@ -7,4 +7,9 @@ in {
     name = "eDP-1";
     primary = true;
   }]) ++ common_monitors.monitors;
+
+  waybar.network-interfaces = {
+    wired.name = "enp0s31f6";
+    wireless.name = "wlp3s0";
+  };
 }
