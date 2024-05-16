@@ -7,6 +7,8 @@
     settings = let
       network-interfaces = config.waybar.network-interfaces;
 
+      primary-screen = (lib.findFirst (m: m.primary) null config.monitors).name;
+
       common_modules = {
         clock = {
           interval = 60;
@@ -24,7 +26,7 @@
       in {
         name = "primary-top";
         layer = "top";
-        output = "eDP-1"; # TODO find primary in monitor config
+        output = "${primary-screen}";
         margin-top = 2;
         margin-bottom = 7;
         modules-left = [ "hyprland/workspaces" ];
@@ -102,7 +104,7 @@
         name = "primary-bottom";
         layer = "top";
         position = "bottom";
-        output = "eDP-1"; # TODO find primary in monitor conf
+        output = "${primary-screen}";
         margin-bottom = 3;
         margin-top = 2;
         modules-left = [ "disk" ];
@@ -175,7 +177,7 @@
       })
       {
         layer = "top";
-        output = "!eDP-1"; # TODO everything except primary
+        output = "!${primary-screen}";
         margin-top = 2;
         margin-bottom = 7;
         modules-left = [ "hyprland/workspaces" ];
