@@ -3,7 +3,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
 
-    # font TODO fix
+    font = config.fontProfiles.regular.family;
 
     extraConfig = {
       icon-theme = "Papirus";

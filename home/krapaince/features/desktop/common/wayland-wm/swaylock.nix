@@ -1,10 +1,9 @@
-{
+{ config, ... }: {
   programs.swaylock = {
     enable = true;
     settings = {
 
-      # TODO fix fonts
-      #font '{{@@ font @@}}'
+      font = config.fontProfiles.regular.family;
 
       scaling = "fill";
       color = "000000";

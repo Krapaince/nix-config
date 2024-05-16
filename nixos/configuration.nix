@@ -49,9 +49,5 @@
     ];
   };
 
-  fonts = {
-    packages = with pkgs; [
-      iosevka
-    ];
-  };
+  fonts = { packages = with pkgs; [ iosevka iosevka-term ]; };
 }

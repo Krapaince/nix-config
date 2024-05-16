@@ -1,14 +1,20 @@
-{
+{ config, ... }: {
   xdg.mimeApps = {
     associations.added = { "x-scheme-handler/terminal" = "kitty.desktop"; };
     defaultApplications = { "x-scheme-handler/terminal" = "kitty.desktop"; };
   };
+
   programs.kitty = {
     enable = true;
-    # font = {
-    #   name = ""
-    #   size = 9;
-    # };
+
+    extraConfig = let font_family = config.fontProfiles.monospace.family;
+    in ''
+      font_family ${font_family} Light
+      font_size 9
+      bold_font ${font_family} Heavy
+      italic_font ${font_family} Light Oblique
+      bold_italic_font ${font_family} Heavy Oblique
+    '';
 
     settings = {
       disable_ligatures = "never";

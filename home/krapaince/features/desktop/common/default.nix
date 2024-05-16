@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./firefox.nix
+    ./font.nix
     ./kitty.nix
     ./pavucontrol.nix
     ./playerctl.nix
