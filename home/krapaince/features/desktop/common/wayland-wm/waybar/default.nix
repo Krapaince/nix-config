@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ config, lib, pkgs, ... }: {
   systemd.user.services.waybar = { Unit.StartLimitBurst = 30; };
 
   programs.waybar = {
@@ -19,7 +19,9 @@
         "hyprland/workspaces" = { format = "{id}"; };
       };
     in map (bar: lib.trivial.mergeAttrs common_modules bar) [
-      {
+      (let
+        swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
+      in {
         name = "primary-top";
         layer = "top";
         output = "eDP-1"; # TODO find primary in monitor config
@@ -85,17 +87,18 @@
             dnd-notification = "󰂛";
           };
           return-type = "json";
-          exec-if = "which swaync-client"; # TODO replace with pkgs path
-          exec = "swaync-client -swb"; # TODO replace with pkgs path
-          on-click = "swaync-client -d";
+          exec = "${swaync-client} -swb";
+          on-click = "${swaync-client} -d";
         };
 
         tray = {
           icon-size = 16;
           spacing = 5;
         };
-      }
-      {
+      })
+      (let
+        playerctl = lib.getExe' config.services.playerctld.package "playerctl";
+      in {
         name = "primary-bottom";
         layer = "top";
         position = "bottom";
@@ -125,8 +128,8 @@
           };
           max-length = 70;
           exec = ''
-            playerctl -a metadata --format '{"text": "{{playerName}}: {{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F''; # TODO replace with nix pkgs
-          on-click = "playerctl play-pause"; # TODO
+            ${playerctl} -a metadata --format '{"text": "{{playerName}}: {{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F'';
+          on-click = "${playerctl} play-pause";
         };
         "network#net-wired" = {
           interface = "${toString network-interfaces.wired.name}";
@@ -169,7 +172,7 @@
             empty = 10;
           };
         };
-      }
+      })
       {
         layer = "top";
         output = "!eDP-1"; # TODO everything except primary
