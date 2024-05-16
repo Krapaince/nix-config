@@ -105,7 +105,7 @@
         modules-right = [
           "network#net-wired"
           "network#net-wireless"
-          "custom/cpu-temperature"
+          "temperature#cpu"
           "cpu"
           "memory"
         ];
@@ -141,10 +141,8 @@
             " {essid}  {bandwidthDownOctets}  {bandwidthUpOctets}";
           format-disconnected = "";
         };
-        "custom/cpu-temperature" = {
-          exec =
-            "~/.config/waybar/scripts/temperature-cpu.sh"; # TODO script replace path
-          return-type = "json";
+        "temperature#cpu" = {
+          hwmon-path = "/sys/class/hwmon/hwmon4/temp1_input";
           interval = 2;
           format = " {}°C";
         };
