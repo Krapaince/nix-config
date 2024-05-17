@@ -9,6 +9,8 @@
 
       cdc = "cd ~/.config";
       cdg = "cd ~/Desktop/GIT";
+
+      gs = "git status";
     };
 
     functions = { fish_greeting = ""; };

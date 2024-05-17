@@ -5,7 +5,6 @@
     bat
     bc
     bottom
-    delta
     eza
     gitui
     jq
