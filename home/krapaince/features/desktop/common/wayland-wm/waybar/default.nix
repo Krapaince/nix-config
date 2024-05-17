@@ -118,7 +118,7 @@
             [ ]) ++ [ "temperature#cpu" "cpu" "memory" ];
         disk = {
           interval = 10;
-          format = "🖴 {free}";
+          format = "  {free}";
           path = "/";
         };
         "custom/media" = {
@@ -143,7 +143,7 @@
           interface = "${toString network-interfaces.wireless.name}";
           interval = 1;
           format-wifi =
-            " {essid}  {bandwidthDownOctets}  {bandwidthUpOctets}";
+            "  {essid}  {bandwidthDownOctets}  {bandwidthUpOctets}";
           format-disconnected = "";
         };
         "temperature#cpu" = {
