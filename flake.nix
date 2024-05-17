@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    systems.url = "github:nix-systems/default-linux";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -17,11 +18,11 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      pkgsFor = lib.genAttrs systems (system:
+      pkgsFor = lib.genAttrs (import systems) (system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
