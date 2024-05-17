@@ -23,12 +23,9 @@
       exec-once = [
         "~/.config/hypr/scripts/setup-portal.sh"
         "gnome-keyring-daemon --start"
-        "nm-applet --indicator"
         "blueman-applet"
         "~/.config/hypr/scripts/ipc.sh"
       ];
-
-      exec = [ "~/.config/hypr/scripts/relaunch.sh" "swaync" ];
 
       input = {
         kb_layout = "us,fr";
