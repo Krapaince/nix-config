@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, configLib, ... }: {
   users.mutableUsers = true;
   users.users.krapaince = {
     isNormalUser = true;
@@ -12,6 +12,11 @@
     packages = with pkgs; [ home-manager ];
   };
 
-  home-manager.users.krapaince =
-    import ../../../home/krapaince/${config.networking.hostName}.nix;
+  home-manager = {
+    extraSpecialArgs = { inherit configLib; };
+    users.krapaince =
+      import ../../../home/krapaince/${config.networking.hostName}.nix;
+  };
+
+  security.pam.services.swaylock = { };
 }

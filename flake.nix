@@ -22,11 +22,15 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
+
       pkgsFor = lib.genAttrs (import systems) (system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         });
+
+      configLib = import ./lib { inherit lib; };
+      specialArgs = { inherit inputs outputs configLib; };
     in {
       inherit lib;
 
@@ -34,13 +38,13 @@
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         momo = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
           modules = [ ./hosts/momo ];
-          specialArgs = { inherit inputs outputs; };
         };
 
         pabu = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
           modules = [ ./hosts/pabu ];
-          specialArgs = { inherit inputs outputs; };
         };
       };
 
@@ -50,13 +54,13 @@
         "krapaince@momo" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./home/krapaince/momo.nix ];
           pkgs = pkgsFor.aarch64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = specialArgs;
         };
 
         "krapaince@pabu" = home-manager.lib.homeManagerConfiguration {
           modules = [ ./home/krapaince/pabu.nix ];
           pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = specialArgs;
         };
       };
     };

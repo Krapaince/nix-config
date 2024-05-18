@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, configLib, ... }:
 let
   pipewire-control = lib.getExe pkgs.polybar-pulseaudio-control;
   playerctl = lib.getExe' config.services.playerctld.package "playerctl";
@@ -21,6 +21,16 @@ in {
         swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
         wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
 
+        lockScript = let swaylock = lib.getExe pkgs.swaylock;
+        in configLib.mkScript {
+          name = "lock";
+          deps = [ pkgs.swaylock ];
+          script = ''
+            ${swaylock}
+          '';
+          inherit pkgs;
+        };
+
         defaultApp = type: "${lib.getExe pkgs.handlr-regex} launch ${type}";
 
         workspaces = map (w:
@@ -34,7 +44,7 @@ in {
         "${mainMod}, D, exec, ${rofi} -show drun -theme ~/.config/rofi/config.rasi"
 
         "SUPER, Up, exec, ~/.config/hypr/scripts/lock.sh -f && systemctl suspend"
-        "SUPER, Right, exec, ~/.config/hypr/scripts/lock.sh"
+        "SUPER, Right, exec, ${lockScript}"
 
         "CTRL, Space, exec, ${swaync-client} --hide-latest"
         "${mainMod}, t, exec, ${swaync-client} -t"
