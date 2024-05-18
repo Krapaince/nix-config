@@ -4,11 +4,21 @@
   home.packages = with pkgs; [
     bat
     bc
-    bottom
+    btop
+    curl
+    dust
     eza
-    gitui
+    fd
     jq
+    man
+    man-pages
+    ncdu
     ripgrep
-    swaynotificationcenter
+    sshfs
+    tree
+    unzip
+    yt-dlp
+
+    nvd
   ];
 }

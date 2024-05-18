@@ -2,7 +2,35 @@
 
   home = {
     sessionVariables.EDITOR = "nvim";
-    packages = with pkgs; [ nixfmt-classic nil ];
+    packages = with pkgs; [
+      # Github action
+      actionlint
+
+      nodePackages.bash-language-server
+      nodePackages.typescript-language-server
+
+      dockerfile-language-server-nodejs
+
+      lua-language-server
+      stylua
+
+      prettierd
+
+      texlab
+
+      # Python
+      black
+      pyright
+
+      # HTML/CSS/JSON
+      vscode-langservers-extracted
+
+      # Nix
+      nixfmt-classic
+      nil
+
+      yaml-language-server
+    ];
   };
   xdg.configFile."nvim/" = {
     source = ../../../../dotfiles/nvim;
