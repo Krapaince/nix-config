@@ -7,6 +7,7 @@
     ../common/global
     ../common/users/krapaince.nix
 
+    ../common/optional/auto-cpufreq.nix
     ../common/optional/pipewire.nix
   ];
 
