@@ -9,6 +9,7 @@
     dust
     eza
     fd
+    inotify-tools
     jq
     man
     man-pages

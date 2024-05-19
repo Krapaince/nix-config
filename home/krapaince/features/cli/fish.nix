@@ -11,6 +11,7 @@
       cdg = "cd ~/Desktop/GIT";
 
       gs = "git status";
+      gu = "gitui --watcher";
     };
 
     functions = { fish_greeting = ""; };
