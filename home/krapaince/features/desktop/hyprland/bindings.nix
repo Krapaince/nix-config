@@ -14,19 +14,32 @@ in {
   wayland.windowManager.hyprland = {
     settings = {
       bind = let
-        grim = lib.getExe pkgs.grim;
         rofi = lib.getExe pkgs.rofi-wayland;
-        satty = lib.getExe pkgs.satty; # TODO add script files too
-        slurp = lib.getExe pkgs.slurp;
         swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
-        wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
 
-        lockScript = let swaylock = lib.getExe pkgs.swaylock;
-        in configLib.mkScript {
-          name = "lock";
+        lockScript = configLib.mkScript {
+          name = "lock.sh";
           deps = [ pkgs.swaylock ];
           script = ''
-            ${swaylock}
+            swaylock
+          '';
+          inherit pkgs;
+        };
+
+        screenshotScript = configLib.mkScript {
+          name = "screenshot.sh";
+          deps = with pkgs; [ slurp grim wl-clipboard ];
+          script = ''
+            slurp | grim -g - - | wl-copy
+          '';
+          inherit pkgs;
+        };
+
+        screenshotEditScript = configLib.mkScript {
+          name = "screenshot-edit.sh";
+          deps = with pkgs; [ slurp grim satty ];
+          script = ''
+            slurp | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
           '';
           inherit pkgs;
         };
@@ -49,8 +62,8 @@ in {
         "CTRL, Space, exec, ${swaync-client} --hide-latest"
         "${mainMod}, t, exec, ${swaync-client} -t"
 
-        ",Print, exec, ${slurp} | ${grim} -g - - | ${wl-copy}"
-        "${mainMod}, Print, exec, ~/.config/hypr/scripts/screenshot.sh"
+        ",Print, exec, ${screenshotScript}"
+        "${mainMod}, Print, exec, ${screenshotEditScript}"
 
         "ALT_SHIFT, Q, killactive,"
         "ALT_SHIFT, E, exit,"
