@@ -8,6 +8,7 @@
     ../common/users/krapaince.nix
 
     ../common/optional/auto-cpufreq.nix
+    ../common/optional/bluetooth.nix
     ../common/optional/pipewire.nix
   ];
 

@@ -3,6 +3,8 @@
     ../common
     ../common/wayland-wm
 
+    ../optional/bluetooth.nix
+
     ./bindings.nix
     ./rules.nix
   ];
