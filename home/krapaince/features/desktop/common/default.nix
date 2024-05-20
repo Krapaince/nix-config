@@ -9,6 +9,7 @@
     ./playerctl.nix
     ./rofi.nix
     ./wezterm
+    ./zathura.nix
   ];
 
   home.packages = with pkgs; [ xdg-utils ];
