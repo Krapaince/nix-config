@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [
     ../common
     ../common/wayland-wm
@@ -19,7 +19,7 @@
     configPackages = [ hyprland ];
   };
 
-  home.packages = with pkgs; [ grim satty slurp ];
+  home.packages = with pkgs; [ grim satty slurp hyprland-ipc ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -112,5 +112,21 @@
         }") (config.monitors);
     };
     systemd.enable = true;
+  };
+
+  systemd.user.services.hyprland-ipc = {
+    Unit = {
+      Description = "IPC script that handles Hyprland events.";
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+
+    Service = let ipc-script = lib.getExe' pkgs.hyprland-ipc "hyprland-ipc.sh";
+    in {
+      ExecStart = "${ipc-script}";
+      Restart = "on-failure";
+    };
+
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

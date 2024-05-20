@@ -23,6 +23,8 @@
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
 
+      forEachSystem = f:
+        lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (system:
         import nixpkgs {
           inherit system;
@@ -33,6 +35,10 @@
       specialArgs = { inherit inputs outputs configLib; };
     in {
       inherit lib;
+
+      overlays = import ./overlays { inherit inputs outputs; };
+
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -52,13 +58,13 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "krapaince@momo" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/momo.nix ];
+          modules = [ ./home/krapaince/momo.nix ./home/krapaince/nixpkgs.nix ];
           pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = specialArgs;
         };
 
         "krapaince@pabu" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/pabu.nix ];
+          modules = [ ./home/krapaince/pabu.nix ./home/krapaince/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = specialArgs;
         };

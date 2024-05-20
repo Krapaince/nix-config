@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, outputs, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./fish.nix
@@ -7,8 +7,12 @@
     # ./openssh.nix
   ];
 
-  nix.settings.warn-dirty = false;
-  nixpkgs.config.allowUnfree = true;
+  home-manager.useGlobalPkgs = true;
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config.allowUnfree = true;
+  };
 
   hardware.enableRedistributableFirmware = true;
 }
