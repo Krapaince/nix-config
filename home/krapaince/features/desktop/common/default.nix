@@ -12,7 +12,17 @@
     ./zathura.nix
   ];
 
-  home.packages = with pkgs; [ xdg-utils ];
+  home.packages = with pkgs; [
+    gimp
+    krita
+    wdisplays
+    wl-mirror
+    wl-screenrec
+    xdg-utils
+    xdragon
+    vlc
+    zeal
+  ];
 
   xdg.portal = {
     enable = true;

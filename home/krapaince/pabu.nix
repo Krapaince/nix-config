@@ -1,7 +1,14 @@
 { ... }:
 let common_monitors = import (./features/desktop/common/monitors.nix);
 in {
-  imports = [ ./global ./features/desktop/hyprland ];
+  imports = [
+    ./global
+
+    ./features/desktop/hyprland
+
+    ./features/desktop/optional/discord.nix
+    ./features/desktop/optional/proton-vpn.nix
+  ];
 
   monitors = ([{
     name = "eDP-1";
