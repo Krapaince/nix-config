@@ -6,6 +6,7 @@
     ../../cli/optional/yt-dlp.nix
 
     ../optional/bluetooth.nix
+    ../optional/gnome-keyring.nix
 
     ./bindings.nix
     ./rules.nix
