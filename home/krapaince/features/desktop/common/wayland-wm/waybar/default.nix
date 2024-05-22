@@ -77,7 +77,7 @@
             headset = "󰋋";
             default = [ "" "" "" ];
           };
-          on-click = "change-sink.sh";
+          on-click = lib.getExe pkgs.switch-audio;
         };
 
         "custom/notification" = {
