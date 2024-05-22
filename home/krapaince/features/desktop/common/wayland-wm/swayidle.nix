@@ -1,7 +1,8 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 let
   hyprctl =
     lib.getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl";
+  lockScript = lib.getExe pkgs.lock-script;
 
   lockTime = 5 * 60;
   dpmsOff = lockTime - 20;
@@ -17,7 +18,7 @@ in {
       }
       {
         timeout = lockTime;
-        command = "~/.config/hypr/scripts/lock.sh";
+        command = lockScript;
       }
     ];
   };

@@ -17,14 +17,7 @@ in {
         rofi = lib.getExe pkgs.rofi-wayland;
         swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
 
-        lockScript = configLib.mkScript {
-          name = "lock.sh";
-          deps = [ pkgs.swaylock ];
-          script = ''
-            swaylock
-          '';
-          inherit pkgs;
-        };
+        lockScript = lib.getExe pkgs.lock-script;
 
         screenshotScript = configLib.mkScript {
           name = "screenshot.sh";
