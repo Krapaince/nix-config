@@ -1,5 +1,6 @@
 { inputs, outputs, ... }: {
   imports = [
+    inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
     ./fish.nix
     ./locale.nix

@@ -2,6 +2,7 @@
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 
+    ./disko.nix
     ./hardware-configuration.nix
 
     ../common/global
@@ -14,6 +15,7 @@
 
   networking = {
     hostName = "pabu";
+    hostId = "a9bf23b0";
     networkmanager.enable = true;
   };
 

@@ -1,8 +1,10 @@
-{
+{ config, ... }: {
   boot = {
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
     };
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    supportedFilesystems = [ "zfs" ];
     kernelModules = [ "kvm-intel" ];
 
     loader = {
@@ -14,16 +16,7 @@
       efi.canTouchEfiVariables = true;
     };
   };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e5d36ee3-ba03-47ab-a58e-ab67f933db9e";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7747-A585";
-    fsType = "vfat";
-  };
+  systemd.services.zfs-mount.enable = false;
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
