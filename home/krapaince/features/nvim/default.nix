@@ -3,6 +3,9 @@
   home = {
     sessionVariables.EDITOR = "nvim";
     packages = with pkgs; [
+      gnumake
+      tree-sitter
+
       # Github action
       actionlint
 
