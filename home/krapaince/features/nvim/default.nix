@@ -3,6 +3,7 @@
   home = {
     sessionVariables.EDITOR = "nvim";
     packages = with pkgs; [
+      nodejs_20
       gnumake
       tree-sitter
 

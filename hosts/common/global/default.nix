@@ -2,9 +2,12 @@
   imports = [
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
+
     ./fish.nix
     ./locale.nix
     ./nix.nix
+    ./opt-in-state.nix
+
     # ./openssh.nix
   ];
 
