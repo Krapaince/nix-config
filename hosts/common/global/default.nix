@@ -6,9 +6,9 @@
     ./fish.nix
     ./locale.nix
     ./nix.nix
+    ./openssh.nix
     ./opt-in-state.nix
-
-    # ./openssh.nix
+    ./sops.nix
   ];
 
   home-manager.useGlobalPkgs = true;

@@ -20,6 +20,17 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    sops-nix = {
+      url = "github:mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    secrets = {
+      url =
+        "git+ssh://git@gitlab.com/Krapaince/nix-config-secret.git?ref=master&shallow=1";
+      flake = false;
+    };
+
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
@@ -65,13 +76,13 @@
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
         "krapaince@momo" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/momo.nix ./home/krapaince/nixpkgs.nix ];
+          modules = [ ./home/krapaince/momo ./home/krapaince/nixpkgs.nix ];
           pkgs = pkgsFor.aarch64-linux;
           extraSpecialArgs = specialArgs;
         };
 
         "krapaince@pabu" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/pabu.nix ./home/krapaince/nixpkgs.nix ];
+          modules = [ ./home/krapaince/pabu ./home/krapaince/nixpkgs.nix ];
           pkgs = pkgsFor.x86_64-linux;
           extraSpecialArgs = specialArgs;
         };

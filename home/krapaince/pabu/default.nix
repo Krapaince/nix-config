@@ -1,13 +1,13 @@
 { ... }:
-let common_monitors = import (./features/desktop/common/monitors.nix);
+let common_monitors = import (../features/desktop/common/monitors.nix);
 in {
   imports = [
-    ./global
+    ../global
 
-    ./features/desktop/hyprland
+    ../features/desktop/hyprland
 
-    ./features/desktop/optional/discord.nix
-    ./features/desktop/optional/proton-vpn.nix
+    ../features/desktop/optional/discord.nix
+    ../features/desktop/optional/proton-vpn.nix
   ];
 
   monitors = ([{
