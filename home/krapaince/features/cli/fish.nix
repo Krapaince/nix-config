@@ -2,6 +2,10 @@
   programs.fish = {
     enable = true;
 
+    interactiveShellInit = ''
+      set -x GPG_TTY (tty)
+    '';
+
     shellAliases = {
       v = "nvim";
       c = "clear";

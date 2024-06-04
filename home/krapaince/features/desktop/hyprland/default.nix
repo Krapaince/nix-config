@@ -3,6 +3,7 @@
     ../common
     ../common/wayland-wm
 
+    ../../cli/optional/gpg.nix
     ../../cli/optional/yt-dlp.nix
 
     ../optional/bluetooth.nix

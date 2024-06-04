@@ -10,6 +10,11 @@
     };
     userName = config.git.userName;
     userEmail = config.git.userEmail;
+    signing = {
+      key = "EF86373CA45DE4BC";
+      signByDefault = true;
+    };
+
     extraConfig = {
       core.editor = "${lib.getExe pkgs.neovim}";
 
