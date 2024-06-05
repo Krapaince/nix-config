@@ -49,7 +49,7 @@ in {
         "${mainMod}, Return, exec, ${defaultApp "x-scheme-handler/terminal"}"
         "${mainMod}, D, exec, ${rofi} -show drun -theme ~/.config/rofi/config.rasi"
 
-        "SUPER, Up, exec, ~/.config/hypr/scripts/lock.sh -f && systemctl suspend"
+        "SUPER, Up, exec, ${lockScript} -f && systemctl suspend"
         "SUPER, Right, exec, ${lockScript}"
 
         "CTRL, Space, exec, ${swaync-client} --hide-latest"

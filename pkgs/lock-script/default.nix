@@ -2,7 +2,5 @@
 writeShellApplication {
   name = "lock-script";
   runtimeInputs = [ swaylock ];
-  text = ''
-    swaylock
-  '';
+  text = builtins.readFile ./lock.sh;
 }
