@@ -4,6 +4,7 @@
 
     ./disko.nix
     ./hardware-configuration.nix
+    ./network-manager-connections.nix
 
     ../common/global
     ../common/users/krapaince.nix
