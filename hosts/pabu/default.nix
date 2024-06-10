@@ -18,6 +18,12 @@
     hostName = "pabu";
     hostId = "a9bf23b0";
     networkmanager.enable = true;
+    usePredictableInterfaceNames = true;
+  };
+
+  network-interfaces = {
+    ethernet = "enp0s31f6";
+    wireless = "wlp3s0";
   };
 
   hardware.opengl = {

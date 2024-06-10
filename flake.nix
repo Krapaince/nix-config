@@ -53,6 +53,7 @@
       specialArgs = { inherit inputs outputs configLib; };
     in {
       inherit lib;
+      nixosModules = import ./modules/nixos;
 
       overlays = import ./overlays { inherit inputs outputs; };
 

@@ -1,4 +1,6 @@
 { inputs, config, ... }: {
+  imports = [ ../common/optional/network-manager/secret-based.nix ];
+
   networking.networkmanager.ensureProfiles = {
     environmentFiles = with config.sops; [
       secrets.wireguard-private-key.path

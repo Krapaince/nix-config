@@ -9,7 +9,7 @@
     ./openssh.nix
     ./opt-in-state.nix
     ./sops.nix
-  ];
+  ] ++ (builtins.attrValues outputs.nixosModules);
 
   home-manager.useGlobalPkgs = true;
 
