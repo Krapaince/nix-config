@@ -4,4 +4,5 @@
   # Personal script
   hyprland-ipc = pkgs.callPackage ./hyprland-ipc { };
   lock-script = pkgs.callPackage ./lock-script { };
+  suspend-script = pkgs.callPackage ./suspend-script { };
 }

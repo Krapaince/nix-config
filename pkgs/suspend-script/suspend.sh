@@ -1,0 +1,3 @@
+playerctl pause
+
+systemctl suspend

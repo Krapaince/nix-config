@@ -18,6 +18,7 @@ in {
         swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
 
         lockScript = lib.getExe pkgs.lock-script;
+        suspendScript = lib.getExe pkgs.suspend-script;
 
         screenshotScript = configLib.mkScript {
           name = "screenshot.sh";
@@ -49,7 +50,7 @@ in {
         "${mainMod}, Return, exec, ${defaultApp "x-scheme-handler/terminal"}"
         "${mainMod}, D, exec, ${rofi} -show drun -theme ~/.config/rofi/config.rasi"
 
-        "SUPER, Up, exec, ${lockScript} -f && systemctl suspend"
+        "SUPER, Up, exec, ${lockScript} -f && ${suspendScript}"
         "SUPER, Right, exec, ${lockScript}"
 
         "CTRL, Space, exec, ${swaync-client} --hide-latest"
