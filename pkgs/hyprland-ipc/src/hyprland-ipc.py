@@ -29,19 +29,30 @@ def run_openwindow_handler(args: str):
 
 def run_windowtitle_handler(window_addr):
     client = hyprctl_get_client_by_address(window_addr)
+    title = client["title"]
 
-    if client["initialClass"] == "firefox" and client["title"].startswith("FW"):
+    if client["initialClass"] == "firefox" and title.startswith("FW"):
         # Used with https://addons.mozilla.org/en-US/firefox/addon/window-titler/
         title = client["title"].removeprefix("FW")
         digits = takewhile(lambda char: char.isdigit(), title)
         workspace = "".join(digits)
-        dispatch(["movetoworkspacesilent", f"{workspace},address:0x{window_addr}"])
+        dispatch([f"movetoworkspacesilent {workspace}, address:0x{window_addr}"])
+
+    if title == "Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox":
+        dispatch([f"fullscreen 0, address:0x{window_addr}"])
 
 
-def dispatch(args: List[str]):
-    args = ["hyprctl", "dispatch"] + args
-    print("Dispatching -> " + " ".join(args))
-    subprocess.run(args)
+def dispatch(dispatchers: List[str]):
+    if len(dispatchers) == 1:
+        args = ["hyprctl", "dispatch", dispatchers[0]]
+        subprocess.run(args)
+    else:
+        dispatchers = list(
+            map(lambda dispatcher: f"dispatch {dispatcher}", dispatchers)
+        )
+        joined_dispatchers = ";".join(dispatchers)
+        args = ["hyprctl", "--batch", joined_dispatchers]
+        subprocess.run(args)
 
 
 def hyprctl_get_client_by_address(address):
