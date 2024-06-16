@@ -1,5 +1,8 @@
 { inputs, config, ... }: {
-  imports = [ ../common/optional/network-manager/secret-based.nix ];
+  imports = [
+    ../common/optional/network-manager/base.nix
+    ../common/optional/network-manager/secret-based.nix
+  ];
 
   networking.networkmanager.ensureProfiles = {
     environmentFiles = with config.sops; [
