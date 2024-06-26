@@ -6,6 +6,7 @@ MNT="/mnt"
 PERSIST="$MNT/persist/system"
 
 mkdir -p $PERSIST/etc/NetworkManager/system-connections
+# https://man.archlinux.org/man/NetworkManager.8.en#/VAR/LIB/NETWORKMANAGER/SECRET_KEY_AND_/ETC/MACHINE-ID
 mkdir -p $PERSIST/var/lib/{bluetooth,nixos,systemd,NetworkManager}
 mkdir -p $PERSIST/var/log
 
