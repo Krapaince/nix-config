@@ -17,7 +17,3 @@ head -c4 /dev/urandom | od -A none -t x4 > "$PERSIST/etc/machine-id"
 mv {$MNT,$PERSIST}/var/lib/NetworkManager/secret_key
 mv {$MNT,$PERSIST}/var/lib/NetworkManager/timestamps
 mv {$MNT,$PERSIST}/var/lib/NetworkManager/seen-bssids
-
-# Temporary while secret aren't implemented
-mv {$MNT,$PERSIST}/etc/shadow
-mv {$MNT,$PERSIST}/etc/passwd

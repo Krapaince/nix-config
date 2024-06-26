@@ -1,5 +1,5 @@
 { pkgs, config, configLib, inputs, ... }: {
-  users.mutableUsers = true;
+  users.mutableUsers = false;
   users.users.krapaince = {
     isNormalUser = true;
     shell = pkgs.fish;

@@ -13,9 +13,6 @@
     ];
   };
 
-  # TODO Move /etc/passwd and /etc/shadow to /persist/etc
-  # Manually move /etc/shadow /etc/passwd ? <=> mutableUsers = false
-
   boot.initrd.systemd = {
     enable = true;
     services = {
