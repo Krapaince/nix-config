@@ -1,6 +1,12 @@
 { pkgs, ... }: {
-  imports =
-    [ ./gammastep.nix ./swaync.nix ./swayidle.nix ./swaylock.nix ./waybar ];
+  imports = [
+    ./gammastep.nix
+    ./swaync.nix
+    ./swayidle.nix
+    ./swaylock.nix
+    ./waybar
+    ./wpaperd
+  ];
 
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [ wf-recorder wl-clipboard ];

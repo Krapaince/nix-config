@@ -24,7 +24,7 @@
     };
 
   home-manager = {
-    extraSpecialArgs = { inherit configLib; };
+    extraSpecialArgs = { inherit configLib inputs; };
     users.krapaince =
       import ../../../home/krapaince/${config.networking.hostName};
   };

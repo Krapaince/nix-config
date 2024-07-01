@@ -128,7 +128,8 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "secrets": "secrets",
         "sops-nix": "sops-nix",
-        "systems": "systems"
+        "systems": "systems",
+        "wallpapers": "wallpapers"
       }
     },
     "secrets": {
@@ -183,6 +184,19 @@
         "owner": "nix-systems",
         "repo": "default-linux",
         "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1723760273,
+        "narHash": "sha256-qe1ke+TVZqucImFVYhzp098Yr1maUx4oze7bgWPpGvE=",
+        "type": "tarball",
+        "url": "https://www.dropbox.com/scl/fi/kl3812rjgigeh73msdrc7/wallpapers.tar?dl=1&e=1&rlkey=zg1ncf3oxji5zjk4tth3w0ly8&st=cl4uccir"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://www.dropbox.com/scl/fi/kl3812rjgigeh73msdrc7/wallpapers.tar?dl=1&e=1&rlkey=zg1ncf3oxji5zjk4tth3w0ly8&st=cl4uccir"
       }
     }
   },

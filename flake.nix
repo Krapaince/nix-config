@@ -31,6 +31,12 @@
       flake = false;
     };
 
+    wallpapers = {
+      url =
+        "https://www.dropbox.com/scl/fi/kl3812rjgigeh73msdrc7/wallpapers.tar?rlkey=zg1ncf3oxji5zjk4tth3w0ly8&e=1&st=cl4uccir&dl=1";
+      flake = false;
+    };
+
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
