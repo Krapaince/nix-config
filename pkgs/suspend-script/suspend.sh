@@ -1,3 +1,3 @@
-playerctl pause
+playerctl pause || true
 
 systemctl suspend
