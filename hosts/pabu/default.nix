@@ -12,6 +12,7 @@
     ../common/optional/auto-cpufreq.nix
     ../common/optional/bluetooth.nix
     ../common/optional/pipewire.nix
+    ../common/optional/steam.nix
   ];
 
   networking = {
