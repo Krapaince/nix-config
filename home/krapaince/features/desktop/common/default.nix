@@ -14,11 +14,12 @@
 
   home.packages = with pkgs; [
     gimp
+    imv
     krita
+    vlc
     wdisplays
     xdg-utils
     xdragon
-    vlc
     zeal
   ];
 
