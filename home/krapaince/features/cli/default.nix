@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./fish.nix ./git.nix ./gitui.nix ];
+  imports = [ ./fish.nix ./git.nix ./gitui.nix ./oh-my-posh.nix ];
 
   home.packages = with pkgs; [
     bat
