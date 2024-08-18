@@ -16,8 +16,6 @@
     gimp
     krita
     wdisplays
-    wl-mirror
-    wl-screenrec
     xdg-utils
     xdragon
     vlc

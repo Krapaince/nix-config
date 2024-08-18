@@ -9,7 +9,12 @@
   ];
 
   xdg.mimeApps.enable = true;
-  home.packages = with pkgs; [ wf-recorder wl-clipboard ];
+  home.packages = with pkgs; [
+    wf-recorder
+    wl-clipboard
+    wl-mirror
+    wl-screenrec
+  ];
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
