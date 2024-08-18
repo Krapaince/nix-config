@@ -26,12 +26,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [
-        "~/.config/hypr/scripts/setup-portal.sh"
-        "gnome-keyring-daemon --start"
-        "blueman-applet"
-        "~/.config/hypr/scripts/ipc.sh"
-      ];
+      exec-once = [ "gnome-keyring-daemon --start" "blueman-applet" ];
 
       input = {
         kb_layout = "us,fr";
