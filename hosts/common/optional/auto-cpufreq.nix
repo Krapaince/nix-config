@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       charger = {
-        governor = "performance";
+        governor = "balanced";
         turbo = "auto";
       };
 
