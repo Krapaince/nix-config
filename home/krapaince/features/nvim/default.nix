@@ -27,7 +27,7 @@
       pyright
 
       # HTML/CSS/JSON
-      vscode-langservers-extracted
+      # vscode-langservers-extracted
 
       # Nix
       nixfmt-classic

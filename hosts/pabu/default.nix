@@ -28,10 +28,9 @@
     wireless = "wlp3s0";
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   programs = { dconf.enable = true; };
