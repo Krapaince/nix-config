@@ -21,7 +21,7 @@
     configPackages = [ hyprland ];
   };
 
-  home.packages = with pkgs; [ grim satty slurp hyprland-ipc ];
+  home.packages = with pkgs; [ grim satty slurp ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -118,9 +118,9 @@
       After = [ "graphical-session-pre.target" ];
     };
 
-    Service = let ipc-script = lib.getExe' pkgs.hyprland-ipc "hyprland-ipc.sh";
+    Service = let hyprland_ipc = lib.getExe' pkgs.inputs.hyprland-ipc.hyprland-ipc "hyprland_ipc";
     in {
-      ExecStart = "${ipc-script}";
+      ExecStart = "${hyprland_ipc} start";
       Restart = "on-failure";
     };
 
