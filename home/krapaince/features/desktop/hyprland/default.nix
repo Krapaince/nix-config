@@ -119,7 +119,9 @@
       After = [ "graphical-session-pre.target" ];
     };
 
-    Service = let hyprland_ipc = lib.getExe' pkgs.inputs.hyprland-ipc.hyprland-ipc "hyprland_ipc";
+    Service = let
+      hyprland_ipc =
+        lib.getExe' pkgs.inputs.hyprland-ipc.hyprland-ipc "hyprland_ipc";
     in {
       ExecStart = "${hyprland_ipc} start";
       Restart = "on-failure";
