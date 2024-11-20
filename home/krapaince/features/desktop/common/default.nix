@@ -13,9 +13,12 @@
   ];
 
   home.packages = with pkgs; [
+    chromium
     gimp
     imv
     krita
+    mumble
+    pinta
     vlc
     wdisplays
     xdg-utils
