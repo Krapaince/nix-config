@@ -5,6 +5,8 @@
 
     ../common/global
     ../common/users/${configVars.username}.nix
+
+    ../common/optional/openssh.nix
   ];
 
   networking = {

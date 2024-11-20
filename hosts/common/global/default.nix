@@ -6,7 +6,6 @@
     ./fish.nix
     ./locale.nix
     ./nix.nix
-    ./openssh.nix
     ./opt-in-state.nix
     ./sops.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
