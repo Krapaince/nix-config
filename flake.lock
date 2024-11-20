@@ -176,10 +176,10 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1732137947,
-        "narHash": "sha256-WLJlDN6RRv90dx7VT8VZlI2/gfac9hKPvqzBXbfVNBM=",
+        "lastModified": 1732145599,
+        "narHash": "sha256-1a75FWC7pD9Wf05N6NVyI3h7YO8YMldmUUWd4WDD86Q=",
         "ref": "master",
-        "rev": "5445eee439e7f83eba1af614f9f6ce52ca0e17d2",
+        "rev": "5256946cc328f6578bf66e50c1f7f3d9373596cd",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-secret.git"
