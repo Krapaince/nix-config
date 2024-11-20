@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, lib, configVars, ... }: {
   home.packages = with pkgs; [ delta ];
 
   programs.git = {
@@ -8,8 +8,8 @@
       lg =
         "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
     };
-    userName = config.git.userName;
-    userEmail = config.git.userEmail;
+    userName = configVars.username;
+    userEmail = configVars.email;
     signing = {
       key = "EF86373CA45DE4BC";
       signByDefault = true;

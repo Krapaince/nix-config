@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, configVars, ... }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 
@@ -7,7 +7,7 @@
     ./network-manager-connections.nix
 
     ../common/global
-    ../common/users/krapaince.nix
+    ../common/users/${configVars.username}.nix
 
     ../common/optional/auto-cpufreq.nix
     ../common/optional/bluetooth.nix

@@ -66,7 +66,8 @@
         });
 
       configLib = import ./lib { inherit lib; };
-      specialArgs = { inherit inputs outputs configLib; };
+      configVars = import ./vars;
+      specialArgs = { inherit inputs outputs configLib configVars; };
     in {
       inherit lib;
       nixosModules = import ./modules/nixos;

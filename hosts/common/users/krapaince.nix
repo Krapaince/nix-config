@@ -1,6 +1,8 @@
-{ pkgs, config, configLib, inputs, ... }: {
+{ pkgs, config, configLib, configVars, inputs, ... }:
+let username = configVars.username;
+in {
   users.mutableUsers = false;
-  users.users.krapaince = {
+  users.users.${username} = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
@@ -11,8 +13,8 @@
   };
 
   users.users.root = {
-    hashedPasswordFile = config.users.users.krapaince.hashedPasswordFile;
-    password = config.users.users.krapaince.password;
+    hashedPasswordFile = config.users.users.${username}.hashedPasswordFile;
+    password = config.users.users.${username}.password;
     shell = pkgs.fish;
   };
 
@@ -24,9 +26,9 @@
     };
 
   home-manager = {
-    extraSpecialArgs = { inherit configLib inputs; };
+    extraSpecialArgs = { inherit configLib configVars inputs; };
     users.krapaince =
-      import ../../../home/krapaince/${config.networking.hostName};
+      import ../../../home/${username}/${config.networking.hostName};
   };
 
   security.pam.services.swaylock = { };

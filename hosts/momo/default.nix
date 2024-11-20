@@ -1,10 +1,10 @@
-{ inputs, ... }: {
+{ inputs, configVars, ... }: {
   imports = [
     inputs.hardware.nixosModules.raspberry-pi-4
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/krapaince.nix
+    ../common/users/${configVars.username}.nix
   ];
 
   networking = {
