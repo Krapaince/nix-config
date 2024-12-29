@@ -79,6 +79,11 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
+        iso = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [ ./hosts/iso ];
+        };
+
         momo = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = [ ./hosts/momo ];
