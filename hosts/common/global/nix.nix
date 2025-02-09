@@ -2,7 +2,7 @@
 let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in {
   nix = {
-    package = pkgs.nixVersions.nix_2_18;
+    package = pkgs.nixVersions.nix_2_25;
 
     settings = {
       auto-optimise-store = true;

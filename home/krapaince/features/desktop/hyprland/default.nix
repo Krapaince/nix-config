@@ -66,8 +66,6 @@
           passes = 1;
           xray = true;
         };
-
-        drop_shadow = false;
       };
 
       animations = {

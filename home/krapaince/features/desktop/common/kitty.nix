@@ -44,7 +44,7 @@
       enable_audio_bell = "no";
       visual_bell_duration = "0.0";
       window_alert_on_bell = "yes";
-      bell_on_tab = "";
+      bell_on_tab = "no";
       command_on_bell = "none";
 
       # Window layout

@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs;
-    [ (nerdfonts.override { fonts = [ "IosevkaTerm" ]; }) ];
+  home.packages = with pkgs; [ nerd-fonts.iosevka-term ];
 
   fontProfiles = {
     enable = true;
