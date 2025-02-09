@@ -1,7 +1,4 @@
-let
-  zpool_name = "zfspool";
-  root_fs_name = "local/root";
-in {
+{
   disko.devices = {
     disk = {
       main = {
@@ -25,53 +22,50 @@ in {
               size = "100%";
               content = {
                 type = "luks";
-                name = "crypt";
-                extraOpenArgs = [ "--allow-discards" ];
+                name = "cryptroot";
+                extraOpenArgs = [
+                  # https://askubuntu.com/questions/243518/what-exactly-do-the-allow-discards-and-root-trim-linux-parameters-do
+                  "--allow-discards"
+                  # https://blog.cloudflare.com/speeding-up-linux-disk-encryption/
+                  "--perf-no_read_workqueue"
+                  "--perf-no_write_workqueue"
+                ];
                 content = {
-                  type = "zfs";
-                  pool = zpool_name;
+                  type = "btrfs";
+                  extraArgs = [ "-L" "nixos" "-f" ];
+                  postCreateHook = ''
+                  MNTPOINT="$(mktemp -d)"
+                  mount "/dev/mapper/cryptroot" "$MNTPOINT" -o subvolid=5
+                  trap "umount $MNTPOINT; rm -rf $MNTPOINT/root $MNTPOINT/root-blank" EXIT
+                  btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-blank
+                  '';
+                  subvolumes = {
+                    "/root" = {
+                      mountpoint = "/";
+                      mountOptions = [ "subvol=root" "compress=zstd" "noatime" ];
+                    };
+                    "/home" = {
+                      mountpoint = "/home";
+                      mountOptions = [ "subvol=home" "compress=zstd" ];
+                    };
+                    "/nix" = {
+                      mountpoint = "/nix";
+                      mountOptions =
+                        [ "subvol=nix" "compress=zstd" "noatime" "noacl" ];
+                    };
+                    "/persist" = {
+                      mountpoint = "/persist";
+                      mountOptions = [ "subvol=persist" "compress=zstd" ];
+                    };
+                    "/swap" = {
+                      mountpoint = "/swap";
+                      swap.swapfile.size = "16G";
+                    };
+                  };
                 };
               };
             };
           };
-        };
-      };
-    };
-
-    zpool.zfspool = {
-      type = "zpool";
-      options = { ashift = "12"; };
-      rootFsOptions = {
-        acltype = "posixacl";
-        atime = "off";
-        canmount = "off";
-        compression = "lz4";
-        xattr = "sa";
-      };
-
-      datasets = {
-        "${root_fs_name}" = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/";
-          postCreateHook =
-            "zfs list -t snapshot -H -o name | grep -E '^${zpool_name}/${root_fs_name}@blank$' || zfs snapshot ${zpool_name}/${root_fs_name}@blank";
-        };
-
-        "local/nix" = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/nix";
-        };
-        "safe/home" = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/home";
-        };
-        "safe/persist" = {
-          type = "zfs_fs";
-          options.mountpoint = "legacy";
-          mountpoint = "/persist";
         };
       };
     };
