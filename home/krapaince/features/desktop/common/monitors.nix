@@ -2,7 +2,7 @@
   monitors = [
     {
       name = "desc:Dell Inc. DELL U2412M 0FFXD3CS583S";
-      x = -1920;
+      x = 1920;
       y = -500;
     }
     {
