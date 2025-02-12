@@ -16,7 +16,6 @@ in {
         };
 
         wifi = {
-          band = "bg";
           mode = "infrastructure";
           ssid = "$SECRET_BASE_SSID";
         };
