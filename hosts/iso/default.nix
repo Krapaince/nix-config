@@ -1,5 +1,7 @@
 # A minimal ISO image to bootstrap an host.
-{ pkgs, modulesPath, lib, ... }: {
+{ pkgs, modulesPath, lib, ... }:
+let keys = lib.lists.forEach [ ./id_iso.pub ] (key: builtins.readFile key);
+in {
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
@@ -39,7 +41,13 @@
 
   systemd = { services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ]; };
 
-  users.users.root = { shell = pkgs.fish; };
-  users.users.nixos = { shell = pkgs.fish; };
+  users.users.root = {
+    openssh.authorizedKeys.keys = keys;
+    shell = pkgs.fish;
+  };
+  users.users.nixos = {
+    openssh.authorizedKeys.keys = keys;
+    shell = pkgs.fish;
+  };
 
 }
