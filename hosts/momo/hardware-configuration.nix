@@ -1,4 +1,4 @@
-{
+{ lib, ... }: {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -14,6 +14,7 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
     loader = {
+      generic-extlinux-compatible.enable = lib.mkForce false;
       systemd-boot = {
         configurationLimit = 20;
         enable = true;
