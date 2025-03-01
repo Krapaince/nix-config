@@ -2,7 +2,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
 
       StreamLocalBindUnlink = "yes";
@@ -23,13 +23,14 @@
     }];
   };
 
-  programs.ssh = let hosts = lib.attrNames outputs.nixosConfigurations;
-  in {
-    knownHosts = lib.genAttrs hosts (hostname: {
-      publicKeyFile = ../../${hostname}/ssh_host_ed25519_key.pub;
-      extraHostNames =
-        (lib.optional (hostname == config.networking.hostName) "localhost");
-    });
+  programs.ssh = { };
+  # let hosts = [];
+  # in {
+  #   knownHosts = lib.genAttrs hosts (hostname: {
+  #     publicKeyFile = ../../../home/krapaince/${hostname}/ssh.pub;
+  #     extraHostNames =
+  #       (lib.optional (hostname == config.networking.hostName) "localhost");
+  #   });
 
-  };
+  # };
 }
