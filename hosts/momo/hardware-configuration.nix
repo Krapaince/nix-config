@@ -14,12 +14,12 @@
     # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
     loader = {
-      grub.enable = false;
-      generic-extlinux-compatible = {
+      systemd-boot = {
+        configurationLimit = 20;
         enable = true;
-        configurationLimit = 10;
       };
     };
+    efi.canTouchEfiVariables = true;
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";
