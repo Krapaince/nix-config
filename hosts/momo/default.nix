@@ -1,6 +1,8 @@
 { inputs, configVars, ... }: {
   imports = [
     inputs.hardware.nixosModules.raspberry-pi-4
+
+    ./disko.nix
     ./hardware-configuration.nix
 
     ../common/global
@@ -21,8 +23,6 @@
       filter = "bcm2711-rpi-4*.dtb";
     };
   };
-
-  sound.enable = false;
 
   system.stateVersion = "23.11";
 }
