@@ -11,7 +11,7 @@
       ];
       systemd.tpm2.enable = false;
     };
-    # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+    kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
     loader = {
       generic-extlinux-compatible.enable = lib.mkForce false;
