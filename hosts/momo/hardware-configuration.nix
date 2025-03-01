@@ -9,6 +9,7 @@
         "pcie_brcmstb"
         "reset-raspberrypi"
       ];
+      systemd.enableTpm2 = false;
     };
     # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
