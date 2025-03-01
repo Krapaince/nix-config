@@ -18,8 +18,8 @@
         configurationLimit = 20;
         enable = true;
       };
+      efi.canTouchEfiVariables = true;
     };
-    efi.canTouchEfiVariables = true;
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";
