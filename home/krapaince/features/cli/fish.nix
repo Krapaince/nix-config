@@ -18,9 +18,9 @@
       gu = "gitui --watcher";
 
       bs = "sudo systemctl start bluetooth";
-      bc = "bluetoothctl connect (cat ${
-          config.sops.secrets."bluetooth/headset_addr".path
-        })";
+      # bc = "bluetoothctl connect (cat ${
+      #     config.sops.secrets."bluetooth/headset_addr".path
+      #   })";
     };
 
     functions = { fish_greeting = ""; };
