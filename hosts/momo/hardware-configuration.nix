@@ -1,4 +1,4 @@
-{
+{ lib, pkgs, ... }: {
   boot = {
     initrd = {
       availableKernelModules = [
@@ -9,29 +9,19 @@
         "pcie_brcmstb"
         "reset-raspberrypi"
       ];
+      systemd.tpm2.enable = false;
     };
-    # kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+    kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
     loader = {
-      grub.enable = false;
-      generic-extlinux-compatible = {
+      generic-extlinux-compatible.enable = lib.mkForce false;
+      systemd-boot = {
+        configurationLimit = 20;
         enable = true;
-        configurationLimit = 10;
       };
+      efi.canTouchEfiVariables = true;
     };
   };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
-
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   nixpkgs.hostPlatform = "aarch64-linux";
   powerManagement.cpuFreqGovernor = "ondemand";

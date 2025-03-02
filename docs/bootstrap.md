@@ -23,7 +23,6 @@ Manual operations to set up an host.
   ./scripts/setup-opt-in-state.sh
   ```
 
-- Import gpg master key (might not be needed (to test))
 - Copy the host's private key
 - Set up an access to gitlab via ssh (to fetch secrets repo)
 - Install host
