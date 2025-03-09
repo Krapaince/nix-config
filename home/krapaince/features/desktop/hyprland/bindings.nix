@@ -1,4 +1,4 @@
-{ pkgs, lib, config, configLib, ... }:
+{ pkgs, lib, config, ... }:
 let
   pipewire-control = lib.getExe pkgs.polybar-pulseaudio-control;
   playerctl = lib.getExe' config.services.playerctld.package "playerctl";
@@ -20,7 +20,7 @@ in {
         lockScript = lib.getExe pkgs.lock-script;
         suspendScript = lib.getExe pkgs.suspend-script;
 
-        screenshotScript = configLib.mkScript {
+        screenshotScript = lib.custom.mkScript {
           name = "screenshot.sh";
           deps = with pkgs; [ slurp grim wl-clipboard ];
           script = ''
@@ -29,7 +29,7 @@ in {
           inherit pkgs;
         };
 
-        screenshotEditScript = configLib.mkScript {
+        screenshotEditScript = lib.custom.mkScript {
           name = "screenshot-edit.sh";
           deps = with pkgs; [ slurp grim satty ];
           script = ''

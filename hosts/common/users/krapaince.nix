@@ -1,4 +1,4 @@
-{ pkgs, config, configLib, configVars, inputs, ... }:
+{ pkgs, config, configVars, inputs, ... }:
 let username = configVars.username;
 in {
   users.mutableUsers = false;
@@ -26,7 +26,7 @@ in {
     };
 
   home-manager = {
-    extraSpecialArgs = { inherit configLib configVars inputs; };
+    extraSpecialArgs = { inherit configVars inputs; };
     users.krapaince =
       import ../../../home/${username}/${config.networking.hostName};
   };

@@ -55,7 +55,9 @@
   outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
+      # https://github.com/nix-community/home-manager/pull/3454#issuecomment-1472325946
+      lib = nixpkgs.lib.extend
+        (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
       forEachSystem = f:
         lib.genAttrs (import systems) (system: f pkgsFor.${system});
@@ -65,9 +67,8 @@
           config.allowUnfree = true;
         });
 
-      configLib = import ./lib { inherit lib; };
       configVars = import ./vars;
-      specialArgs = { inherit inputs outputs configLib configVars; };
+      specialArgs = { inherit inputs outputs lib configVars; };
     in {
       inherit lib;
       nixosModules = import ./modules/nixos;
