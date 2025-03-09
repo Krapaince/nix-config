@@ -27,8 +27,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [ "blueman-applet" ];
-
       input = {
         kb_layout = "us,fr";
         kb_variant = ",azerty";
