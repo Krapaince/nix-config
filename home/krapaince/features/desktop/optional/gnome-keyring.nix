@@ -1,4 +1,4 @@
 { pkgs, ... }: {
-  services.gnome-keyring.enable = true;
+  # TODO Add keyring option
   home.packages = with pkgs; [ seahorse ];
 }

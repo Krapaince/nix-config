@@ -27,7 +27,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      exec-once = [ "gnome-keyring-daemon --start" "blueman-applet" ];
+      exec-once = [ "blueman-applet" ];
 
       input = {
         kb_layout = "us,fr";
