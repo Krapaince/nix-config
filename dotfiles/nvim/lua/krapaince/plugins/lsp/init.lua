@@ -21,7 +21,7 @@ return {
       'html',
       'jsonls',
       'lua_ls',
-      'nil_ls',
+      'nixd',
       'null-ls',
       'pyright',
       'rust-analyzer',

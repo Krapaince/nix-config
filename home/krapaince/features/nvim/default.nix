@@ -31,7 +31,7 @@
 
       # Nix
       nixfmt-classic
-      nil
+      nixd
 
       yaml-language-server
     ];
