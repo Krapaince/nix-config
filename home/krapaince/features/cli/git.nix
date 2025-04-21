@@ -1,4 +1,7 @@
 { pkgs, lib, configVars, ... }: {
+  # TODO: Make this an option maybe
+  imports = [ ./optional/gpg.nix ];
+
   home.packages = with pkgs; [ delta ];
 
   programs.git = {
