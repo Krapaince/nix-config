@@ -30,10 +30,11 @@ in {
       # These age keys are unique for the user on each host and are generated
       # on their own (i.e. they are not derived from an ssh key).
 
-      "user_age_keys/${configVars.username}_${config.networking.hostName}" = {
+      "user_age_keys/${configVars.username}" = {
         owner = config.users.users.${configVars.username}.name;
         inherit (config.users.users.${configVars.username}) group;
-        # We need to ensure the entire directory structure is that of the user...
+        sopsFile =
+          "${secretsDirectory}/hosts/${config.networking.hostName}.yaml";
         path = "${homeDirectory}/.config/sops/age/keys.txt";
       };
 
