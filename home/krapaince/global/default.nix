@@ -1,10 +1,9 @@
-{ lib, pkgs, config, ...}: let
-  homeManagerModules = builtins.attrValues (import ../../../modules/home-manager);
+{ lib, pkgs, config, ... }:
+let
+  homeManagerModules =
+    builtins.attrValues (import ../../../modules/home-manager);
 in {
-  imports = [
-    ../features/cli
-    ../features/nvim
-  ] ++ (homeManagerModules);
+  imports = [ ../features/cli ../features/nvim ] ++ homeManagerModules;
 
   nix = {
     package = lib.mkDefault pkgs.nix;
