@@ -22,7 +22,8 @@ in {
     config.allowUnfree = true;
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features =
+    [ "nix-command" "flakes" "pipe-operators" ];
   networking = {
     hostName = "iso";
     networkmanager.enable = true;

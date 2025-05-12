@@ -5,4 +5,6 @@
       text = script;
       runtimeInputs = deps;
     });
+
+  relativeToRoot = lib.path.append ../.;
 }
