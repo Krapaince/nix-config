@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   programs.fish = {
     enable = true;
 
@@ -18,10 +18,13 @@
       gu = "gitui --watcher";
 
       bs = "sudo systemctl start bluetooth";
-      bc = "bluetoothctl connect (cat ${
-          config.sops.secrets."bluetooth/headset_addr".path
-        })";
-    };
+
+    } // lib.optionalAttrs
+      ((config ? sops) && (config.sops.secrets ? "bluetooth/headset_addr")) {
+        bc = "bluetoothctl connect (cat ${
+            config.sops.secrets."bluetooth/headset_addr".path
+          })";
+      };
 
     functions = { fish_greeting = ""; };
   };
