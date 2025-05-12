@@ -6,4 +6,7 @@
   lock-script = pkgs.callPackage ./lock-script { };
   suspend-script = pkgs.callPackage ./suspend-script { };
   wall-gen = pkgs.callPackage ./wall-gen { inherit colorbalance2; };
+
+  # Resources
+  wallpapers = pkgs.callPackage ./wallpaper.nix { };
 }

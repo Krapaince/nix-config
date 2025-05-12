@@ -32,12 +32,12 @@ in {
         text = ''
           mkdir -p "${wallpaperDir}/${primaryScreen}" "${wallpaperDir}/any"
 
-          install -m 644 "${inputs.wallpapers}/"* "${wallpaperDir}/any"
+          install -m 644 "${pkgs.wallpapers}/"* "${wallpaperDir}/any"
           rm "${wallpaperDir}/any/avatar.png"
 
           wall-gen --color-set "${
             ./color-set.json
-          }" --output "${wallpaperDir}/${primaryScreen}" -w "${inputs.wallpapers}/avatar.png"
+          }" --output "${wallpaperDir}/${primaryScreen}" -w "${pkgs.wallpapers}/avatar.png"
 
           wpaperd
         '';

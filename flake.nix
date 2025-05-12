@@ -31,12 +31,6 @@
       flake = false;
     };
 
-    wallpapers = {
-      url =
-        "https://www.dropbox.com/scl/fi/kl3812rjgigeh73msdrc7/wallpapers.tar?rlkey=zg1ncf3oxji5zjk4tth3w0ly8&e=1&st=cl4uccir&dl=1";
-      flake = false;
-    };
-
     hyprland-ipc = {
       url = "github:Krapaince/hyprland-ipc";
       inputs.nixpkgs.follows = "nixpkgs";
