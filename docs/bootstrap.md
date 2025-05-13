@@ -24,6 +24,11 @@ Manual operations to set up an host.
   ```
 
 - Copy the host's private key
+    - For new machine
+        - Generate the host's key `ssh-keygen -t ed25519 -f ssh_host_ed25519_key`
+        - Convert host key to age key for secret `cat ssh_host_ed25519_key.pub | ssh-to-age`
+        - Generate a new key for the user-host couple via age `age-keygen`
+
 - Set up an access to gitlab via ssh (to fetch secrets repo)
 - Install host
   ```bash
