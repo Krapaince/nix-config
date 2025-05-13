@@ -122,7 +122,7 @@
           path = "/";
         };
         "custom/media" = {
-          format = "{icon}{}";
+          format = "{0} {1}";
           return-type = "json";
           format-icons = {
             "Playing" = "‣ ";
