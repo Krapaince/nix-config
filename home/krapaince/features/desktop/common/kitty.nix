@@ -123,7 +123,7 @@
       # Tab management
       "${mod}+shift+l" = "next_tab";
       "${mod}+shift+h" = "previous_tab";
-      "${mod}+shift+t" = "new_tab_with_cwd";
+      "${mod}+shift+t" = "launch --cwd=current --type=tab --location after";
       "${mod}+shift+q" = "close_tab";
       "${mod}+." = "move_tab_forward";
       "${mod}+," = "move_tab_backward";
