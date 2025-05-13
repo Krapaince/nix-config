@@ -212,7 +212,6 @@
         #bluetooth.connected,
         #clock,
         #cpu,
-        #custom-audio-idle-inhibitor,
         #temperature,
         #custom-media,
         #custom-notification,
