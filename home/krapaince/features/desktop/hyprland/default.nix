@@ -7,6 +7,8 @@
     ../../cli/optional/yazi.nix
     ../../cli/optional/yt-dlp.nix
 
+    ../../scripts/yt-cutter.nix
+
     ../optional/bluetooth.nix
     ../optional/flameshot.nix
     ../optional/gnome-keyring.nix
