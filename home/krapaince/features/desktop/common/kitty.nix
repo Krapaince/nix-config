@@ -66,7 +66,7 @@
       tab_bar_style = "fade";
       tab_fade = "0.33 0.80";
       tab_separator = " |";
-      tab_title_template = "{index}";
+      tab_title_template = "{index} {title[title.rfind('/')+1:]}";
 
       active_tab_foreground = "#000";
       active_tab_background = "#eee";
