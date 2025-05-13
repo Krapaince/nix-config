@@ -23,6 +23,8 @@
 
       init.defaultBranch = "master";
 
+      commit.verbose = true;
+
       delta = {
         enable = true;
         features = "side-by-side line-numbers decorations";
