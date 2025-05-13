@@ -1,5 +1,5 @@
 { ... }:
-let common_monitors = import (../features/desktop/common/monitors.nix);
+let common_monitors = import ../features/desktop/common/monitors.nix;
 in {
   imports = [
     ../global
@@ -11,10 +11,10 @@ in {
     ../features/desktop/optional/proton-vpn.nix
   ];
 
-  monitors = ([{
+  monitors = [{
     name = "eDP-1";
     primary = true;
-  }]) ++ common_monitors.monitors;
+  }] ++ common_monitors.monitors;
 
   waybar.network-interfaces = {
     wired.name = "enp0s31f6";
