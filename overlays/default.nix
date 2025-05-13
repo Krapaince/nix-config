@@ -1,4 +1,11 @@
-{ outputs, inputs, }: {
+{ inputs }:
+let
+  additions = final: prev: import ../pkgs { pkgs = final; };
+  modifications = final: prev: {
+    flameshot = prev.flameshot.override { enableWlrSupport = true; };
+  };
+
+in {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}'
@@ -16,5 +23,5 @@
       inputs;
   };
 
-  additions = final: prev: import ../pkgs { pkgs = final; };
+  default = final: prev: (additions final prev) // (modifications final prev);
 }

@@ -67,7 +67,7 @@
       inherit lib;
       nixosModules = import ./modules/nixos;
 
-      overlays = import ./overlays { inherit inputs outputs; };
+      overlays = import ./overlays { inherit inputs; };
 
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
 

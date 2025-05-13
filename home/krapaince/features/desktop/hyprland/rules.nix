@@ -28,5 +28,15 @@
     "workspace 8 silent, class:blueman-manager"
     "workspace 8 silent, class:Pavucontrol"
     "workspace 8 silent, class:TeamSpeak 3"
+
+    # flameshot
+    "move 0 0,class:(flameshot)"
+    "pin,class:(flameshot)"
+    "noborder,class:(flameshot)"
+    "stayfocused,class:(flameshot)"
+    "float,class:(flameshot)"
+
+    # avoid transparency
+    "opaque,class:(flameshot)"
   ];
 }
