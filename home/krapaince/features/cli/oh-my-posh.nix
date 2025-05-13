@@ -51,7 +51,6 @@
             foreground = "p:black";
             powerline_symbol = "";
             template = " {{ .HEAD }} ";
-            properties.fetch_status = true;
             style = "powerline";
             type = "git";
           }
