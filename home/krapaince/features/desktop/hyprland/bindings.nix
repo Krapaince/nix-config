@@ -58,7 +58,7 @@ in {
         "${mainMod}, Print, exec, ${screenshotEditScript}"
 
         "ALT_SHIFT, Q, killactive,"
-        "ALT_SHIFT, E, exit,"
+        ''ALT_SHIFT, E, exec, loginctl terminate-user ""''
         "ALT_SHIFT, P, pin,"
         "CTRL_SHIFT, Space, togglefloating,"
         "${mainMod}, f, fullscreen, 0"
