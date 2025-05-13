@@ -42,6 +42,8 @@
         sensitivity = 0;
       };
 
+      binds.movefocus_cycles_fullscreen = false;
+
       device = {
         name = "tpps/2-ibm-trackpoint";
         sensitivity = 1.2;
