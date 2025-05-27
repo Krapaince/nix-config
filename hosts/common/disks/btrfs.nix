@@ -1,9 +1,9 @@
-{
+{ lib, disk, withSwap ? false, swapSize, ... }: {
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/disk/by-id/wwn-0x5001b448b876d9a3";
+        device = disk;
         content = {
           type = "gpt";
           partitions = {
@@ -34,15 +34,16 @@
                   type = "btrfs";
                   extraArgs = [ "-L" "nixos" "-f" ];
                   postCreateHook = ''
-                  MNTPOINT="$(mktemp -d)"
-                  mount "/dev/mapper/cryptroot" "$MNTPOINT" -o subvolid=5
-                  trap "umount $MNTPOINT; rm -rf $MNTPOINT/root $MNTPOINT/root-blank" EXIT
-                  btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-blank
+                    MNTPOINT="$(mktemp -d)"
+                    mount "/dev/mapper/cryptroot" "$MNTPOINT" -o subvolid=5
+                    trap "umount $MNTPOINT; rm -rf $MNTPOINT/root $MNTPOINT/root-blank" EXIT
+                    btrfs subvolume snapshot -r $MNTPOINT/root $MNTPOINT/root-blank
                   '';
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = [ "subvol=root" "compress=zstd" "noatime" ];
+                      mountOptions =
+                        [ "subvol=root" "compress=zstd" "noatime" ];
                     };
                     "/home" = {
                       mountpoint = "/home";
@@ -57,9 +58,9 @@
                       mountpoint = "/persist";
                       mountOptions = [ "subvol=persist" "compress=zstd" ];
                     };
-                    "/swap" = {
+                    "/swap" = lib.mkIf withSwap {
                       mountpoint = "/swap";
-                      swap.swapfile.size = "16G";
+                      swap.swapfile.size = "${swapSize}G";
                     };
                   };
                 };

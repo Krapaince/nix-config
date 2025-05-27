@@ -1,8 +1,16 @@
-{ inputs, configVars, ... }: {
+{ inputs, lib, configVars, ... }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 
-    ./disko.nix
+    (lib.custom.relativeToRoot "hosts/common/disks/btrfs.nix")
+    {
+      _module.args = {
+        disk = "/dev/disk/by-id/wwn-0x5001b448b876d9a3";
+        withSwap = true;
+        swapSize = 16;
+      };
+    }
+
     ./hardware-configuration.nix
     ./network-manager-connections.nix
 
