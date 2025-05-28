@@ -1,7 +1,11 @@
 {
   boot = {
     initrd = {
-      availableKernelModules = [ "uas" ];
+      availableKernelModules = [
+        "uas"
+        # https://discourse.nixos.org/t/ssh-and-network-in-initrd-on-raspberry-pi-4/6289/3
+        "genet"
+      ];
       systemd.tpm2.enable = false;
       systemd.users.root.shell = "/bin/systemd-tty-ask-password-agent";
 
