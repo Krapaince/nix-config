@@ -16,8 +16,8 @@
           # generic-extlinux-compatible boot loader
           # See https://github.com/NixOS/nixpkgs/issues/247145
           #
-          # TODO(security): some day change this
-          hostKeys = [ ./ssh_host_ed25519_key_initrd ];
+          # This requires momo to set the nix impure flag though :|
+          hostKeys = [ /persist/system/etc/ssh/ssh_host_ed25519_key_initrd ];
         };
       };
     };

@@ -37,6 +37,7 @@ dd if=<image-file.img> of=/dev/<sd-card> conv=sync,noerror bs=128k status=progre
 - Fire up the PI
 - Once the installer booted, replug the USB drive
 - Follow the usual [bootstrap](./bootstrap.md) but don't reboot once install
+- Generate the host initrd private key and put it under `/persist/system/etc/ssh/ssh_host_ed25519_key`
 
 ## Copy the firmware to the `/boot` partition
 

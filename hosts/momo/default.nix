@@ -25,6 +25,8 @@
     wireless.enable = false;
   };
 
+  nix.extraOptions = "pure-eval = false";
+
   hardware = {
     deviceTree = {
       enable = true;
