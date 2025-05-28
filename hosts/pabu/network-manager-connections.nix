@@ -1,8 +1,6 @@
-{ inputs, config, ... }: {
-  imports = [
-    ../common/optional/network-manager/base.nix
-    ../common/optional/network-manager/secret-based.nix
-  ];
+{ inputs, config, lib, ... }: {
+  imports =
+    [ (lib.custom.relativeToRoot "hosts/common/optional/network-manager") ];
 
   networking.networkmanager.ensureProfiles = {
     environmentFiles = with config.sops; [
