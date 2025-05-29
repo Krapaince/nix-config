@@ -1,4 +1,4 @@
-{ inputs, lib, configVars, ... }: {
+{ inputs, lib, config, ... }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 
@@ -15,7 +15,7 @@
     ./network-manager-connections.nix
 
     ../common/global
-    ../common/users/${configVars.username}.nix
+    ../common/users/primary.nix
 
     ../common/optional/auto-cpufreq.nix
     ../common/optional/bluetooth.nix
@@ -24,8 +24,9 @@
     ../common/optional/steam.nix
   ];
 
+  hostSpec.hostName = "pabu";
+
   networking = {
-    hostName = "pabu";
     networkmanager.enable = true;
     usePredictableInterfaceNames = true;
   };

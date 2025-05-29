@@ -28,7 +28,7 @@
     secrets = {
       url =
         "git+ssh://git@gitlab.com/Krapaince/nix-config-secret.git?ref=master&shallow=1";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland-ipc = {
@@ -46,7 +46,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, home-manager, systems, ... }@inputs:
+  outputs = { self, nixpkgs, systems, ... }@inputs:
     let
       inherit (self) outputs;
       # https://github.com/nix-community/home-manager/pull/3454#issuecomment-1472325946
@@ -61,8 +61,7 @@
           config.allowUnfree = true;
         });
 
-      configVars = import ./vars;
-      specialArgs = { inherit inputs outputs lib configVars; };
+      specialArgs = { inherit inputs outputs lib; };
     in {
       inherit lib;
       nixosModules = import ./modules/nixos;
@@ -87,22 +86,6 @@
         pabu = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = [ ./hosts/pabu ];
-        };
-      };
-
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "krapaince@momo" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/momo ./home/krapaince/nixpkgs.nix ];
-          pkgs = pkgsFor.aarch64-linux;
-          extraSpecialArgs = specialArgs;
-        };
-
-        "krapaince@pabu" = home-manager.lib.homeManagerConfiguration {
-          modules = [ ./home/krapaince/pabu ./home/krapaince/nixpkgs.nix ];
-          pkgs = pkgsFor.x86_64-linux;
-          extraSpecialArgs = specialArgs;
         };
       };
     };

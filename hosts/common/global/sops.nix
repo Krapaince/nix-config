@@ -1,17 +1,18 @@
-{ inputs, config, configVars, ... }:
+{ inputs, config, ... }:
 let
   isEd25519 = key: key.type == "ed25519";
   getKeyPath = key: key.path;
   keys = if config.services.openssh.enable then
     builtins.filter isEd25519 config.services.openssh.hostKeys
   else [{
-    path = configVars.hostKeyPath;
+    path = config.hostSpec.hostKeyPath;
   }];
 
   secretsDirectory = builtins.toString inputs.secrets;
   secretsFile = "${secretsDirectory}/hosts/common.yaml";
 
-  homeDirectory = "/home/${configVars.username}";
+  username = config.hostSpec.username;
+  homeDirectory = "/home/${username}";
 in {
   imports = [ inputs.sops-nix.nixosModules.sops ];
 
@@ -30,9 +31,9 @@ in {
       # These age keys are unique for the user on each host and are generated
       # on their own (i.e. they are not derived from an ssh key).
 
-      "user_age_keys/${configVars.username}" = {
-        owner = config.users.users.${configVars.username}.name;
-        inherit (config.users.users.${configVars.username}) group;
+      "user_age_keys/${username}" = {
+        owner = config.users.users.${username}.name;
+        inherit (config.users.users.${username}) group;
         sopsFile =
           "${secretsDirectory}/hosts/${config.networking.hostName}.yaml";
         path = "${homeDirectory}/.config/sops/age/keys.txt";
@@ -40,7 +41,7 @@ in {
 
       # extract username/password to /run/secrets-for-users/ so it can be used
       # to create the user
-      "${configVars.username}-password".neededForUsers = true;
+      "${username}-password".neededForUsers = true;
     };
   };
   # The containing folders are created as root and if this is the first
@@ -50,8 +51,8 @@ in {
   # https://github.com/Mic92/sops-nix/issues/381 is fixed
   system.activationScripts.sopsSetAgeKeyOwnwership = let
     ageFolder = "${homeDirectory}/.config/sops/age";
-    user = config.users.users.${configVars.username}.name;
-    group = config.users.users.${configVars.username}.group;
+    user = config.users.users.${username}.name;
+    group = config.users.users.${username}.group;
   in ''
     mkdir -p ${ageFolder} || true
     chown -R ${user}:${group} ${homeDirectory}/.config

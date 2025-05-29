@@ -1,5 +1,5 @@
-{ pkgs, config, configVars, inputs, ... }:
-let username = configVars.username;
+{ pkgs, config, inputs, ... }:
+let username = config.hostSpec.username;
 in {
   users.mutableUsers = false;
   users.users.${username} = {
@@ -7,7 +7,7 @@ in {
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
 
-    hashedPasswordFile = config.sops.secrets.krapaince-password.path;
+    hashedPasswordFile = config.sops.secrets."${username}-password".path;
 
     packages = with pkgs; [ home-manager ];
   };
@@ -26,8 +26,11 @@ in {
     };
 
   home-manager = {
-    extraSpecialArgs = { inherit configVars inputs; };
-    users.krapaince =
+    extraSpecialArgs = {
+      inherit inputs;
+      hostSpec = config.hostSpec;
+    };
+    users."${username}" =
       import ../../../home/${username}/${config.networking.hostName};
   };
 

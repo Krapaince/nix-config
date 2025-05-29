@@ -1,5 +1,5 @@
-{ configVars, ... }:
-let username = configVars.username;
+{ config, ... }:
+let username = config.hostSpec.username;
 in {
   users.users.${username} = {
     openssh.authorizedKeys.keyFiles = let hostnames = [ "pabu" ];

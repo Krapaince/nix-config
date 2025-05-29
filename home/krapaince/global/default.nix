@@ -1,9 +1,15 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, hostSpec, ... }@args:
 let
   homeManagerModules =
-    builtins.attrValues (import ../../../modules/home-manager);
+    (import (lib.custom.relativeToRoot "modules/home-manager") args);
 in {
-  imports = [ ../features/cli ../features/nvim ] ++ homeManagerModules;
+  imports = [
+    (lib.custom.relativeToRoot "modules/common")
+    ../features/cli
+    ../features/nvim
+  ] ++ homeManagerModules;
+
+  inherit hostSpec;
 
   nix = {
     package = lib.mkDefault pkgs.nix;

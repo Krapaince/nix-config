@@ -1,4 +1,4 @@
-{ inputs, lib, configVars, ... }: {
+{ inputs, lib, config, ... }: {
   imports = [
     inputs.hardware.nixosModules.raspberry-pi-4
 
@@ -14,13 +14,14 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/${configVars.username}.nix
+    ../common/users/primary.nix
 
     ../common/optional/openssh.nix
   ];
 
+  hostSpec.hostName = "momo";
+
   networking = {
-    hostName = "momo";
     useDHCP = true;
     wireless.enable = false;
   };

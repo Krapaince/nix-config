@@ -1,4 +1,4 @@
-{ config, configVars, ... }: {
+{ config, ... }: {
   services.openssh = {
     enable = true;
     settings = {
@@ -16,7 +16,7 @@
       hasOptinPersistence = config.environment.persistence ? "/persist/system";
     in [{
       path = if hasOptinPersistence then
-        configVars.hostKeyPath
+        config.hostSpec.hostKeyPath
       else
         "/etc/ssh/ssh_host_ed25519_key";
       type = "ed25519";
