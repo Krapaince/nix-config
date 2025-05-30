@@ -5,10 +5,13 @@
     packages = with pkgs; [
       nodejs_20
       gnumake
+      gcc
       tree-sitter
 
       # Github action
       actionlint
+
+      clang-tools
 
       nodePackages.bash-language-server
       nodePackages.typescript-language-server
