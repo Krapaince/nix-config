@@ -14,7 +14,7 @@
     ./hardware-configuration.nix
     ./network-manager-connections.nix
 
-    ../common/global
+    ../common/core
     ../common/users/primary.nix
 
     ../common/optional/auto-cpufreq.nix

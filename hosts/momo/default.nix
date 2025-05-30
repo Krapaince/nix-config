@@ -13,7 +13,7 @@
 
     ./hardware-configuration.nix
 
-    ../common/global
+    ../common/core
     ../common/users/primary.nix
 
     ../common/optional/openssh.nix

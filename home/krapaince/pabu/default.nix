@@ -2,7 +2,7 @@
 let common_monitors = import ../features/desktop/common/monitors.nix;
 in {
   imports = [
-    ../global
+    ../core
     ./sops.nix
 
     ../features/desktop/hyprland

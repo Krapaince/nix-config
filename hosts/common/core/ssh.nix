@@ -1,6 +1,7 @@
 {config, lib, pkgs, ...}: {
   programs.ssh = let
       hostPath = lib.custom.relativeToRoot "hosts";
+      # TODO add key from uhost
       hosts =
         hostPath
         |> builtins.readDir
