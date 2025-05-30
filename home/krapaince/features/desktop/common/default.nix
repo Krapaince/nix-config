@@ -8,7 +8,6 @@
     ./pavucontrol.nix
     ./playerctl.nix
     ./rofi.nix
-    ./wezterm
     ./zathura.nix
   ];
 

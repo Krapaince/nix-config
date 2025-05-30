@@ -1,1 +1,1 @@
-{ imports = [ ./yt-cutter.nix ]; }
+{ lib, ... }: { imports = lib.custom.scanPaths; }

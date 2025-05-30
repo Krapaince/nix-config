@@ -14,7 +14,6 @@
       lg-anonymous =
         "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold yellow)%d%C(reset)' --all";
     };
-    # If with is work
     userName = identity.userFullName;
     userEmail = identity.email;
     signing = {

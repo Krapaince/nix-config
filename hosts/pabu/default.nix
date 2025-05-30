@@ -1,4 +1,4 @@
-{ inputs, lib, config, ... }: {
+{ inputs, lib, ... }: {
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 

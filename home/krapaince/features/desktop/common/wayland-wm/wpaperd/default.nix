@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, ... }:
 let
   primaryScreen = (lib.findFirst (m: m.primary) null config.monitors).name;
   homeDir = config.home.homeDirectory;
