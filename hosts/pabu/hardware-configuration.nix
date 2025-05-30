@@ -3,7 +3,6 @@
     initrd = {
       availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
     };
-    supportedFilesystems = [ "btrfs" ];
     kernelModules = [ "kvm-intel" ];
 
     loader = {

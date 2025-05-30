@@ -34,6 +34,4 @@
       filter = "bcm2711-rpi-4*.dtb";
     };
   };
-
-  system.stateVersion = "23.11";
 }

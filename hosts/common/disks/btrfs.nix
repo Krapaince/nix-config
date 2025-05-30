@@ -1,4 +1,5 @@
 { lib, disk, withSwap ? false, swapSize, ... }: {
+  boot.supportedFilesystems = { btrfs = true; };
   disko.devices = {
     disk = {
       main = {
