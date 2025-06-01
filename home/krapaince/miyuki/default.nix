@@ -7,7 +7,10 @@ in {
     ../features/desktop/hyprland
   ];
 
-  monitors = common_monitors.monitors;
+  monitors = [{
+    name = "eDP-1";
+    primary = true;
+  }] ++ common_monitors.monitors;
 
   waybar.network-interfaces = {
     wired.name = "enp0s31f6";
