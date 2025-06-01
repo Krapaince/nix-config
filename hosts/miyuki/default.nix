@@ -32,7 +32,7 @@
   networking = {
     networkmanager = {
       enable = true;
-      backend = "iwd";
+      wifi.backend = "iwd";
     };
   };
 
