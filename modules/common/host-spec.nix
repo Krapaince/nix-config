@@ -25,5 +25,11 @@
       description = "Path to the host's private key";
       default = "${persistFolder}/system/etc/ssh/ssh_host_ed25519_key";
     };
+
+    isWork = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Used to indicate a host dedicated to work";
+    };
   };
 }

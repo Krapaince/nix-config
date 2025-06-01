@@ -41,7 +41,15 @@ in {
 
       # extract username/password to /run/secrets-for-users/ so it can be used
       # to create the user
-      "${username}-password".neededForUsers = true;
+      "${username}-password" = let
+        filepath = if username == "krapaince" then
+          "hosts/common.yaml"
+        else
+          "hosts/${config.hostSpec.hostName}.yaml";
+      in {
+        sopsFile = "${secretsDirectory}/${filepath}";
+        neededForUsers = true;
+      };
     };
   };
   # The containing folders are created as root and if this is the first
