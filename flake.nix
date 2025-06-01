@@ -78,6 +78,11 @@
           modules = [ ./hosts/iso ];
         };
 
+        miyuki = nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          modules = [ ./hosts/miyuki ];
+        };
+
         momo = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           modules = [ ./hosts/momo ];
