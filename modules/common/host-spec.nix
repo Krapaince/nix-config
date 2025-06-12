@@ -5,6 +5,7 @@
       email = lib.mkOption { type = lib.types.str; };
       gpg_key = lib.mkOption { type = lib.types.str; };
       userFullName = lib.mkOption { type = lib.types.str; };
+      handle = lib.mkOption { type = lib.types.str; };
     };
     username = lib.mkOption {
       type = lib.types.str;

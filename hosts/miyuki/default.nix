@@ -12,6 +12,7 @@
     }
 
     ./hardware-configuration.nix
+    ./vpn.nix
 
     ../common/core
     ../common/users/primary.nix
@@ -24,7 +25,7 @@
 
   hostSpec = {
     hostName = "miyuki";
-    identity = lib.mkForce inputs.secrets.work;
+    identity = lib.mkForce inputs.secrets.identities.work;
     isWork = true;
     username = lib.mkForce "mpointec";
   };
@@ -32,6 +33,7 @@
   networking = {
     networkmanager = {
       enable = true;
+      enableStrongSwan = true;
       wifi.backend = "iwd";
     };
   };

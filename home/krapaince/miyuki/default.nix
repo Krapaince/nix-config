@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let common_monitors = import ../features/desktop/common/monitors.nix;
 in {
   imports = [
@@ -7,8 +8,8 @@ in {
     ../features/desktop/hyprland
   ];
 
-  monitors = [{
-    name = "eDP-1";
+  home.packages = with pkgs; [ slack strongswan ];
+
   monitors = [
     {
       name = "eDP-1";

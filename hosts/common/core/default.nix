@@ -14,7 +14,7 @@
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   hostSpec = {
-    identity = inputs.secrets.personal;
+    identity = inputs.secrets.identities.personal;
     username = "krapaince";
   };
 
