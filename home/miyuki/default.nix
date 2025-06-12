@@ -1,12 +1,7 @@
-{ lib, pkgs, ... }:
-let
-  common_monitors =
-    import (lib.custom.relativeToHome "common/desktop/common/monitors.nix");
-in {
+{ lib, pkgs, ... }: {
   imports = lib.flatten [
     (map lib.custom.relativeToHome [
-      "common"
-      "common/desktop/hyprland"
+      "common/hyprland.nix"
       "common/optional/sops.nix"
     ])
   ];
@@ -29,7 +24,7 @@ in {
       x = 1080;
       y = 130;
     }
-  ] ++ common_monitors.monitors;
+  ];
 
   waybar.network-interfaces = {
     wired.name = "enp5s0";
