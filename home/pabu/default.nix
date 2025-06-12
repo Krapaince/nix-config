@@ -11,6 +11,8 @@
   monitors = [{
     name = "eDP-1";
     primary = true;
+    x = 5000;
+    y = 2000;
   }];
 
   waybar.network-interfaces = {

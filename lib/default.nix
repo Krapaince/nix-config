@@ -18,4 +18,6 @@
 
   relativeToRoot = lib.path.append ../.;
   relativeToHome = lib.path.append (relativeToRoot "home");
+
+  resolveMonitors = (import ./monitor.nix { inherit lib; });
 }

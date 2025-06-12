@@ -100,22 +100,25 @@
         disable_autoreload = false;
       };
 
-      monitor = map (m:
-        let
-          flipped = if m.transform.flipped then 1 else 0;
-          rotation = m.transform.rotation / 90;
-          transform = if m.transform.rotation != 0 || m.transform.flipped then
-            ", transform, ${toString (flipped + rotation)}"
-          else
-            "";
-        in "${m.name},${
-          if m.enabled then
-            "${toString m.width}x${toString m.height}@${
-              toString m.refreshRate
-            },${toString m.x}x${toString m.y},1${transform}"
-          else
-            "disable"
-        }") (config.monitors);
+      monitor = let
+        toHyprlandMonitor = (m:
+          let
+            flipped = if m.transform.flipped then 1 else 0;
+            rotation = m.transform.rotation / 90;
+            transform = if m.transform.rotation != 0 || m.transform.flipped then
+              ", transform, ${toString (flipped + rotation)}"
+            else
+              "";
+          in "${m.name},${
+            if m.enabled then
+              "${toString m.width}x${toString m.height}@${
+                toString m.refreshRate
+              },${toString m.x}x${toString m.y},1${transform}"
+            else
+              "disable"
+          }");
+        resolvedMonitors = lib.custom.resolveMonitors config.monitors;
+      in map toHyprlandMonitor resolvedMonitors;
     };
     systemd.enable = true;
   };

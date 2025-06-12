@@ -12,17 +12,20 @@
     {
       name = "eDP-1";
       primary = true;
-      x = 3000;
-      y = 130;
+      x = 5000;
+      y = 2000;
     }
     {
       name = "desc:Lenovo Group Limited E24-28 VVP43933";
+      relativeTo = "desc:AOC 27B2G5 RZAN7HA003107";
+      direction = "west";
       transform.rotation = 90;
+      offsetY = -200;
     }
     {
       name = "desc:AOC 27B2G5 RZAN7HA003107";
-      x = 1080;
-      y = 130;
+      relativeTo = "eDP-1";
+      direction = "west";
     }
   ];
 
