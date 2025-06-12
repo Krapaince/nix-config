@@ -1,4 +1,4 @@
-{ lib, inputs, outputs, config, ... }: {
+{ lib, inputs, outputs, config, pkgs, ... }: {
   imports = [
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -21,6 +21,8 @@
   networking.hostName = config.hostSpec.hostName;
 
   home-manager.useGlobalPkgs = true;
+
+  environment.systemPackages = with pkgs; [ neovim vifm ];
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
