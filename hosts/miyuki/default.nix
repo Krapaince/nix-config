@@ -12,6 +12,7 @@
     }
 
     ./hardware-configuration.nix
+    ./network-manager-connections.nix
     ./vpn.nix
 
     ../common/core
@@ -34,13 +35,12 @@
     networkmanager = {
       enable = true;
       enableStrongSwan = true;
-      wifi.backend = "iwd";
     };
   };
 
   network-interfaces = {
     ethernet = "enp5s0";
-    wireless = "wlan0";
+    wireless = "wlp3s0";
   };
 
   hardware.graphics = {

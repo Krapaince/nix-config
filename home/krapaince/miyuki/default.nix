@@ -29,7 +29,7 @@ in {
   ] ++ common_monitors.monitors;
 
   waybar.network-interfaces = {
-    wired.name = "enp0s31f6";
+    wired.name = "enp5s0";
     wireless.name = "wlp3s0";
   };
 }
