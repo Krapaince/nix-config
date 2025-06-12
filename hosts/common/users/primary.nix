@@ -1,29 +1,35 @@
 { pkgs, config, inputs, lib, ... }:
-let username = config.hostSpec.username;
+let
+  username = config.hostSpec.username;
+  passwordSecretKey = "${username}-password";
 in {
-  users.mutableUsers = false;
-  users.users.${username} = {
-    isNormalUser = true;
-    shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" ];
+  users = {
+    mutableUsers = false;
+    users = {
+      "${username}" = {
+        isNormalUser = true;
+        shell = pkgs.fish;
+        extraGroups = [ "networkmanager" "wheel" ];
 
-    hashedPasswordFile = config.sops.secrets."${username}-password".path;
+        hashedPasswordFile = config.sops.secrets."${passwordSecretKey}".path;
 
-    packages = with pkgs; [ home-manager ];
-  };
+        packages = with pkgs; [ home-manager ];
+      };
 
-  users.users.root = {
-    hashedPasswordFile = config.users.users.${username}.hashedPasswordFile;
-    password = config.users.users.${username}.password;
-    shell = pkgs.fish;
-  };
-
-  sops.secrets.krapaince-password =
-    let secrets-path = builtins.toString inputs.secrets;
-    in {
-      sopsFile = "${secrets-path}/hosts/common.yaml";
-      neededForUsers = true;
+      root = {
+        hashedPasswordFile = config.sops.secrets."${passwordSecretKey}".path;
+        shell = pkgs.fish;
+      };
     };
+  };
+
+  sops.secrets."${passwordSecretKey}" = let
+    secrets-path = builtins.toString inputs.secrets;
+    sopsFile = if username == "mpointec" then "miyuki.yaml" else "common.yaml";
+  in {
+    sopsFile = "${secrets-path}/hosts/${sopsFile}";
+    neededForUsers = true;
+  };
 
   home-manager = {
     extraSpecialArgs = {
