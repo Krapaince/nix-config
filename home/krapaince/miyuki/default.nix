@@ -9,8 +9,23 @@ in {
 
   monitors = [{
     name = "eDP-1";
-    primary = true;
-  }] ++ common_monitors.monitors;
+  monitors = [
+    {
+      name = "eDP-1";
+      primary = true;
+      x = 3000;
+      y = 130;
+    }
+    {
+      name = "desc:Lenovo Group Limited E24-28 VVP43933";
+      transform.rotation = 90;
+    }
+    {
+      name = "desc:AOC 27B2G5 RZAN7HA003107";
+      x = 1080;
+      y = 130;
+    }
+  ] ++ common_monitors.monitors;
 
   waybar.network-interfaces = {
     wired.name = "enp0s31f6";

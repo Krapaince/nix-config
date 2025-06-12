@@ -34,6 +34,16 @@ in {
           type = types.int;
           default = 0;
         };
+        transform = {
+          rotation = mkOption {
+            type = types.enum [ 0 90 180 270 ];
+            default = 0;
+          };
+          flipped = mkOption {
+            type = types.bool;
+            default = false;
+          };
+        };
         enabled = mkOption {
           type = types.bool;
           default = true;
