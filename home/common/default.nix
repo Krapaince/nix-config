@@ -3,11 +3,8 @@ let
   homeManagerModules =
     (import (lib.custom.relativeToRoot "modules/home-manager") args);
 in {
-  imports = [
-    (lib.custom.relativeToRoot "modules/common")
-    ../features/cli
-    ../features/nvim
-  ] ++ homeManagerModules;
+  imports = [ (lib.custom.relativeToRoot "modules/common") ./cli ./nvim ]
+    ++ homeManagerModules;
 
   inherit hostSpec;
 

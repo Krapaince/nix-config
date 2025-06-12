@@ -36,8 +36,8 @@ in {
       inherit inputs;
       hostSpec = config.hostSpec;
     };
-    users."${username}" = import
-      (lib.custom.relativeToRoot "home/primary/${config.networking.hostName}");
+    users."${username}" =
+      import (lib.custom.relativeToRoot "home/${config.networking.hostName}");
   };
 
   security.pam.services.swaylock = { };

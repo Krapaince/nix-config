@@ -1,4 +1,4 @@
-{ lib }: {
+{ lib }: rec {
   mkScript = { name, deps ? [ ], script, pkgs }:
     lib.getExe (pkgs.writeShellApplication {
       inherit name;
@@ -17,4 +17,5 @@
       |> builtins.map (filepath: path + "/${filepath}");
 
   relativeToRoot = lib.path.append ../.;
+  relativeToHome = lib.path.append (relativeToRoot "home");
 }

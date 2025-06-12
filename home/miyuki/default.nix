@@ -1,11 +1,11 @@
-{ pkgs, ... }:
-let common_monitors = import ../features/desktop/common/monitors.nix;
+{ lib, pkgs, ... }:
+let
+  common_monitors =
+    import (lib.custom.relativeToHome "common/desktop/common/monitors.nix");
 in {
-  imports = [
-    ../core
+  imports = lib.flatten [
     ./sops.nix
-
-    ../features/desktop/hyprland
+    (map lib.custom.relativeToHome [ "common" "common/desktop/hyprland" ])
   ];
 
   home.packages = with pkgs; [ slack strongswan ];

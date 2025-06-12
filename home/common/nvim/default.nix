@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
 
   home = {
     sessionVariables.EDITOR = "nvim";
@@ -40,7 +40,7 @@
     ];
   };
   xdg.configFile."nvim/" = {
-    source = ../../../../dotfiles/nvim;
+    source = lib.custom.relativeToRoot "dotfiles/nvim";
     recursive = true;
   };
 
