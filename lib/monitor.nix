@@ -2,12 +2,10 @@
 let
   resolveMonitors = (monitors:
     let
-      unresolvedMonitors = lib.filter (m:
-        (lib.isString m.name) && (builtins.isNull m.x) && (builtins.isNull m.y))
-        monitors;
-      resolvedMonitors = lib.filter
-        (m: (lib.isString m.name) && (lib.isInt m.x) && (lib.isInt m.y))
-        monitors;
+      unresolvedMonitors =
+        lib.filter (m: (builtins.isNull m.x) && (builtins.isNull m.y)) monitors;
+      resolvedMonitors =
+        lib.filter (m: (lib.isInt m.x) && (lib.isInt m.y)) monitors;
       result = resolveMonitorsPosition {
         resolvedMonitors = resolvedMonitors;
         unresolvedMonitors = [ ];
@@ -69,7 +67,7 @@ let
       });
 
       multiplier = directionToMultiplier unresolvedMonitor.direction;
-      rotation = lib.attrByPath [ "transform" "rotation" ] 0 unresolvedMonitor;
+      rotation = unresolvedMonitor.transform.rotation;
       shouldInvert = rotation == 90 || rotation == 270;
       width = if shouldInvert then
         unresolvedMonitor.height
@@ -79,9 +77,9 @@ let
         unresolvedMonitor.width
       else
         unresolvedMonitor.height;
-      x = relativeMonitor.x + (multiplier.h * width) + unresolvedMonitor.offsetX;
-      y = relativeMonitor.y + (multiplier.v * height) + unresolvedMonitor.offsetY;
-
+      x = relativeMonitor.x + (multiplier.h * width)
+        + unresolvedMonitor.offsetX;
+      y = relativeMonitor.y + (multiplier.v * height)
+        + unresolvedMonitor.offsetY;
     in unresolvedMonitor // { inherit x y; });
-
 in resolveMonitors
