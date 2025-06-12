@@ -64,6 +64,9 @@ in {
         "${mainMod}, f, fullscreen, 0"
         "${mainMod} SHIFT, f, fullscreen, 1"
 
+        "${mainMod}, w, togglegroup,"
+        "ALT_SHIFT, w, moveoutofgroup,"
+
         "${mainMod}, g, submap, group"
         "${mainMod}, r, submap, resize"
         "${mainMod}, m, submap, media"
