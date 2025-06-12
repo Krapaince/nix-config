@@ -4,8 +4,11 @@ let
     import (lib.custom.relativeToHome "common/desktop/common/monitors.nix");
 in {
   imports = lib.flatten [
-    ./sops.nix
-    (map lib.custom.relativeToHome [ "common" "common/desktop/hyprland" ])
+    (map lib.custom.relativeToHome [
+      "common"
+      "common/desktop/hyprland"
+      "common/optional/sops.nix"
+    ])
   ];
 
   home.packages = with pkgs; [ slack strongswan ];

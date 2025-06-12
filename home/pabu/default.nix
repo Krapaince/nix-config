@@ -4,14 +4,13 @@ let
     import (lib.custom.relativeToHome "common/desktop/common/monitors.nix");
 in {
   imports = lib.flatten [
-    ./sops.nix
-
     (map lib.custom.relativeToHome [
       "common"
       "common/desktop/hyprland"
 
       "common/desktop/optional/discord.nix"
       "common/desktop/optional/proton-vpn.nix"
+      "common/optional/sops.nix"
     ])
   ];
 

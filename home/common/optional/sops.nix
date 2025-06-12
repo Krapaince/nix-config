@@ -1,8 +1,7 @@
 { inputs, config, ... }:
 let
-  secrets-path = builtins.toString inputs.secrets;
+  secretsPath = builtins.toString inputs.secrets;
   homeDirectory = config.home.homeDirectory;
-
 in {
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
@@ -10,7 +9,7 @@ in {
     age.keyFile = "${homeDirectory}/.config/sops/age/keys.txt";
     secrets = {
       "bluetooth/headset_addr" = {
-        sopsFile = "${secrets-path}/hosts/common.yaml";
+        sopsFile = "${secretsPath}/hosts/common.yaml";
       };
     };
   };
