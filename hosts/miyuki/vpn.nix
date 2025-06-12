@@ -27,6 +27,8 @@
       makeVpnConf (builtins.elemAt e 0) (builtins.elemAt e 1)
       (builtins.elemAt e 2)) inputs.secrets.work.vpn);
 
-    secrets = [ "${config.hostSpec.persistFolder}/system/etc/ipsec.d/secrets" ];
+    secrets = [ config.sops.secrets."ipsec-secrets".path ];
   };
+
+  sops.secrets."ipsec-secrets".sopsFile = "${inputs.secrets}/hosts/miyuki.yaml";
 }
