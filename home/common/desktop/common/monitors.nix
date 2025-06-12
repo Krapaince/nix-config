@@ -2,7 +2,7 @@
   {
     name = "desc:Dell Inc. DELL U2412M 0FFXD3CS583S";
     relativeTo = "eDP-1";
-    direction = "west";
+    direction = "east";
   }
   {
     name = "desc:BNQ BenQ GL2450H W9G02923019";
