@@ -1,4 +1,4 @@
-{ pkgs, config, inputs, ... }:
+{ pkgs, config, inputs, lib, ... }:
 let username = config.hostSpec.username;
 in {
   users.mutableUsers = false;
@@ -30,8 +30,8 @@ in {
       inherit inputs;
       hostSpec = config.hostSpec;
     };
-    users."${username}" =
-      import ../../../home/${username}/${config.networking.hostName};
+    users."${username}" = import
+      (lib.custom.relativeToRoot "home/primary/${config.networking.hostName}");
   };
 
   security.pam.services.swaylock = { };
