@@ -61,7 +61,7 @@
                     };
                     "/swap" = lib.mkIf withSwap {
                       mountpoint = "/swap";
-                      swap.swapfile.size = "${swapSize}G";
+                      swap.swapfile.size = "${builtins.toString swapSize}G";
                     };
                   };
                 };
