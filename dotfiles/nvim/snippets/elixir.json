@@ -1,0 +1,16 @@
+{
+  "inspect": {
+    "prefix": "inspect",
+    "body": [
+      "|> inspect(limit: :infinity, pretty: true) |> IO.puts()"
+    ],
+    "descrption": "Add debug line"
+  },
+  "tap_inspect": {
+    "prefix": "tap_inspect",
+    "body": [
+      "|> tap(fn x -> x |> inspect(limit: :infinity, pretty: true) |> IO.puts() end)"
+    ],
+    "descrption": "Add tap debug line"
+  }
+}

@@ -20,6 +20,10 @@
       {
         "language": "python",
         "path": "./python.json"
+      },
+      {
+        "language": "elixir",
+        "path": "./elixir.json"
       }
     ]
   }
