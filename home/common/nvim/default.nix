@@ -32,6 +32,9 @@
       # HTML/CSS/JSON
       vscode-langservers-extracted
 
+      # XML
+      lemminx
+
       # Nix
       nixfmt-classic
       nixd

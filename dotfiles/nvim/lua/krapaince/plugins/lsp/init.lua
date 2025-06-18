@@ -20,6 +20,7 @@ return {
       'elixirls',
       'html',
       'jsonls',
+      'lemminx',
       'lua_ls',
       'nixd',
       'null-ls',
