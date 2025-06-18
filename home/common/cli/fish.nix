@@ -18,6 +18,7 @@
       gu = "gitui --watcher";
 
       bs = "sudo systemctl start bluetooth";
+      bd = "bluetoothctl disconnect";
 
     } // lib.optionalAttrs
       ((config ? sops) && (config.sops.secrets ? "bluetooth/headset_addr")) {
