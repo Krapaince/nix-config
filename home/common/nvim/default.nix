@@ -36,6 +36,9 @@
       # XML
       lemminx
 
+      elixir_ls
+      erlang-ls
+
       # Nix
       nixfmt-classic
       nixd

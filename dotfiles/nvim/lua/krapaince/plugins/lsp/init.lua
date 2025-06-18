@@ -18,6 +18,7 @@ return {
       'cssls',
       'dockerls',
       'elixirls',
+      'erlangls',
       'html',
       'jsonls',
       'lemminx',
