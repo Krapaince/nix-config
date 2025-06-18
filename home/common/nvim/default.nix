@@ -36,6 +36,7 @@
       # XML
       lemminx
 
+      elixir
       elixir_ls
       erlang-ls
 
