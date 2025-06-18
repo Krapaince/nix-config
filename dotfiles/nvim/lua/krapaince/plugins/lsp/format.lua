@@ -4,8 +4,8 @@ function M.on_attach(client, buf)
   local is_path_excluded = M.is_path_excluded(buf, client)
 
   if
-    is_path_excluded
-    or (client.config and client.config.capabilities and client.config.capabilities.documentFormattingProvider == false)
+      is_path_excluded
+      or (client.config and client.config.capabilities and client.config.capabilities.documentFormattingProvider == false)
   then
     return
   end
@@ -32,12 +32,13 @@ function M.format(opts)
 
   local buf = vim.api.nvim_get_current_buf()
 
-  vim.lsp.buf.format({
+  require('conform').format({
     async = opts.async,
     bufnr = buf,
     filter = function(client)
       return M.is_client_excluded(client)
     end,
+    lsp_format = 'fallback'
   })
 end
 

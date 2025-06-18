@@ -20,7 +20,7 @@ function M.get()
       { '<leader>r', vim.lsp.buf.rename,                 has = 'rename' },
       { '<C-d>',     '<cmd>Trouble document_diagnostics<cr>' },
       { '<leader>f', format,                             has = 'documentFormatting' },
-      { '<Leader>f', format,                             has = 'documentRangeFormatting', mode = 'v' },
+      { '<Leader>f', format,                             has = 'documentFormatting', mode = 'v' },
     }
   end
   return M._keys

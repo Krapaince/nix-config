@@ -81,5 +81,16 @@ return {
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'hrsh7th/cmp-nvim-lsp',
+    {
+      'stevearc/conform.nvim',
+      opts = {
+        formatters = {
+          mix = { args = { 'format', '-' } },
+        },
+        formatters_by_ft = {
+          elixir = { 'mix' },
+        },
+      },
+    },
   },
 }
