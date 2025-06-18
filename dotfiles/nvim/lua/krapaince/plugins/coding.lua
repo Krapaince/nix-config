@@ -33,6 +33,47 @@ return {
     },
   },
 
+  {
+    'nvim-neotest/neotest',
+    opts = function()
+      return {
+        adapters = {
+          require('neotest-elixir'),
+        },
+      }
+    end,
+    keys = {
+      {
+        '<C-t><C-t>',
+        function()
+          require('neotest').summary.toggle()
+        end,
+        mode = 'n',
+      },
+      {
+        '<C-t>r',
+        function()
+          require('neotest').run.run()
+        end,
+        mode = 'n',
+      },
+      {
+        '<C-t>R',
+        function()
+          require('neotest').run.run(vim.fn.expand('%'))
+        end,
+        mode = 'n',
+      },
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-neotest/nvim-nio',
+      'jfpedroza/neotest-elixir',
+    },
+  },
+
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
