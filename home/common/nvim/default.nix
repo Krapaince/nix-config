@@ -21,6 +21,7 @@
       lua-language-server
       stylua
 
+      eslint_d
       prettierd
 
       texlab
