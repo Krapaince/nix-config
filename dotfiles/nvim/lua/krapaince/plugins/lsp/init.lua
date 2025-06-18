@@ -77,7 +77,7 @@ return {
         })
       end,
     },
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'jose-elias-alvarez/typescript.nvim',
     'simrat39/rust-tools.nvim',
     'hrsh7th/cmp-nvim-lsp',
