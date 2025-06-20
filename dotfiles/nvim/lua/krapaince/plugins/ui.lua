@@ -4,20 +4,6 @@ return {
     opts = function()
       local colors = require('vscode.colors').get_colors()
 
-      local mode_highlight = function(highlight)
-        return {
-          a = { bg = highlight, fg = colors.vscLeftMid, gui = 'bold' },
-          b = { bg = colors.vscLeftMid, fg = highlight },
-          c = { bg = colors.vscLeftDark, fg = colors.vscFront },
-        }
-      end
-
-      local theme = {
-        normal = mode_highlight(colors.vscBlue),
-        insert = mode_highlight(colors.vscYellowOrange),
-        visual = mode_highlight(colors.vscGreen),
-      }
-
       local diag_icons = require('krapaince.config.init').icons.diagnostics
       local diagnostics = {
         'diagnostics',
@@ -68,7 +54,7 @@ return {
           lualine_z = { 'location', 'progress' },
         },
         options = {
-          theme = theme,
+          theme = 'vscode-custom',
           disabled_filetypes = { 'packer', 'neo-tree' },
           ignore_focus = { 'neo-tree' },
           globalstatus = true,

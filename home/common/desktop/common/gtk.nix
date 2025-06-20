@@ -1,4 +1,6 @@
 { config, pkgs, ... }: {
+  home.packages = with pkgs; [ gsettings2 ];
+
   gtk = let extraConfig = { gtk-application-prefer-dark-theme = true; };
   in {
     enable = true;

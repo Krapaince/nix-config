@@ -3,7 +3,7 @@
     ./firefox.nix
     ./font.nix
     ./gtk.nix
-    ./kitty.nix
+    ./kitty
     ./network-manager-applet.nix
     ./pavucontrol.nix
     ./playerctl.nix

@@ -22,8 +22,6 @@
 
       # Cursor customization
       shell_integration = "no-cursor";
-      cursor = "#52ad80";
-      cursor_text_color = "#000000";
       cursor_shape = "block";
       cursor_blink_interval = 0;
 
@@ -32,7 +30,6 @@
 
       # Mouse
       mouse_hide_wait = "3.0";
-      url_color = "#0087bd";
       url_style = "curly";
       copy_on_select = "clipboard";
 
@@ -56,11 +53,6 @@
 
       draw_minimal_borders = "yes";
 
-      active_border_color = "#bf8300";
-      inactive_border_color = "#cccccc";
-
-      bell_border_color = "#ff5a00";
-
       # Tab bar
       tab_bar_edge = "top";
       tab_bar_style = "fade";
@@ -68,24 +60,12 @@
       tab_separator = " |";
       tab_title_template = "{index} {title[title.rfind('/')+1:]}";
 
-      active_tab_foreground = "#000";
-      active_tab_background = "#eee";
       active_tab_font_style = "bold-italic";
-      inactive_tab_foreground = "#444";
-      inactive_tab_background = "#999";
       inactive_tab_font_style = "normal";
-
-      # Color sheme
-      foreground = "#dddddd";
-      background = "#000000";
 
       background_opacity = "0.9";
       dynamic_background_opacity = "yes";
       dim_opacity = "0.75";
-
-      selection_foreground = "#000000";
-
-      selection_background = "#fffacd";
 
       update_check_interval = 0;
     };
@@ -141,4 +121,7 @@
       "${mod}+a>d" = "set_background_opacity default";
     };
   };
+
+  xdg.configFile."kitty/dark-theme.auto.conf".source = ./dark-theme.auto.conf;
+  xdg.configFile."kitty/light-theme.auto.conf".source = ./light-theme.auto.conf;
 }

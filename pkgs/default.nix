@@ -1,6 +1,7 @@
 { pkgs ? import <nixpkgs> { }, ... }: rec {
   switch-audio = pkgs.callPackage ./switch-audio { };
   colorbalance2 = pkgs.callPackage ./colorbalance2 { };
+  gsettings2 = pkgs.callPackage ./gsettings2.nix { };
 
   # Personal script
   lock-script = pkgs.callPackage ./lock-script { };

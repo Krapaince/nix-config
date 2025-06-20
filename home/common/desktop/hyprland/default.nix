@@ -7,7 +7,7 @@
     ../../cli/optional/yazi.nix
     ../../cli/optional/yt-dlp.nix
 
-    ../../scripts/yt-cutter.nix
+    ../../scripts/default.nix
 
     ../optional/bluetooth.nix
     ../optional/flameshot.nix
