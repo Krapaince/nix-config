@@ -4,7 +4,7 @@ let
   homeDir = config.home.homeDirectory;
   wallpaperDir = homeDir + "/Pictures/wallpapers";
 in {
-  programs.wpaperd = {
+  services.wpaperd = {
     enable = true;
     settings = {
       "${primaryScreen}" = {
@@ -20,13 +20,9 @@ in {
   };
 
   systemd.user.services.wpaperd = {
-    Unit = {
-      Description = "wpaper";
-      PartOf = [ "graphical-session.target" ];
-    };
-
     Service = {
-      ExecStart = lib.getExe (pkgs.writeShellApplication {
+      ExecStart = lib.mkForce (lib.getExe (pkgs.writeShellApplication {
+        # TODO: Maybe move this to a dedicated service
         name = "wallpaper";
         runtimeInputs = with pkgs; [ wall-gen wpaperd coreutils ];
         text = ''
@@ -41,10 +37,9 @@ in {
 
           wpaperd
         '';
-      });
-      Restart = "on-failure";
+      }));
     };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    # Install.WantedBy = [ "graphical-session.target" ];
   };
 }

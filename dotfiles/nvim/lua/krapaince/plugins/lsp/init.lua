@@ -48,7 +48,7 @@ return {
       require('krapaince.plugins.lsp.format').on_attach(client, buf)
       require('krapaince.plugins.lsp.keymaps').on_attach(client, buf)
 
-      if client.supports_method('textDocument/documentSymbol') then
+      if client:supports_method('textDocument/documentSymbol', buf) then
         require('nvim-navic').attach(client, buf)
       end
     end
