@@ -4,6 +4,8 @@
       "common/hyprland.nix"
       "common/optional/sops.nix"
     ])
+
+    ./scripts/change-slack-pp.nix
   ];
 
   home.packages = with pkgs; [ slack strongswan ];
