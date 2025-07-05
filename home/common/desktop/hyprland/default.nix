@@ -26,6 +26,8 @@
     configPackages = [ hyprland ];
   };
 
+  services.hyprpolkitagent.enable = true;
+
   home.packages = with pkgs; [ grim satty slurp ];
 
   wayland.windowManager.hyprland = {
