@@ -1,10 +1,7 @@
 { inputs }:
 let
   additions = final: prev: import ../pkgs { pkgs = final; };
-  modifications = final: prev: {
-    flameshot = prev.flameshot.override { enableWlrSupport = true; };
-  };
-
+  modifications = final: prev: { };
 in {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or

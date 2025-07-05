@@ -31,8 +31,10 @@ in {
 
         screenshotEditScript = lib.custom.mkScript {
           name = "screenshot-edit.sh";
-          deps = with pkgs; [ flameshot ];
-          script = "XDG_CURRENT_DESKTOP=sway flameshot gui";
+          deps = with pkgs; [ slurp grim satty ];
+          script = ''
+            slurp | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
+          '';
           inherit pkgs;
         };
 

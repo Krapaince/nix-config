@@ -10,7 +10,6 @@
     ../../scripts/default.nix
 
     ../optional/bluetooth.nix
-    ../optional/flameshot.nix
     ../optional/gnome-keyring.nix
 
     ./bindings.nix
@@ -26,6 +25,8 @@
     extraPortals = [ xdph ];
     configPackages = [ hyprland ];
   };
+
+  home.packages = with pkgs; [ grim satty slurp ];
 
   wayland.windowManager.hyprland = {
     enable = true;
