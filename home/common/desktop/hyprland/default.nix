@@ -15,6 +15,8 @@
 
     ./bindings.nix
     ./rules.nix
+
+    ./hypridle.nix
   ];
 
   xdg.portal = let
