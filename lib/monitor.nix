@@ -15,7 +15,7 @@ let
       abort ''
         Couldn't not resolved position of the following monitors:
         ${lib.concatMapStringsSep "\n"
-        (m: " ${m.name} which is ${m.relativeTo} at ${m.west}")
+        (m: " ${m.name} which is ${m.relativeTo} at ${m.direction}")
         result.unresolvedMonitors}''
     else if result.unresolvedMonitors != [ ] then
       resolveMonitors (result.resolvedMonitors ++ result.unresolvedMonitors)
