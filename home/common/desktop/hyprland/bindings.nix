@@ -3,6 +3,10 @@ let
   pipewire-control = lib.getExe pkgs.polybar-pulseaudio-control;
   playerctl = lib.getExe' config.services.playerctld.package "playerctl";
 
+  lockScript = lib.getExe pkgs.lock-script;
+  suspendScript = lib.getExe pkgs.suspend-script;
+  suspendCmd = "${lockScript} -f && ${suspendScript}";
+
   directions = {
     h = "l";
     l = "r";
@@ -16,9 +20,6 @@ in {
       bind = let
         rofi = lib.getExe pkgs.rofi-wayland;
         swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
-
-        lockScript = lib.getExe pkgs.lock-script;
-        suspendScript = lib.getExe pkgs.suspend-script;
 
         screenshotScript = lib.custom.mkScript {
           name = "screenshot.sh";
@@ -50,7 +51,7 @@ in {
         "${mainMod}, Return, exec, ${defaultApp "x-scheme-handler/terminal"}"
         "${mainMod}, D, exec, ${rofi} -show drun -theme ~/.config/rofi/config.rasi"
 
-        "SUPER, Up, exec, ${lockScript} -f && ${suspendScript}"
+        "SUPER, Up, exec, ${suspendCmd}"
         "SUPER, Right, exec, ${lockScript}"
 
         "CTRL, Space, exec, ${swaync-client} --hide-latest"
@@ -98,6 +99,8 @@ in {
         ", XF86AudioNext, exec, ${playerctl} next"
         ", XF86AudioPrev, exec, ${playerctl} previous"
         ", XF86AudioPause, exec, ${playerctl} play-pause"
+
+        ", switch:on:Lid Switch, exec, ${suspendCmd}"
       ];
 
       bindle = let brightnessctl = lib.getExe pkgs.brightnessctl;
