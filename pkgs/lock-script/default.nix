@@ -1,6 +1,6 @@
-{ writeShellApplication, swaylock, wpaperd, gnused, coreutils, gawk }:
+{ writeShellApplication, swaylock, wpaperd, gnugrep, gnused, coreutils, gawk }:
 writeShellApplication {
   name = "lock-script";
-  runtimeInputs = [ coreutils gawk gnused swaylock wpaperd ];
+  runtimeInputs = [ coreutils gawk gnugrep gnused swaylock wpaperd ];
   text = builtins.readFile ./lock.sh;
 }
