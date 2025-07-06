@@ -22,7 +22,7 @@
 
   home-manager.useGlobalPkgs = true;
 
-  environment.systemPackages = with pkgs; [ neovim vifm ];
+  environment.systemPackages = with pkgs; [ neovim screen vifm ];
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
