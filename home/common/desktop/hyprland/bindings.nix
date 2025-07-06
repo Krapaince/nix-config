@@ -25,7 +25,7 @@ in {
           name = "screenshot.sh";
           deps = with pkgs; [ slurp grim wl-clipboard ];
           script = ''
-            slurp | grim -g - - | wl-copy
+            slurp -w 0 | grim -g - - | wl-copy
           '';
           inherit pkgs;
         };
@@ -34,7 +34,7 @@ in {
           name = "screenshot-edit.sh";
           deps = with pkgs; [ slurp grim satty ];
           script = ''
-            slurp | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
+            slurp -w 0 | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
           '';
           inherit pkgs;
         };
