@@ -14,4 +14,13 @@
     relativeTo = "eDP-1";
     direction = "east";
   }
+  {
+    name = "desc:LG Electronics LG ULTRAGEAR 201MAKRH4773";
+    relativeTo = "eDP-1";
+    direction = "west";
+    offsetY = -360;
+    width = 2560;
+    height = 1440;
+    refreshRate = 143.93;
+  }
 ]
