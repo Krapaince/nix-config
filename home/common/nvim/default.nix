@@ -4,6 +4,7 @@
     sessionVariables.EDITOR = "nvim";
     packages = with pkgs; [
       nodejs_20
+      yarn
       gnumake
       gcc
       tree-sitter

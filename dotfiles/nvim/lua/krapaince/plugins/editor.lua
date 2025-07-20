@@ -179,11 +179,13 @@ return {
   },
 
   {
-    'iamcco/markdown-preview.nvim',
-    build = function()
-      vim.fn['mkdp#util#install']()
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install && git restore .",
+    init = function()
+	    vim.g.mkdp_filetypes = { "markdown" }
     end,
-    ft = 'markdown',
+    ft = { "markdown" },
   },
 
   {
