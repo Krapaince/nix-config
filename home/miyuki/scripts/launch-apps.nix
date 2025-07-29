@@ -2,6 +2,7 @@
 pkgs.writeShellApplication {
   name = "launch-apps";
   runtimeInputs = with pkgs; [ hyprland kitty pavucontrol jq ];
+  meta.mainProgram = "launch-apps";
   text = ''
     function wait_for_app_to_open {
       echo "Waiting for $1 to open"
