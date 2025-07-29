@@ -6,9 +6,11 @@
     bc
     btop
     curl
+    direnv
     dust
     eza
     fd
+    fzf
     inotify-tools
     jq
     man
