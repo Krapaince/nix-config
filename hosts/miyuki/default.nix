@@ -1,4 +1,5 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, ... }:
+{
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen2
 
@@ -13,7 +14,7 @@
 
     ./hardware-configuration.nix
     ./network-manager-connections.nix
-    ./vpn.nix
+    (inputs.nix-config-work + "/hosts/miyuki/vpn.nix")
 
     ../common/core
     ../common/users/primary.nix

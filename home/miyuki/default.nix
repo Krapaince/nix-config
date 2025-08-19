@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ inputs, lib, ... }:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToHome [
       "common/hyprland.nix"
@@ -6,9 +7,8 @@
     ])
 
     ./scripts/change-slack-pp.nix
+    (inputs.nix-config-work + "/home/miyuki/default.nix")
   ];
-
-  home.packages = with pkgs; [ slack strongswan ];
 
   monitors = [
     {

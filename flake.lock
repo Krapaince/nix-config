@@ -109,6 +109,24 @@
         "type": "github"
       }
     },
+    "nix-config-work": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1755276098,
+        "narHash": "sha256-8Gi4r+YiAlptpF1drQMMcFcS7LZuPFev+6SmJdceunU=",
+        "ref": "master",
+        "rev": "2419fe023ec4fdc1091b5f9955c6e3ad533131d1",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
+      },
+      "original": {
+        "ref": "master",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1750365781,
@@ -148,6 +166,7 @@
         "home-manager": "home-manager",
         "hyprland-ipc": "hyprland-ipc",
         "impermanence": "impermanence",
+        "nix-config-work": "nix-config-work",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "secrets": "secrets",
@@ -163,10 +182,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1752959958,
-        "narHash": "sha256-Pt11Lp77cdyvccIBaDkA9ayq6Al+l8K+7+JCaeXjfzg=",
+        "lastModified": 1754320747,
+        "narHash": "sha256-fVer5WkenudajF44g6qRh3/U8lWKDMx6Ufieh3fe3ZY=",
         "ref": "master",
-        "rev": "3ecd18b19c09107193a15ed55fd355a24a703787",
+        "rev": "090597ab54c23199df6d0e266276081063dbe49e",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-secret.git"

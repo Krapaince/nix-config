@@ -41,6 +41,13 @@
       flake = false;
     };
 
+    nix-config-work = {
+      url = "git+ssh://git@gitlab.com/Krapaince/nix-config-work.git?ref=master&shallow=1";
+      # nix flake update nix-config-work
+      # url = "path:/home/mpointec/Desktop/GIT/nix-config-work";
+      flake = false;
+    };
+
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
