@@ -29,6 +29,7 @@
     unzip
     yt-dlp
 
+    nh
     nvd
   ];
 }

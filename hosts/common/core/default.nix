@@ -31,6 +31,7 @@
   home-manager.useGlobalPkgs = true;
 
   environment.systemPackages = with pkgs; [
+    comma
     neovim
     screen
     vifm
