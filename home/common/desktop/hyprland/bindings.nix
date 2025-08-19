@@ -36,7 +36,7 @@ in
               wl-clipboard
             ];
             script = ''
-              slurp -w 0 | grim -g - - | wl-copy
+              slurp | grim -g - - | wl-copy
             '';
             inherit pkgs;
           };
@@ -49,7 +49,7 @@ in
               satty
             ];
             script = ''
-              slurp -w 0 | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
+              slurp | grim -g - - | satty --filename - --copy-command wl-copy --early-exit
             '';
             inherit pkgs;
           };
