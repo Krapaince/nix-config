@@ -30,6 +30,7 @@
     identity = lib.mkForce inputs.secrets.identities.work;
     isWork = true;
     username = lib.mkForce "mpointec";
+    backlight = "amdgpu_bl1";
   };
 
   networking = {

@@ -31,6 +31,12 @@
         default = "${persistFolder}/system/etc/ssh/ssh_host_ed25519_key";
       };
 
+      backlight = lib.mkOption {
+        type = lib.types.nullOr lib.types.str;
+        description = "Backlight module (e.g.: intel_backlight)";
+        default = null;
+      };
+
       isWork = lib.mkOption {
         type = lib.types.bool;
         default = false;

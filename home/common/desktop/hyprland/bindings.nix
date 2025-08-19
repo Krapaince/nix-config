@@ -141,14 +141,21 @@ in
       bindle =
         let
           brightnessctl = lib.getExe pkgs.brightnessctl;
+          brightnessBindings =
+            backlight:
+            if builtins.isString backlight then
+              [
+                ", XF86MonBrightnessDown, exec, ${brightnessctl} -d ${backlight} s 10%-"
+                ", XF86MonBrightnessUp, exec, ${brightnessctl} -d ${backlight} s 10%+"
+              ]
+            else
+              [ ];
         in
         [
           ", XF86AudioRaiseVolume, exec, ${pipewire-control} up"
           ", XF86AudioLowerVolume, exec, ${pipewire-control} down"
-
-          ", XF86MonBrightnessDown, exec, ${brightnessctl} -d intel_backlight s 10%-"
-          ", XF86MonBrightnessUp, exec, ${brightnessctl} -d intel_backlight s 10%+"
-        ];
+        ]
+        ++ (brightnessBindings config.hostSpec.backlight);
     };
 
     extraConfig =

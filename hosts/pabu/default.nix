@@ -25,7 +25,10 @@
     ../common/optional/steam.nix
   ];
 
-  hostSpec.hostName = "pabu";
+  hostSpec = {
+    hostName = "pabu";
+    backlight = "intel_backlight";
+  };
 
   networking = {
     networkmanager.enable = true;
