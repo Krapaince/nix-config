@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   programs.fish = {
     enable = true;
 
@@ -6,25 +7,24 @@
       set -x GPG_TTY (tty)
     '';
 
-    shellAliases = {
-      v = "nvim";
-      c = "clear";
-      ls = "exa --icons";
+    shellAliases =
+      {
+        v = "nvim";
+        c = "clear";
+        ls = "exa --icons";
 
-      cdc = "cd ~/.config";
-      cdg = "cd ~/Desktop/GIT";
+        cdc = "cd ~/.config";
+        cdg = "cd ~/Desktop/GIT";
 
-      gs = "git status";
-      gu = "gitui --watcher";
+        gs = "git status";
+        gu = "gitui --watcher";
 
-      bs = "sudo systemctl start bluetooth";
-      bd = "bluetoothctl disconnect";
+        bs = "sudo systemctl start bluetooth";
+        bd = "bluetoothctl disconnect";
 
-    } // lib.optionalAttrs
-      ((config ? sops) && (config.sops.secrets ? "bluetooth/headset_addr")) {
-        bc = "bluetoothctl connect (cat ${
-            config.sops.secrets."bluetooth/headset_addr".path
-          })";
+      }
+      // lib.optionalAttrs ((config ? sops) && (config.sops.secrets ? "bluetooth/headset_addr")) {
+        bc = "bluetoothctl connect (cat ${config.sops.secrets."bluetooth/headset_addr".path})";
       };
 
     functions = {

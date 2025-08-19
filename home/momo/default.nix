@@ -1,1 +1,4 @@
-{ lib, ... }: { imports = [ (lib.custom.relativeToHome "common") ]; }
+{ lib, ... }:
+{
+  imports = [ (lib.custom.relativeToHome "common") ];
+}

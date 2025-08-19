@@ -1,4 +1,5 @@
-{ inputs, lib, ... }: {
+{ inputs, lib, ... }:
+{
   imports = [
     inputs.hardware.nixosModules.lenovo-thinkpad-t480
 
@@ -41,5 +42,7 @@
     enable32Bit = true;
   };
 
-  programs = { dconf.enable = true; };
+  programs = {
+    dconf.enable = true;
+  };
 }

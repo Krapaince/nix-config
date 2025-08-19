@@ -25,7 +25,9 @@
       timeout-low = 10;
       transition-time = 200;
       widget-config = {
-        dnd = { text = "Do Not Disturb"; };
+        dnd = {
+          text = "Do Not Disturb";
+        };
         mpris = {
           image-radius = 12;
           image-size = 96;
@@ -36,7 +38,12 @@
           text = "Notifications";
         };
       };
-      widgets = [ "title" "dnd" "notifications" "mpris" ];
+      widgets = [
+        "title"
+        "dnd"
+        "notifications"
+        "mpris"
+      ];
     };
   };
 }

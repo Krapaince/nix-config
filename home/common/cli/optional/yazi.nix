@@ -1,17 +1,26 @@
-{ inputs, pkgs, lib, ... }:
-let dragon = lib.getExe pkgs.xdragon;
-in {
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  dragon = lib.getExe pkgs.xdragon;
+in
+{
   programs.yazi = {
     enable = true;
     enableFishIntegration = true;
     keymap = {
       manager = {
-        prepend_keymap = [{
-          on = [ "<C-n>" ];
-          run = ''
-            shell '${dragon} -x -T "$1"' --confirm
-          '';
-        }];
+        prepend_keymap = [
+          {
+            on = [ "<C-n>" ];
+            run = ''
+              shell '${dragon} -x -T "$1"' --confirm
+            '';
+          }
+        ];
       };
     };
     settings = {
@@ -21,18 +30,24 @@ in {
         show_hidden = true;
       };
       opener = {
-        text = [{
-          run = ''nvim "$@"'';
-          block = true;
-        }];
-        image = [{
-          run = ''imv "$@"'';
-          orphan = true;
-        }];
-        pdf = [{
-          run = ''zathura "$@"'';
-          orphan = true;
-        }];
+        text = [
+          {
+            run = ''nvim "$@"'';
+            block = true;
+          }
+        ];
+        image = [
+          {
+            run = ''imv "$@"'';
+            orphan = true;
+          }
+        ];
+        pdf = [
+          {
+            run = ''zathura "$@"'';
+            orphan = true;
+          }
+        ];
       };
       open = {
         rules = [
@@ -52,10 +67,13 @@ in {
 
       };
     };
-    theme = { flavor = { use = "catppuccin-mocha"; }; };
+    theme = {
+      flavor = {
+        use = "catppuccin-mocha";
+      };
+    };
     flavors = {
-      catppuccin-mocha =
-        "${builtins.toString inputs.yazi-flavor}/catppuccin-mocha.yazi";
+      catppuccin-mocha = "${builtins.toString inputs.yazi-flavor}/catppuccin-mocha.yazi";
     };
   };
 }

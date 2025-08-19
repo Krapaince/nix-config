@@ -1,1 +1,4 @@
-{ pkgs, ... }: { home.packages = [ pkgs.webcord ]; }
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.webcord ];
+}

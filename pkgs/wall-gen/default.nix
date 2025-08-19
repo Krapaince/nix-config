@@ -1,6 +1,15 @@
-{ fetchFromGitHub, beamPackages, lib, makeWrapper, erlang, colorbalance2 }:
-let pname = "wall-gen";
-in beamPackages.mixRelease {
+{
+  fetchFromGitHub,
+  beamPackages,
+  lib,
+  makeWrapper,
+  erlang,
+  colorbalance2,
+}:
+let
+  pname = "wall-gen";
+in
+beamPackages.mixRelease {
   inherit pname;
   version = "0.1.0";
 
@@ -23,7 +32,10 @@ in beamPackages.mixRelease {
     install -Dm 0755 ./wall-gen "$out/bin/wall-gen"
 
     wrapProgram "$out/bin/wall-gen" --prefix PATH ':' "${
-      lib.makeBinPath [ erlang colorbalance2 ]
+      lib.makeBinPath [
+        erlang
+        colorbalance2
+      ]
     }"
   '';
 }

@@ -1,18 +1,29 @@
-{ config, inputs, hostSpec, lib, ... }:
+{
+  config,
+  inputs,
+  hostSpec,
+  lib,
+  ...
+}:
 let
   hosts = inputs.secrets.hosts;
 
-  internalHostConfs = lib.mapAttrs (name: host:
-    let ssh = host.ssh;
-    in {
+  internalHostConfs = lib.mapAttrs (
+    name: host:
+    let
+      ssh = host.ssh;
+    in
+    {
       hostname = host.ip;
       user = if ssh ? user then ssh.user else "krapaince";
       port = if ssh ? port then ssh.port else 22;
-    } // (lib.optionalAttrs (ssh ? proxyJump) { proxyJump = ssh.proxyJump; }))
-    hosts;
+    }
+    // (lib.optionalAttrs (ssh ? proxyJump) { proxyJump = ssh.proxyJump; })
+  ) hosts;
 
   secretsPath = builtins.toString inputs.secrets;
-in {
+in
+{
   sops.secrets = {
     "ssh_key".sopsFile = "${secretsPath}/hosts/${hostSpec.hostName}.yaml";
   };

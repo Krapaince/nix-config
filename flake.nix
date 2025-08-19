@@ -26,8 +26,7 @@
     };
 
     secrets = {
-      url =
-        "git+ssh://git@gitlab.com/Krapaince/nix-config-secret.git?ref=master&shallow=1";
+      url = "git+ssh://git@gitlab.com/Krapaince/nix-config-secret.git?ref=master&shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -53,23 +52,30 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { self, nixpkgs, systems, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      systems,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       # https://github.com/nix-community/home-manager/pull/3454#issuecomment-1472325946
-      lib = nixpkgs.lib.extend
-        (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
 
-      forEachSystem = f:
-        lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (system:
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-        });
+        }
+      );
 
       specialArgs = { inherit inputs outputs lib; };
-    in {
+    in
+    {
       inherit lib;
       nixosModules = import ./modules/nixos;
 

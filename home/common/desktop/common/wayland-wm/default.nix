@@ -1,5 +1,12 @@
-{ pkgs, ... }: {
-  imports = [ ./gammastep.nix ./swaync.nix ./swaylock.nix ./waybar ./wpaperd ];
+{ pkgs, ... }:
+{
+  imports = [
+    ./gammastep.nix
+    ./swaync.nix
+    ./swaylock.nix
+    ./waybar
+    ./wpaperd
+  ];
 
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [

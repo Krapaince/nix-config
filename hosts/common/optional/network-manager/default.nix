@@ -1,1 +1,6 @@
-{ imports = [ ./base.nix ./secret-based.nix ]; }
+{
+  imports = [
+    ./base.nix
+    ./secret-based.nix
+  ];
+}

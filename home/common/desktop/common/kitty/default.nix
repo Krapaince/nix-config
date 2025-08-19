@@ -1,20 +1,28 @@
-{ config, ... }: {
+{ config, ... }:
+{
   xdg.mimeApps = {
-    associations.added = { "x-scheme-handler/terminal" = "kitty.desktop"; };
-    defaultApplications = { "x-scheme-handler/terminal" = "kitty.desktop"; };
+    associations.added = {
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
+    defaultApplications = {
+      "x-scheme-handler/terminal" = "kitty.desktop";
+    };
   };
 
   programs.kitty = {
     enable = true;
 
-    extraConfig = let font_family = config.fontProfiles.monospace.family;
-    in ''
-      font_family ${font_family} Light
-      font_size 9
-      bold_font ${font_family} Heavy
-      italic_font ${font_family} Light Oblique
-      bold_italic_font ${font_family} Heavy Oblique
-    '';
+    extraConfig =
+      let
+        font_family = config.fontProfiles.monospace.family;
+      in
+      ''
+        font_family ${font_family} Light
+        font_size 9
+        bold_font ${font_family} Heavy
+        italic_font ${font_family} Light Oblique
+        bold_italic_font ${font_family} Heavy Oblique
+      '';
 
     settings = {
       disable_ligatures = "never";
@@ -70,56 +78,59 @@
       update_check_interval = 0;
     };
 
-    keybindings = let mod = "super";
-    in {
-      # Scrolling
-      "${mod}+i" = "scroll_line_up";
-      "${mod}+u" = "scroll_line_down";
-      "${mod}+page_up" = "scroll_page_up";
-      "${mod}+page_down" = "scroll_page_down";
-      "${mod}+home" = "scroll_home";
-      "${mod}+end" = "scroll_end";
+    keybindings =
+      let
+        mod = "super";
+      in
+      {
+        # Scrolling
+        "${mod}+i" = "scroll_line_up";
+        "${mod}+u" = "scroll_line_down";
+        "${mod}+page_up" = "scroll_page_up";
+        "${mod}+page_down" = "scroll_page_down";
+        "${mod}+home" = "scroll_home";
+        "${mod}+end" = "scroll_end";
 
-      # Window management
-      "ctrl+enter" = "launch --cwd=current --location=hsplit";
-      "ctrl+alt+enter" = "launch --cwd=current --location=vsplit";
-      "${mod}+shift+r" = "swap_with_window";
+        # Window management
+        "ctrl+enter" = "launch --cwd=current --location=hsplit";
+        "ctrl+alt+enter" = "launch --cwd=current --location=vsplit";
+        "${mod}+shift+r" = "swap_with_window";
 
-      "ctrl+shift+h" = "resize_window narrower";
-      "ctrl+shift+l" = "resize_window wider";
-      "ctrl+shift+j" = "resize_window shorter";
-      "ctrl+shift+k" = "resize_window taller";
+        "ctrl+shift+h" = "resize_window narrower";
+        "ctrl+shift+l" = "resize_window wider";
+        "ctrl+shift+j" = "resize_window shorter";
+        "ctrl+shift+k" = "resize_window taller";
 
-      # New kitty window
-      "${mod}+w" = "close_window";
+        # New kitty window
+        "${mod}+w" = "close_window";
 
-      "${mod}+h" = "neighboring_window left";
-      "${mod}+k" = "neighboring_window up";
-      "${mod}+j" = "neighboring_window down";
-      "${mod}+l" = "neighboring_window right";
+        "${mod}+h" = "neighboring_window left";
+        "${mod}+k" = "neighboring_window up";
+        "${mod}+j" = "neighboring_window down";
+        "${mod}+l" = "neighboring_window right";
 
-      "${mod}+r" = "start_resizing_window";
+        "${mod}+r" = "start_resizing_window";
 
-      # Tab management
-      "${mod}+shift+l" = "next_tab";
-      "${mod}+shift+h" = "previous_tab";
-      "${mod}+shift+t" = "launch --cwd=current --type=tab --location after";
-      "${mod}+shift+q" = "close_tab";
-      "${mod}+." = "move_tab_forward";
-      "${mod}+," = "move_tab_backward";
-      "${mod}+alt+t" = "set_tab_title";
+        # Tab management
+        "${mod}+shift+l" = "next_tab";
+        "${mod}+shift+h" = "previous_tab";
+        "${mod}+shift+t" = "launch --cwd=current --type=tab --location after";
+        "${mod}+shift+q" = "close_tab";
+        "${mod}+." = "move_tab_forward";
+        "${mod}+," = "move_tab_backward";
+        "${mod}+alt+t" = "set_tab_title";
 
-      # Font sizes
-      "ctrl+shift+equal" = "change_font_size all +2.0";
-      "ctrl+shift+minus" = "change_font_size all -2.0";
-      "${mod}+backspace" = "change_font_size all 0";
+        # Font sizes
+        "ctrl+shift+equal" = "change_font_size all +2.0";
+        "ctrl+shift+minus" = "change_font_size all -2.0";
+        "${mod}+backspace" = "change_font_size all 0";
 
-      # Miscellaneous
-      "${mod}+a>m" = "set_background_opacity +0.1";
-      "${mod}+a>l" = "set_background_opacity -0.1";
-      "${mod}+a>1" = "set_background_opacity 1";
-      "${mod}+a>d" = "set_background_opacity default";
-    };
+        # Miscellaneous
+        "${mod}+a>m" = "set_background_opacity +0.1";
+        "${mod}+a>l" = "set_background_opacity -0.1";
+        "${mod}+a>1" = "set_background_opacity 1";
+        "${mod}+a>d" = "set_background_opacity default";
+      };
   };
 
   xdg.configFile."kitty/dark-theme.auto.conf".source = ./dark-theme.auto.conf;

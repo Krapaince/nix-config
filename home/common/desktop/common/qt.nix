@@ -6,10 +6,9 @@ let
     accent = lib.toLower catppuccinAccent;
     variant = lib.toLower catppuccinFlavor;
   };
-  themeName = "catppuccin-${lib.toLower catppuccinFlavor}-${
-      lib.toLower catppuccinAccent
-    }";
-in {
+  themeName = "catppuccin-${lib.toLower catppuccinFlavor}-${lib.toLower catppuccinAccent}";
+in
+{
   home.packages = [ catppuccinKvantum ];
 
   qt = {
@@ -19,11 +18,9 @@ in {
   };
 
   xdg.configFile = {
-    "Kvantum/${themeName}".source =
-      "${catppuccinKvantum}/share/Kvantum/${themeName}";
-    "Kvantum/kvantum.kvconfig".source =
-      (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-        General.theme = themeName;
-      };
+    "Kvantum/${themeName}".source = "${catppuccinKvantum}/share/Kvantum/${themeName}";
+    "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+      General.theme = themeName;
+    };
   };
 }

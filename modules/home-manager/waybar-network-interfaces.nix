@@ -9,7 +9,8 @@ let
       default = null;
     };
   };
-in {
+in
+{
   options.waybar.network-interfaces = {
     wired = network-interface-option;
     wireless = network-interface-option;

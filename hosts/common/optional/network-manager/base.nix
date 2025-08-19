@@ -1,6 +1,8 @@
 { inputs, config, ... }:
-let wireless-interface = config.network-interfaces.wireless;
-in {
+let
+  wireless-interface = config.network-interfaces.wireless;
+in
+{
   networking.networkmanager.ensureProfiles = {
     environmentFiles = with config.sops; [
       secrets."wireless/base/ssid".path
@@ -35,9 +37,12 @@ in {
     };
   };
 
-  sops.secrets = let secrets-path = builtins.toString inputs.secrets;
-  in {
-    "wireless/base/ssid".sopsFile = "${secrets-path}/hosts/common.yaml";
-    "wireless/base/psk".sopsFile = "${secrets-path}/hosts/common.yaml";
-  };
+  sops.secrets =
+    let
+      secrets-path = builtins.toString inputs.secrets;
+    in
+    {
+      "wireless/base/ssid".sopsFile = "${secrets-path}/hosts/common.yaml";
+      "wireless/base/psk".sopsFile = "${secrets-path}/hosts/common.yaml";
+    };
 }

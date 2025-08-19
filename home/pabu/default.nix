@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   imports = lib.flatten [
     (map lib.custom.relativeToHome [
       "common/hyprland.nix"
@@ -8,12 +9,14 @@
     ])
   ];
 
-  monitors = [{
-    name = "eDP-1";
-    primary = true;
-    x = 5000;
-    y = 2000;
-  }];
+  monitors = [
+    {
+      name = "eDP-1";
+      primary = true;
+      x = 5000;
+      y = 2000;
+    }
+  ];
 
   waybar.network-interfaces = {
     wired.name = "enp0s31f6";

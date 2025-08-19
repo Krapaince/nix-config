@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [
     ../common
     ../common/wayland-wm
@@ -18,17 +24,23 @@
     ./hypridle.nix
   ];
 
-  xdg.portal = let
-    hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
-  in {
-    extraPortals = [ xdph ];
-    configPackages = [ hyprland ];
-  };
+  xdg.portal =
+    let
+      hyprland = config.wayland.windowManager.hyprland.package;
+      xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
+    in
+    {
+      extraPortals = [ xdph ];
+      configPackages = [ hyprland ];
+    };
 
   services.hyprpolkitagent.enable = true;
 
-  home.packages = with pkgs; [ grim satty slurp ];
+  home.packages = with pkgs; [
+    grim
+    satty
+    slurp
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -42,7 +54,9 @@
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = false; };
+        touchpad = {
+          natural_scroll = false;
+        };
 
         sensitivity = 0;
       };
@@ -96,7 +110,9 @@
         preserve_split = true;
       };
 
-      gestures = { workspace_swipe = true; };
+      gestures = {
+        workspace_swipe = true;
+      };
 
       misc = {
         disable_hyprland_logo = true;
@@ -105,25 +121,29 @@
         disable_autoreload = false;
       };
 
-      monitor = let
-        toHyprlandMonitor = (m:
-          let
-            flipped = if m.transform.flipped then 1 else 0;
-            rotation = m.transform.rotation / 90;
-            transform = if m.transform.rotation != 0 || m.transform.flipped then
-              ", transform, ${toString (flipped + rotation)}"
-            else
-              "";
-          in "${m.name},${
-            if m.enabled then
-              "${toString m.width}x${toString m.height}@${
-                toString m.refreshRate
-              },${toString m.x}x${toString m.y},1${transform}"
-            else
-              "disable"
-          }");
-        resolvedMonitors = lib.custom.resolveMonitors config.monitors;
-      in map toHyprlandMonitor resolvedMonitors;
+      monitor =
+        let
+          toHyprlandMonitor = (
+            m:
+            let
+              flipped = if m.transform.flipped then 1 else 0;
+              rotation = m.transform.rotation / 90;
+              transform =
+                if m.transform.rotation != 0 || m.transform.flipped then
+                  ", transform, ${toString (flipped + rotation)}"
+                else
+                  "";
+            in
+            "${m.name},${
+              if m.enabled then
+                "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1${transform}"
+              else
+                "disable"
+            }"
+          );
+          resolvedMonitors = lib.custom.resolveMonitors config.monitors;
+        in
+        map toHyprlandMonitor resolvedMonitors;
     };
     systemd.enable = true;
   };
@@ -135,13 +155,14 @@
       After = [ "graphical-session-pre.target" ];
     };
 
-    Service = let
-      hyprland_ipc =
-        lib.getExe' pkgs.inputs.hyprland-ipc.hyprland-ipc "hyprland_ipc";
-    in {
-      ExecStart = "${hyprland_ipc} start";
-      Restart = "on-failure";
-    };
+    Service =
+      let
+        hyprland_ipc = lib.getExe' pkgs.inputs.hyprland-ipc.hyprland-ipc "hyprland_ipc";
+      in
+      {
+        ExecStart = "${hyprland_ipc} start";
+        Restart = "on-failure";
+      };
 
     Install.WantedBy = [ "graphical-session.target" ];
   };

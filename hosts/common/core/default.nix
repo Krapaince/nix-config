@@ -1,4 +1,12 @@
-{ lib, inputs, outputs, config, pkgs, ... }: {
+{
+  lib,
+  inputs,
+  outputs,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.disko.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -22,7 +30,11 @@
 
   home-manager.useGlobalPkgs = true;
 
-  environment.systemPackages = with pkgs; [ neovim screen vifm ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    screen
+    vifm
+  ];
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;

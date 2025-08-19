@@ -1,5 +1,14 @@
-{ lib, disk, withSwap ? false, swapSize, ... }: {
-  boot.supportedFilesystems = { btrfs = true; };
+{
+  lib,
+  disk,
+  withSwap ? false,
+  swapSize,
+  ...
+}:
+{
+  boot.supportedFilesystems = {
+    btrfs = true;
+  };
   disko.devices = {
     disk = {
       main = {
@@ -33,7 +42,11 @@
                 ];
                 content = {
                   type = "btrfs";
-                  extraArgs = [ "-L" "nixos" "-f" ];
+                  extraArgs = [
+                    "-L"
+                    "nixos"
+                    "-f"
+                  ];
                   postCreateHook = ''
                     MNTPOINT="$(mktemp -d)"
                     mount "/dev/mapper/cryptroot" "$MNTPOINT" -o subvolid=5
@@ -43,21 +56,34 @@
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions =
-                        [ "subvol=root" "compress=zstd" "noatime" ];
+                      mountOptions = [
+                        "subvol=root"
+                        "compress=zstd"
+                        "noatime"
+                      ];
                     };
                     "/home" = {
                       mountpoint = "/home";
-                      mountOptions = [ "subvol=home" "compress=zstd" ];
+                      mountOptions = [
+                        "subvol=home"
+                        "compress=zstd"
+                      ];
                     };
                     "/nix" = {
                       mountpoint = "/nix";
-                      mountOptions =
-                        [ "subvol=nix" "compress=zstd" "noatime" "noacl" ];
+                      mountOptions = [
+                        "subvol=nix"
+                        "compress=zstd"
+                        "noatime"
+                        "noacl"
+                      ];
                     };
                     "/persist" = {
                       mountpoint = "/persist";
-                      mountOptions = [ "subvol=persist" "compress=zstd" ];
+                      mountOptions = [
+                        "subvol=persist"
+                        "compress=zstd"
+                      ];
                     };
                     "/swap" = lib.mkIf withSwap {
                       mountpoint = "/swap";

@@ -1,6 +1,13 @@
-{ writeShellApplication, playerctl, systemd }:
+{
+  writeShellApplication,
+  playerctl,
+  systemd,
+}:
 writeShellApplication {
   name = "suspend-script";
-  runtimeInputs = [ playerctl systemd ];
+  runtimeInputs = [
+    playerctl
+    systemd
+  ];
   text = builtins.readFile ./suspend.sh;
 }

@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
 
   home = {
     sessionVariables.EDITOR = "nvim";
@@ -42,7 +43,7 @@
       erlang-ls
 
       # Nix
-      nixfmt-classic
+      nixfmt-rfc-style
       nixd
 
       yaml-language-server
@@ -53,5 +54,7 @@
     recursive = true;
   };
 
-  programs.neovim = { enable = true; };
+  programs.neovim = {
+    enable = true;
+  };
 }

@@ -2,7 +2,8 @@
 let
   secretsPath = builtins.toString inputs.secrets;
   homeDirectory = config.home.homeDirectory;
-in {
+in
+{
   imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
   sops = {

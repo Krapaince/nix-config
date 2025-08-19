@@ -1,6 +1,11 @@
-{ inputs, config, lib, ... }: {
-  imports =
-    [ (lib.custom.relativeToRoot "hosts/common/optional/network-manager") ];
+{
+  inputs,
+  config,
+  lib,
+  ...
+}:
+{
+  imports = [ (lib.custom.relativeToRoot "hosts/common/optional/network-manager") ];
 
   networking.networkmanager.ensureProfiles = {
     environmentFiles = with config.sops; [
@@ -38,10 +43,13 @@
     };
   };
 
-  sops.secrets = let secrets-path = builtins.toString inputs.secrets;
-  in {
-    wireguard-private-key.sopsFile = "${secrets-path}/hosts/pabu.yaml";
-    appa-dn.sopsFile = "${secrets-path}/hosts/common.yaml";
-    "wireguard/port".sopsFile = "${secrets-path}/hosts/common.yaml";
-  };
+  sops.secrets =
+    let
+      secrets-path = builtins.toString inputs.secrets;
+    in
+    {
+      wireguard-private-key.sopsFile = "${secrets-path}/hosts/pabu.yaml";
+      appa-dn.sopsFile = "${secrets-path}/hosts/common.yaml";
+      "wireguard/port".sopsFile = "${secrets-path}/hosts/common.yaml";
+    };
 }

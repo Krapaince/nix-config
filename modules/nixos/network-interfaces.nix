@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   options.network-interfaces = {
     ethernet = lib.mkOption {
       type = lib.types.str;

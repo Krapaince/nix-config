@@ -1,7 +1,14 @@
 # A minimal ISO image to bootstrap an host.
-{ pkgs, modulesPath, lib, ... }:
-let keys = lib.lists.forEach [ ./id_iso.pub ] (key: builtins.readFile key);
-in {
+{
+  pkgs,
+  modulesPath,
+  lib,
+  ...
+}:
+let
+  keys = lib.lists.forEach [ ./id_iso.pub ] (key: builtins.readFile key);
+in
+{
   imports = [
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
     "${modulesPath}/installer/cd-dvd/channel.nix"
@@ -9,10 +16,19 @@ in {
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = lib.mkForce [ "btrfs" "vfat" ];
+    supportedFilesystems = lib.mkForce [
+      "btrfs"
+      "vfat"
+    ];
   };
 
-  environment = { systemPackages = with pkgs; [ git disko neovim ]; };
+  environment = {
+    systemPackages = with pkgs; [
+      git
+      disko
+      neovim
+    ];
+  };
 
   # The default compression-level is (6) and takes too long on some machines (>30m). 3 takes <2m
   isoImage.squashfsCompression = "zstd -Xcompression-level 3";
@@ -22,8 +38,11 @@ in {
     config.allowUnfree = true;
   };
 
-  nix.settings.experimental-features =
-    [ "nix-command" "flakes" "pipe-operators" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    "pipe-operators"
+  ];
   networking = {
     hostName = "iso";
     networkmanager.enable = true;
@@ -40,7 +59,9 @@ in {
     };
   };
 
-  systemd = { services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ]; };
+  systemd = {
+    services.sshd.wantedBy = lib.mkForce [ "multi-user.target" ];
+  };
 
   users.users.root = {
     openssh.authorizedKeys.keys = keys;
