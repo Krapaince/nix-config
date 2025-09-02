@@ -30,11 +30,13 @@ in
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host *
-        identityFile ${config.sops.secrets."ssh_key".path}
-    '';
+    enableDefaultConfig = false;
     matchBlocks = internalHostConfs // {
+      "*" = {
+        forwardAgent = lib.mkDefault false;
+        addKeysToAgent = lib.mkDefault "no";
+        identityFile = lib.mkDefault config.sops.secrets."ssh_key".path;
+      };
       "github.com" = {
         hostname = "github.com";
         user = "git";
