@@ -17,11 +17,14 @@
     dust
     eza
     fd
+    ffmpeg
     fzf
     inotify-tools
     jq
     man
     man-pages
+    moreutils
+    (lib.hiPrio parallel)
     ncdu
     ripgrep
     sshfs
