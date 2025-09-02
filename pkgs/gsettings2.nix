@@ -23,7 +23,7 @@ writeShellApplication {
           done
         fi
       done
-      echo -n "$schemas" > "$cache_file"
+      echo -n "$schemas:${gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-48.0" > "$cache_file"
       echo -n "$build_id" > "$build_id_file"
     fi
 
