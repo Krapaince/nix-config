@@ -1,4 +1,5 @@
 {
+  services.tlp.enable = false;
   services.auto-cpufreq = {
     enable = true;
     settings = {
