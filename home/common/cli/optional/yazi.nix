@@ -12,7 +12,7 @@ in
     enable = true;
     enableFishIntegration = true;
     keymap = {
-      manager = {
+      mgr = {
         prepend_keymap = [
           {
             on = [ "<C-n>" ];
