@@ -48,4 +48,6 @@
   programs = {
     dconf.enable = true;
   };
+
+  services.auto-cpufreq.enable = false;
 }

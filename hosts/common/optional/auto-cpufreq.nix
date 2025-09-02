@@ -1,7 +1,8 @@
+{ lib, ... }:
 {
   services.tlp.enable = false;
   services.auto-cpufreq = {
-    enable = true;
+    enable = lib.mkDefault true;
     settings = {
       charger = {
         governor = "balanced";
