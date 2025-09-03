@@ -33,12 +33,7 @@
     backlight = "amdgpu_bl1";
   };
 
-  networking = {
-    networkmanager = {
-      enable = true;
-      enableStrongSwan = true;
-    };
-  };
+  networking.networkmanager.enable = true;
 
   network-interfaces = {
     ethernet = "enp5s0";

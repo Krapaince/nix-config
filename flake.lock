@@ -112,10 +112,10 @@
     "nix-config-work": {
       "flake": false,
       "locked": {
-        "lastModified": 1756727386,
-        "narHash": "sha256-7MqERWuhc8c0VjYWUlaoW2hBIPAc6qdDzO8hzA4SeR4=",
+        "lastModified": 1756884497,
+        "narHash": "sha256-HYKaP41pB01UawCsVeauvDHr+DtEckpWTwvT0vfi40Q=",
         "ref": "master",
-        "rev": "70d645a85213b5a73d296ae2fdca3886f13f3adb",
+        "rev": "8c7ed9f3d9f0cadbf9cfd6ce462b34a30654906f",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
@@ -183,10 +183,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1754320747,
-        "narHash": "sha256-fVer5WkenudajF44g6qRh3/U8lWKDMx6Ufieh3fe3ZY=",
+        "lastModified": 1756800340,
+        "narHash": "sha256-AsA5xEQZZRQHK2yCQlj0kVjpLJ6/AwtOt0+CkddRu7Q=",
         "ref": "master",
-        "rev": "090597ab54c23199df6d0e266276081063dbe49e",
+        "rev": "5ef642ffd30595594827639a14b2e3b1fa305eb3",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-secret.git"
