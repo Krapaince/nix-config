@@ -6,6 +6,7 @@
     ./gitui.nix
     ./oh-my-posh.nix
     ./ssh.nix
+    ./tmux
   ];
 
   home.packages = with pkgs; [

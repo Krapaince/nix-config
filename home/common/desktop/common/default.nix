@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   imports = [
+    ./alacritty
     ./firefox.nix
     ./font.nix
     ./gtk.nix
-    ./kitty
     ./network-manager-applet.nix
     ./pavucontrol.nix
     ./playerctl.nix

@@ -7,7 +7,10 @@ return {
       italic_comments = false,
     },
     config = function(_, opts)
-      require('vscode').setup(opts)
+      local background = require('krapaince.utils').get_background()
+      local user_opts = vim.tbl_extend('force', opts, {style = background})
+
+      require('vscode').setup(user_opts)
       require('vscode').load()
     end,
     lazy = false,

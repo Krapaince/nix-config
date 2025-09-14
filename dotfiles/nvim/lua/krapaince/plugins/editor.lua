@@ -30,7 +30,7 @@ return {
       },
     },
     keys = {
-      { '<C-b>', '<cmd>Neotree toggle<CR>' },
+      { '<Leader>t', '<cmd>Neotree toggle<CR>' },
     },
     opts = {
       window = {

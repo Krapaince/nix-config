@@ -90,4 +90,15 @@ return {
     end
     return keys
   end,
+
+  get_background = function()
+    local obj = vim.system({ "gsettings2", "get", "org.gnome.desktop.interface", "color-scheme" }, { text = true })
+        :wait()
+
+    if obj.code == 0 and string.find(obj.stdout, "light") then
+      return "light"
+    else
+      return "dark"
+    end
+  end,
 }

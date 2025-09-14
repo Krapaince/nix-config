@@ -1,9 +1,11 @@
-{ lib, ... }:
 {
   lib,
   pkgs,
+  config,
   ...
 }:
 {
-  home.packages = builtins.map (path: pkgs.callPackage path { }) (lib.custom.scanPaths ./.);
+  home.packages = builtins.map (path: pkgs.callPackage path { inherit config; }) (
+    lib.custom.scanPaths ./.
+  );
 }

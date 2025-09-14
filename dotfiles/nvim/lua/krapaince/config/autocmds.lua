@@ -39,12 +39,23 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "Signal" }, {
+  pattern = { "SIGUSR1" },
+  callback = function()
+    local background = require('krapaince.utils').get_background()
+
+    vim.o.background = background
+    require("vscode").load(background)
+    require("lualine").setup()
+  end,
+})
+
 vim.api.nvim_create_user_command('FormatDisable', function(args)
   if args.bang then
-    -- FormatDisable! will disable formatting just for this buffer
-    vim.b.disable_autoformat = true
+    -- FormatDisable! will disable formatting for this buffer
+    vim.b.disable_autoformat = true;
   else
-    vim.g.disable_autoformat = true
+    vim.g.disable_autoformat = true;
   end
 end, {
   desc = 'Disable autoformat-on-save',

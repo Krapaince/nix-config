@@ -82,7 +82,7 @@ in
               ];
         in
         [
-          "${mainMod}, Return, exec, ${defaultApp "x-scheme-handler/terminal"}"
+          "${mainMod}, Return, exec, ${lib.getExe pkgs.alacritty} -e ${lib.getExe pkgs.tmux} new"
           "${mainMod}, D, exec, ${rofi} -show drun -theme ~/.config/rofi/config.rasi"
 
           "SUPER, Up, exec, ${suspendCmd}"

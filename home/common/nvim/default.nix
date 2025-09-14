@@ -4,6 +4,8 @@
   home = {
     sessionVariables.EDITOR = "nvim";
     packages = with pkgs; [
+      gsettings2
+
       nodejs_20
       yarn
       gnumake
@@ -57,4 +59,8 @@
   programs.neovim = {
     enable = true;
   };
+
+  switchTheme.hooks = [
+    (lib.getExe (pkgs.writeScriptBin "switch-theme-nvim" "pkill -USR1 nvim"))
+  ];
 }
