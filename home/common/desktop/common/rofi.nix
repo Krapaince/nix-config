@@ -2,7 +2,6 @@
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
 
     font = config.fontProfiles.regular.family;
 

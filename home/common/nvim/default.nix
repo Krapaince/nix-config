@@ -20,7 +20,7 @@
       nodePackages.bash-language-server
       nodePackages.typescript-language-server
 
-      dockerfile-language-server-nodejs
+      dockerfile-language-server
 
       lua-language-server
       stylua

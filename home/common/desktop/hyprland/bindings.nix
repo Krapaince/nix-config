@@ -25,7 +25,7 @@ in
     settings = {
       bind =
         let
-          rofi = lib.getExe pkgs.rofi-wayland;
+          rofi = lib.getExe pkgs.rofi;
           swaync-client = lib.getExe' pkgs.swaynotificationcenter "swaync-client";
 
           screenshotScript = lib.custom.mkScript {
