@@ -63,7 +63,7 @@
 
         push.default = "current";
 
-        branch.sort = "commiterdate";
+        branch.sort = "committerdate";
       };
     };
 }
