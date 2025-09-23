@@ -146,6 +146,10 @@
         source-file ~/.config/tmux/dark-theme.conf
       }
 
+      if -F "#{==:#{session_windows},1}" "set -g status off" "set -g status on"
+      set-hook -g window-linked 'if -F "#{==:#{session_windows},1}" "set -g status off" "set -g status on"'
+      set-hook -g window-unlinked 'if -F "#{==:#{session_windows},1}" "set -g status off" "set -g status on"'
+
       set -g default-terminal "tmux-256color"
       set -as terminal-features ",alacritty*:RGB"
       set -g base-index 0
