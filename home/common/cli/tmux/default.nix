@@ -82,7 +82,7 @@
       bindings = lib.strings.concatMapStringsSep "\n" mkBind [
         {
           key = "r";
-          rest = "source-file ~/.config/tmux/tmux.conf; display-message \"tmux conf reloaded\"";
+          rest = "source-file ~/.config/tmux/tmux.conf \\; display-message \"tmux conf reloaded\"";
         }
         {
           key = "'\"'";
