@@ -168,6 +168,7 @@
       set -g status-right ""
       set -g status-style bg=default
       set -g status-position top
+      set -g renumber-windows on
       setw -g window-status-current-format "#[reverse dim] #[nodim bold] #{pane_current_command} #{b:pane_path} #[dim] "
       setw -g window-status-format "#{?#{||:#{==:#I,0},#{==:#{e|-:#I,1},#{active_window_index}}},#{?#{==:#I,0},  ,},#[dim]| #[nodim]}#{pane_current_command} #{b:pane_path}"
 
