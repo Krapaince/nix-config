@@ -14,11 +14,12 @@ in
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command flakes pipe-operators" ];
+      keep-outputs = true;
       warn-dirty = false;
     };
 
     gc = {
-      automatic = true;
+      automatic = false;
       dates = "weekly";
       options = "--delete-older-than 3d";
     };
