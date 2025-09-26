@@ -110,10 +110,6 @@
         preserve_split = true;
       };
 
-      gestures = {
-        workspace_swipe = true;
-      };
-
       misc = {
         disable_hyprland_logo = true;
         mouse_move_enables_dpms = true;
@@ -145,6 +141,9 @@
         in
         map toHyprlandMonitor resolvedMonitors;
     };
+    extraConfig = ''
+      gesture = 4, horizontal, workspace
+    '';
     systemd.enable = true;
   };
 
