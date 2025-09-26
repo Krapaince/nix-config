@@ -35,6 +35,8 @@
     usePredictableInterfaceNames = true;
   };
 
+  protonvpn.enable = true;
+
   network-interfaces = {
     ethernet = "enp0s31f6";
     wireless = "wlp3s0";

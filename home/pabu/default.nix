@@ -4,7 +4,6 @@
     (map lib.custom.relativeToHome [
       "common/hyprland.nix"
       "common/desktop/optional/discord.nix"
-      "common/desktop/optional/proton-vpn.nix"
       "common/optional/sops.nix"
     ])
   ];
