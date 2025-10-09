@@ -7,13 +7,13 @@ M.setup = function(on_attach, capabilities)
     settings = {
       nixd = {
         nixpkgs = {
-          expr = "import <nixpkgs> { }"
+          expr = 'import <nixpkgs> { }',
         },
         formatting = {
-          command = { "nixfmt" }
-        }
-      }
-    }
+          command = { 'nixfmt' },
+        },
+      },
+    },
   })
 end
 

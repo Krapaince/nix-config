@@ -63,7 +63,7 @@ return {
     },
     keys = {
       { '<C-p>', '<cmd>Telescope find_files<CR>' },
-      { '/',     '<cmd>Telescope live_grep<CR>' },
+      { '/', '<cmd>Telescope live_grep<CR>' },
       {
         '/',
         function()
@@ -179,13 +179,13 @@ return {
   },
 
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install && git restore .",
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && yarn install && git restore .',
     init = function()
-	    vim.g.mkdp_filetypes = { "markdown" }
+      vim.g.mkdp_filetypes = { 'markdown' }
     end,
-    ft = { "markdown" },
+    ft = { 'markdown' },
   },
 
   {

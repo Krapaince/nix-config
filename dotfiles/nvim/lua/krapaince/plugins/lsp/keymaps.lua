@@ -9,19 +9,21 @@ function M.get()
 
   if not M._keys then
     -- mapping action
+    -- stylua: ignore start
     M._keys = {
       { 'gd',        vim.lsp.buf.definition },
       { 'gi',        vim.lsp.buf.implementation },
       { 'K',         vim.lsp.buf.hover },
-      { '<C-k>',     vim.lsp.buf.signature_help,         has = 'signatureHelp' },
+      { '<C-k>',     vim.lsp.buf.signature_help,             has = 'signatureHelp' },
       { 'gt',        vim.lsp.buf.type_definition },
-      { '<C-c>', require('actions-preview').code_actions },
+      { '<C-c>',     require('actions-preview').code_actions },
       { '<leader>d', vim.diagnostic.open_float },
-      { '<leader>r', vim.lsp.buf.rename,                 has = 'rename' },
+      { '<leader>r', vim.lsp.buf.rename,                     has = 'rename' },
       { '<C-d>',     '<cmd>Trouble diagnostics<cr>' },
-      { '<leader>f', format,                             has = 'documentFormatting' },
-      { '<Leader>f', format,                             has = 'documentFormatting', mode = 'v' },
+      { '<leader>f', format,                                 has = 'documentFormatting' },
+      { '<Leader>f', format,                                 has = 'documentFormatting', mode = 'v' },
     }
+    -- stylua: ignore end
   end
   return M._keys
 end
