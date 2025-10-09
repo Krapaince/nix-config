@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+NIX_CONFIG_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")/.." ; pwd -P )
+
+if [[ -f ~/.config/nvim/lua/krapaince/custom.lua ]]; then
+  mv ~/.config/nvim/lua/krapaince/custom.lua "$NIX_CONFIG_PATH/dotfiles/nvim/lua/krapaince"
+fi
+rm -rf ~/.config/nvim
+ln -s "$NIX_CONFIG_PATH/dotfiles/nvim" ~/.config/nvim
