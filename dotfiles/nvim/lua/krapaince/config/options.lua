@@ -42,10 +42,5 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   virtual_lines = { current_line = true },
-  virtual_text = {
-    prefix = '',
-    source = 'if_many',
-    spacing = 1,
-  },
   severity_sort = true,
 })
