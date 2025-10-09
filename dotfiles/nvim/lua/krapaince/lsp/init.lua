@@ -44,7 +44,6 @@ vim.lsp.enable({
   'dockerls',
   'elixirls',
   'erlangls',
-  'eslint',
   'html',
   'jsonls',
   'lemminx',
