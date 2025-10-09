@@ -32,6 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     comma
+    htop
     neovim
     screen
     vifm
