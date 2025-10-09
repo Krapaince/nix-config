@@ -17,9 +17,9 @@ vim.lsp.config('*', {
   on_attach = on_attach,
 })
 
-require('rust-tools').setup({
+vim.g.rustaceanvim = {
   server = {
-    settings = {
+    default_settings = {
       ['rust-analyzer'] = {
         checkOnSave = {
           command = 'clippy',
@@ -35,7 +35,7 @@ require('rust-tools').setup({
       },
     },
   },
-})
+}
 
 vim.lsp.enable({
   'bashls',

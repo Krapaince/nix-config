@@ -15,7 +15,11 @@ return {
       end,
     },
     'nvimtools/none-ls.nvim',
-    'simrat39/rust-tools.nvim',
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^6', -- Recommended
+      lazy = false, -- This plugin is already lazy
+    },
     'hrsh7th/cmp-nvim-lsp',
     {
       'stevearc/conform.nvim',
