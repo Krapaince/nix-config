@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd({ 'Signal' }, {
 
     vim.o.background = background
     require('vscode').load(background)
-    require('lualine').setup()
+    require('lualine').setup({})
   end,
 })
 
