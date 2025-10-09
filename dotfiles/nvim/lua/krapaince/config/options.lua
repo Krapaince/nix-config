@@ -35,4 +35,17 @@ opt.undofile = true
 opt.undolevels = 10000
 opt.wildignore:append({ '*.o', '*.gcno', '*.gcda' }) -- Files matching these patterns are not completed
 opt.wildignorecase = true -- Make filenames autocompletion case-insensitive
+opt.winborder = 'rounded'
 opt.wrap = false -- Display long lines as just one line
+
+vim.diagnostic.config({
+  underline = true,
+  update_in_insert = false,
+  virtual_lines = { current_line = true },
+  virtual_text = {
+    prefix = '',
+    source = 'if_many',
+    spacing = 1,
+  },
+  severity_sort = true,
+})

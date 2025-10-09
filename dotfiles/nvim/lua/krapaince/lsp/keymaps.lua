@@ -4,7 +4,7 @@ M._keys = nil
 
 function M.get()
   local format = function()
-    require('krapaince.plugins.lsp.format').format({ async = true, force = true })
+    require('krapaince.lsp.format').format({ async = true, force = true })
   end
 
   if not M._keys then

@@ -13,3 +13,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require('krapaince.config').setup()
 require('lazy').setup('krapaince.plugins')
+require('krapaince.lsp')

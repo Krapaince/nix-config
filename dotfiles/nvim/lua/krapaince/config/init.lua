@@ -69,6 +69,12 @@ local options
 
 function M.setup(opts)
   options = vim.tbl_deep_extend('force', defaults, opts or {})
+
+  for name, icon in pairs(options.icons.diagnostics) do
+    name = 'DiagnosticSign' .. name
+    vim.fn.sign_define(name, { text = icon, texthl = name })
+  end
+
   require('krapaince.config.autocmds')
 end
 
