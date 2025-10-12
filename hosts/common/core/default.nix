@@ -19,7 +19,8 @@
     ./opt-in-state.nix
     ./sops.nix
     ./ssh.nix
-  ] ++ (builtins.attrValues outputs.nixosModules);
+  ]
+  ++ (builtins.attrValues outputs.nixosModules);
 
   hostSpec = {
     identity = inputs.secrets.identities.personal;

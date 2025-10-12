@@ -13,7 +13,8 @@ in
     (lib.custom.relativeToRoot "modules/common")
     ./cli
     ./nvim
-  ] ++ homeManagerModules;
+  ]
+  ++ homeManagerModules;
 
   inherit hostSpec;
 
