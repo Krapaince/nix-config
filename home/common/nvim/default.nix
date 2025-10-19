@@ -42,7 +42,7 @@
 
       elixir
       elixir_ls
-      erlang-ls
+      erlang-language-platform
 
       # Nix
       nixfmt-rfc-style
