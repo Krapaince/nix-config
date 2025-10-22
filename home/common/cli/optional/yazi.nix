@@ -44,19 +44,19 @@ lib.recursiveUpdate theme {
       opener = {
         text = [
           {
-            run = ''nvim "$@"'';
+            run = ''${lib.getExe pkgs.neovim} "$@"'';
             block = true;
           }
         ];
         image = [
           {
-            run = ''imv "$@"'';
+            run = ''${lib.getExe pkgs.imv} "$@"'';
             orphan = true;
           }
         ];
         pdf = [
           {
-            run = ''zathura "$@"'';
+            run = ''${lib.getExe pkgs.zathura} "$@"'';
             orphan = true;
           }
         ];
