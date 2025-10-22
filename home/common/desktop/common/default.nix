@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./alacritty
+    ./alacritty.nix
     ./firefox.nix
     ./font.nix
     ./gtk.nix

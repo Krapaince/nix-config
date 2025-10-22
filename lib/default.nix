@@ -26,6 +26,8 @@ rec {
     |> builtins.attrNames
     |> builtins.map (filepath: path + "/${filepath}");
 
+  switchThemeScript = import ./theme.nix lib;
+
   relativeToRoot = lib.path.append ../.;
   relativeToHome = lib.path.append (relativeToRoot "home");
 

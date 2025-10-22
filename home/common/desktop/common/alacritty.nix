@@ -6,8 +6,16 @@
 }:
 let
   fontFamilly = config.fontProfiles.monospace.family;
+  theme = lib.custom.switchThemeScript {
+    inherit pkgs;
+    program = "alacritty";
+    themeFilename = "theme.toml";
+    darkThemeSource = pkgs.alacritty-theme + "/share/alacritty-theme/rose_pine.toml";
+    lightThemeSource = pkgs.alacritty-theme + "/share/alacritty-theme/dawnfox.toml";
+    enable = config.programs.alacritty.enable;
+  };
 in
-{
+lib.recursiveUpdate theme {
   xdg.mimeApps = {
     associations.added = {
       "x-scheme-handler/terminal" = "Alacritty.desktop";
@@ -56,25 +64,4 @@ in
         ];
     };
   };
-
-  xdg.configFile."alacritty/dark-theme.toml".source =
-    pkgs.alacritty-theme + "/share/alacritty-theme/rose_pine.toml";
-  xdg.configFile."alacritty/light-theme.toml".source =
-    pkgs.alacritty-theme + "/share/alacritty-theme/dawnfox.toml";
-
-  switchTheme.hooks = lib.lists.optionals config.programs.alacritty.enable (
-    let
-      name = "switch-theme-alacritty";
-    in
-    [
-      (lib.getExe (
-        pkgs.writeShellApplication {
-          inherit name;
-          runtimeInputs = [ pkgs.coreutils ];
-          text = builtins.readFile ./switch-theme.sh;
-          meta.mainProgram = name;
-        }
-      ))
-    ]
-  );
 }
