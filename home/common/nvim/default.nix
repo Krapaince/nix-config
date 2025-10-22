@@ -6,7 +6,7 @@
     packages = with pkgs; [
       gsettings2
 
-      nodejs_20
+      nodejs_24
       yarn
       gnumake
       gcc
