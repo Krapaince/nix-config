@@ -35,11 +35,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    yazi-flavor = {
-      url = "github:yazi-rs/flavors";
-      flake = false;
-    };
-
     nix-config-work = {
       url = "git+ssh://git@gitlab.com/Krapaince/nix-config-work.git?ref=master&shallow=1";
       # nix flake update nix-config-work

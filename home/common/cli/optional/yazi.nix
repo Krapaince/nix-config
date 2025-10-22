@@ -1,19 +1,23 @@
 {
   config,
-  inputs,
   pkgs,
   lib,
   ...
 }:
 let
   dragon = lib.getExe pkgs.xdragon;
-  flavor = builtins.toString inputs.yazi-flavor;
+  flavors =
+    (fetchGit {
+      url = "https://github.com/yazi-rs/flavors";
+      rev = "2d73b79da7c1a04420c6c5ef0b0974697f947ef6";
+      shallow = true;
+    }).outPath;
   theme = lib.custom.switchThemeScript {
     inherit pkgs;
     program = "yazi";
     themeFilename = "theme.toml";
-    darkThemeSource = flavor + "/catppuccin-mocha.yazi/flavor.toml";
-    lightThemeSource = flavor + "/catppuccin-latte.yazi/flavor.toml";
+    darkThemeSource = flavors + "/catppuccin-mocha.yazi/flavor.toml";
+    lightThemeSource = flavors + "/catppuccin-latte.yazi/flavor.toml";
     enable = config.programs.yazi.enable;
   };
 in

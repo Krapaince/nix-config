@@ -171,8 +171,7 @@
         "nixpkgs-stable": "nixpkgs-stable",
         "secrets": "secrets",
         "sops-nix": "sops-nix",
-        "systems": "systems_2",
-        "yazi-flavor": "yazi-flavor"
+        "systems": "systems_2"
       }
     },
     "secrets": {
@@ -244,22 +243,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
-        "type": "github"
-      }
-    },
-    "yazi-flavor": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1758842767,
-        "narHash": "sha256-+awiEG5ep0/6GaW8YXJ7FP0/xrL4lSrJZgr7qjh8iBc=",
-        "owner": "yazi-rs",
-        "repo": "flavors",
-        "rev": "2d73b79da7c1a04420c6c5ef0b0974697f947ef6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "yazi-rs",
-        "repo": "flavors",
         "type": "github"
       }
     }
