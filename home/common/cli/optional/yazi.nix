@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   lib,
@@ -6,8 +7,17 @@
 }:
 let
   dragon = lib.getExe pkgs.xdragon;
+  flavor = builtins.toString inputs.yazi-flavor;
+  theme = lib.custom.switchThemeScript {
+    inherit pkgs;
+    program = "yazi";
+    themeFilename = "theme.toml";
+    darkThemeSource = flavor + "/catppuccin-mocha.yazi/flavor.toml";
+    lightThemeSource = flavor + "/catppuccin-latte.yazi/flavor.toml";
+    enable = config.programs.yazi.enable;
+  };
 in
-{
+lib.recursiveUpdate theme {
   home.packages = with pkgs; [ ueberzugpp ];
 
   programs.yazi = {
@@ -68,14 +78,6 @@ in
         ];
 
       };
-    };
-    theme = {
-      flavor = {
-        use = "catppuccin-mocha";
-      };
-    };
-    flavors = {
-      catppuccin-mocha = "${builtins.toString inputs.yazi-flavor}/catppuccin-mocha.yazi";
     };
   };
 }
