@@ -2,7 +2,13 @@
 with pkgs;
 writeShellApplication {
   name = "gsettings2";
-  runtimeInputs = [ glib ];
+  inheritPath = false;
+  runtimeInputs = [
+    coreutils-full
+    glib
+    gnugrep
+    nix
+  ];
   # https://github.com/NixOS/nixpkgs/issues/33277#issuecomment-354689755
   text = ''
     cache_dir="$HOME/.cache/gsettings-schemas"
