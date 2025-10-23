@@ -2,7 +2,7 @@
 {
   imports = [
     ./fish.nix
-    ./git.nix
+    ./git
     ./gitui.nix
     ./oh-my-posh.nix
     ./ssh.nix

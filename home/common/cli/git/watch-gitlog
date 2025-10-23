@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+git_alias=""
+
+while true; do
+  clear
+  read -r nb_lines nb_cols <<<"$(stty size)"
+  nb_lines="$((nb_lines - 1))"
+  nb_cols="$((nb_cols - 3))"
+
+  if [[ "$(gsettings2 get org.gnome.desktop.interface color-scheme)" == "'prefer-light'" ]]; then
+    git_alias="lgl"
+  else
+    git_alias="lg"
+  fi
+
+
+  git "$git_alias" --color=always | head -n "$nb_lines"
+  inotifywait -qre close_write .git > /dev/null
+done

@@ -4,11 +4,33 @@
   config,
   ...
 }:
+let
+  gitPkg = pkgs.gitAndTools.gitFull;
+  watchGitlog = pkgs.writeShellApplication {
+    name = "watch-gitlog";
+    runtimeInputs = with pkgs; [
+      coreutils
+      inotify-tools
+      gsettings2
+      gitPkg
+      ncurses6
+    ];
+    text = builtins.readFile ./watch-gitlog;
+    bashOptions = [
+      "errexit"
+      "nounset"
+    ];
+    inheritPath = false;
+  };
+in
 {
   # TODO: Make this an option maybe
-  imports = [ ./optional/gpg.nix ];
+  imports = [ ../optional/gpg.nix ];
 
-  home.packages = with pkgs; [ delta ];
+  home.packages = with pkgs; [
+    delta
+    watchGitlog
+  ];
 
   programs.git =
     let
@@ -16,7 +38,7 @@
     in
     {
       enable = true;
-      package = pkgs.gitAndTools.gitFull;
+      package = gitPkg;
 
       signing = {
         key = identity.gpg_key;
