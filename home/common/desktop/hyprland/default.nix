@@ -9,6 +9,7 @@
     ../common
     ../common/wayland-wm
 
+    ../../cli/optional/iex
     ../../cli/optional/gpg.nix
     ../../cli/optional/yazi.nix
     ../../cli/optional/yt-dlp.nix
