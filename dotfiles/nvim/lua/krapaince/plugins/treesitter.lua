@@ -7,6 +7,7 @@ local ensureInstalled = {
     'cpp',
     'dockerfile',
     'elixir',
+    'erlang',
     'fish',
     'javascript',
     'latex',

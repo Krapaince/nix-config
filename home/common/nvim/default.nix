@@ -42,6 +42,7 @@
 
       elixir
       elixir_ls
+      erlang
       erlang-language-platform
 
       # Nix
