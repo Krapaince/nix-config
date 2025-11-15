@@ -130,6 +130,7 @@ in
         [
           ", XF86AudioMute, exec, ${pipewire-control} togmute"
           ", XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          ", F4, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
 
           ", XF86AudioNext, exec, ${playerctl} next"
           ", XF86AudioPrev, exec, ${playerctl} previous"
