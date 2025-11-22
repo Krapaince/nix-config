@@ -5,6 +5,7 @@
     sessionVariables.EDITOR = "nvim";
     packages = with pkgs; [
       gsettings2
+      silicon
 
       nodejs_24
       yarn
