@@ -112,10 +112,10 @@
     "nix-config-work": {
       "flake": false,
       "locked": {
-        "lastModified": 1762269049,
-        "narHash": "sha256-HgIDvvi0waaNnXrd5cPa7TTZZGjryBRuehS9VbLfoQw=",
+        "lastModified": 1763978287,
+        "narHash": "sha256-ztWdXzAX7CK/OrqHifbX/lXdvGdjQ1u53sEMrEpHuDM=",
         "ref": "master",
-        "rev": "e481d89336f3016bb6e88fe18c7086ad7017af62",
+        "rev": "3ad1ea289663e32ec580523bd908998990e0fb9e",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
