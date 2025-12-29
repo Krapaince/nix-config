@@ -1,22 +1,22 @@
 {
   "nodes": {
-    "disko": {
+    "flake-parts": {
       "inputs": {
-        "nixpkgs": [
+        "nixpkgs-lib": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1760701190,
-        "narHash": "sha256-y7UhnWlER8r776JsySqsbTUh2Txf7K30smfHlqdaIQw=",
-        "owner": "nix-community",
-        "repo": "disko",
-        "rev": "3a9450b26e69dcb6f8de6e2b07b3fc1c288d85f5",
+        "lastModified": 1763759067,
+        "narHash": "sha256-LlLt2Jo/gMNYAwOgdRQBrsRoOz7BPRkzvNaI/fzXi2Q=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "2cccadc7357c0ba201788ae99c4dfa90728ef5e0",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "disko",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "type": "github"
       }
     },
@@ -112,10 +112,10 @@
     "nix-config-work": {
       "flake": false,
       "locked": {
-        "lastModified": 1763978287,
-        "narHash": "sha256-ztWdXzAX7CK/OrqHifbX/lXdvGdjQ1u53sEMrEpHuDM=",
+        "lastModified": 1768083640,
+        "narHash": "sha256-MroozfJ0NMPW6BzyOzS3bRAiC14W6wq1/bFdtObiFLM=",
         "ref": "master",
-        "rev": "3ad1ea289663e32ec580523bd908998990e0fb9e",
+        "rev": "73c8deeee9b045ec001affc2e00fe69f23555fc6",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
@@ -161,7 +161,7 @@
     },
     "root": {
       "inputs": {
-        "disko": "disko",
+        "flake-parts": "flake-parts",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "hyprland-ipc": "hyprland-ipc",
@@ -181,10 +181,10 @@
         ]
       },
       "locked": {
-        "lastModified": 1756800340,
-        "narHash": "sha256-AsA5xEQZZRQHK2yCQlj0kVjpLJ6/AwtOt0+CkddRu7Q=",
+        "lastModified": 1768677780,
+        "narHash": "sha256-u+gFTU3gIRwd1+MvSJ+tOdwW5YzH6G5W01htqn44SIo=",
         "ref": "master",
-        "rev": "5ef642ffd30595594827639a14b2e3b1fa305eb3",
+        "rev": "42f7648dd0640343f4687538560e0cb96d327d6c",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/Krapaince/nix-config-secret.git"

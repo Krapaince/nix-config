@@ -6,17 +6,17 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     systems.url = "github:nix-systems/default-linux";
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hardware.url = "github:nixos/nixos-hardware";
-
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     impermanence.url = "github:nix-community/impermanence";
 
@@ -48,58 +48,13 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      systems,
-      ...
-    }@inputs:
-    let
-      inherit (self) outputs;
-      # https://github.com/nix-community/home-manager/pull/3454#issuecomment-1472325946
-      lib = nixpkgs.lib.extend (self: super: { custom = import ./lib { inherit (nixpkgs) lib; }; });
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = import inputs.systems;
 
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
-        system:
-        import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-        }
-      );
-
-      specialArgs = { inherit inputs outputs lib; };
-    in
-    {
-      inherit lib;
-      nixosModules = import ./modules/nixos;
-
-      overlays = import ./overlays { inherit inputs; };
-
-      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        iso = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = [ ./hosts/iso ];
-        };
-
-        miyuki = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = [ ./hosts/miyuki ];
-        };
-
-        momo = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = [ ./hosts/momo ];
-        };
-
-        pabu = nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-          modules = [ ./hosts/pabu ];
-        };
-      };
+      imports = [
+        ./parts
+        ./hosts
+      ];
     };
 }

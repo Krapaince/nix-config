@@ -11,12 +11,7 @@ Manual operations to set up an host.
   ```
 
 - Clone this repository on the host
-- Format the disk
-  ```bash
-  disko --mode destroy ./hosts/<host>/disko.nix
-  diskp --mode format ./hosts/<host>/disko.nix
-  diskp --mode mount ./hosts/<host>/disko.nix
-  ```
+- Format the disk with the [`format-script`](/scripts/format-disk)
 
 - Set up persistent directories/file
   ```bash
