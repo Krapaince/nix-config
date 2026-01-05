@@ -1,12 +1,21 @@
-{ lib, osConfig, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkIf;
+  inherit (lib) getExe mkIf;
 
+  rofi = getExe pkgs.rofi;
   env = osConfig.modules.usrEnv;
 in
 {
   config = mkIf env.wms.hyprland.enable {
     wayland.windowManager.hyprland.settings = {
+      layerrule = [
+        "noanim,^(${rofi})$"
+      ];
       workspace = [
         # Smart gaps (https://wiki.hyprland.org/Configuring/Workspace-Rules/#smart-gaps)
         "w[tv1], gapsout:0, gapsin:0"
