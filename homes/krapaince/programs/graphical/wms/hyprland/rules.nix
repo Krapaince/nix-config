@@ -40,13 +40,6 @@ in
 
         "float, title:^satty$"
         "float, class:protonvpn-app"
-
-        "workspace 7 silent, class:WebCord"
-        "workspace 7 silent, class:discord"
-
-        "workspace 8 silent, class:blueman-manager"
-        "workspace 8 silent, class:Pavucontrol"
-        "workspace 8 silent, class:TeamSpeak 3"
       ];
     };
   };
