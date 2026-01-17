@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -eu
+
+disk="$1"
+disk_p1="${disk}1"
+disk_p2="${disk}2"
+luks_dev="/dev/mapper/cryptroot"
+mntpoint="/mnt"
+swap_size="8"
+
+sgdisk --zap-all "$disk"
+sfdisk "$disk" <<EOF
+label: gpt
+
+size=512MiB, type=uefi, name="disk-esp", bootable
+type=linux, name="cryptroot"
+EOF
+
+mkfs.fat -F 32 "$disk_p1"
+cryptsetup -v luksFormat "$disk_p2"
+cryptsetup open "$disk_p2" cryptroot
+mkfs.btrfs "$luks_dev"
+
+mount -t btrfs "$luks_dev" "$mntpoint"
+btrfs subvolume create "$mntpoint/root"
+btrfs subvolume create "$mntpoint/home"
+btrfs subvolume create "$mntpoint/nix"
+btrfs subvolume create "$mntpoint/persist"
+btrfs subvolume create "$mntpoint/log"
+btrfs subvolume create "$mntpoint/swap"
+
+btrfs subvolume snapshot -r "$mntpoint/root" "$mntpoint/root-blank"
+umount "$mntpoint"
+
+mount -o subvol=root,compress=zstd,noatime "$luks_dev" "$mntpoint"
+mkdir -p "$mntpoint/"{boot,home,nix,persist,swap}
+mount -o subvol=home,compress=zstd "$luks_dev" "$mntpoint/home"
+mount -o subvol=nix,compress=zstd,noatime,noacl "$luks_dev" "$mntpoint/nix"
+mount -o subvol=persist,compress=zstd "$luks_dev" "$mntpoint/persist"
+mkdir -p "$mntpoint/var/log"
+mount -o subvol=log,compress=zstd,noatime "$luks_dev" "$mntpoint/var/log"
+mount -o subvol=swap,noatime "$luks_dev" "$mntpoint/swap"
+
+btrfs filesystem mkswapfile --size "$swap_size"G "$mntpoint/swap/swapfile"
+swapon "$mntpoint/swap/swapfile"
+
+mount "$disk_p1" "$mntpoint/boot"
