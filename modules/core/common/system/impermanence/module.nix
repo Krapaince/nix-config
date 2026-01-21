@@ -37,8 +37,6 @@ in
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         script = ''
-          set -e
-
           mkdir -p /mnt
           mount -o subvolid=5 -t btrfs /dev/mapper/cryptroot /mnt
           btrfs subvolume list -o /mnt/root
