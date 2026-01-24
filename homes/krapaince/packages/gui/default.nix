@@ -16,11 +16,11 @@ in
     home.packages =
       with pkgs;
       (flatten [
+        dragon-drop
         gimp
         krita
         pinta
         wdisplays
-        xdragon
 
         # plasma packages
         kdePackages.dolphin

@@ -1,7 +1,7 @@
 { inputs, ... }:
 let
   inherit (inputs.nixpkgs) lib;
-  inherit (lib) fold recursiveUpdate;
+  inherit (lib) foldr recursiveUpdate;
 
   customLib = mergeLibs [
     (import ./modules.nix { inherit inputs lib; })
@@ -10,7 +10,7 @@ let
     (import ./themes.nix { inherit lib; })
   ];
 
-  mergeLibs = fold recursiveUpdate { };
+  mergeLibs = foldr recursiveUpdate { };
 
   extendedLibrary = inputs.nixpkgs.lib.extend (_: _: { custom = customLib; });
 in

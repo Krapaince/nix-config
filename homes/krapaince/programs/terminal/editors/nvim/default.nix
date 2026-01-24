@@ -51,12 +51,12 @@ in
         lemminx
 
         elixir
-        elixir_ls
+        elixir-ls
         erlang
         erlang-language-platform
 
         # Nix
-        nixfmt-rfc-style
+        nixfmt
         nixd
 
         rust-analyzer

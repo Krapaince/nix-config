@@ -1,9 +1,12 @@
 { pkgs, ... }:
-with pkgs;
-writeShellApplication {
+let
+  inherit (pkgs) gsettings-desktop-schemas;
+  version = gsettings-desktop-schemas.version;
+in
+pkgs.writeShellApplication {
   name = "gsettings2";
   inheritPath = false;
-  runtimeInputs = [
+  runtimeInputs = with pkgs; [
     coreutils-full
     glib
     gnugrep
@@ -29,7 +32,7 @@ writeShellApplication {
           done
         fi
       done
-      echo -n "$schemas:${gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-48.0" > "$cache_file"
+      echo -n "$schemas:${gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-${version}" > "$cache_file"
       echo -n "$build_id" > "$build_id_file"
     fi
 

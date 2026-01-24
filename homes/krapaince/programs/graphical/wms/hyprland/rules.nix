@@ -12,44 +12,34 @@ let
 in
 {
   config = mkIf env.wms.hyprland.enable {
-    wayland.windowManager.hyprland.settings = {
-      layerrule = [
-        "noanim,^(${rofi})$"
-      ];
-      workspace = [
-        # Smart gaps (https://wiki.hyprland.org/Configuring/Workspace-Rules/#smart-gaps)
-        "w[tv1], gapsout:0, gapsin:0"
-        "f[1], gapsout:0, gapsin:0"
-      ];
-      windowrulev2 = [
-        # Smart gaps
-        "bordersize 0, floating:0, onworkspace:w[tv1]"
-        "rounding 0, floating:0, onworkspace:w[tv1]"
-        "bordersize 0, floating:0, onworkspace:f[1]"
-        "rounding 0, floating:0, onworkspace:f[1]"
+    wayland.windowManager.hyprland.extraConfig = ''
+      layerrule = no_anim on, match:namespace ^(${rofi})$
 
-        "float, title:^(?:Coping|Moving) - Dolphin"
+      # Smart gaps (https://wiki.hyprland.org/Configuring/Workspace-Rules/#smart-gaps)
+      workspace=w[tv1], gapsout:0, gapsin:0
+      workspace=f[1], gapsout:0, gapsin:0
 
-        "idleinhibit fullscreen, class:firefox"
+      # Smart gaps
+      windowrule = border_size 0, rounding 0, match:float 0, match:workspace w[tv1]
+      windowrule = border_size 0, rounding 0, match:float 0, match:workspace f[1]
 
-        "idleinhibit fullscreen, title:^Picture-in-Picture$"
-        "float, title:^Picture-in-Picture$"
-        "pin, title:^Picture-in-Picture$"
-        "move 50% 1%, title:^Picture-in-Picture$"
-        "pin, class:^dragon-drop$"
+      windowrule = pin on, match:class ^dragon-drop$
 
-        "float, class:^Matplotlib$"
+      windowrule = float on, match:title ^(?:Coping|Moving) - Dolphin
 
-        "float, title:^Floating Window - Show Me The Key$"
-        "pin, title:^Floating Window - Show Me The Key$"
-        "noblur, title:^Floating Window - Show Me The Key$"
-        "opacity 1.0 override 1.0 override, title:^Floating Window - Show Me The Key$"
+      windowrule = idle_inhibit fullscreen, match:class firefox
+      windowrule = float on, match:title ^Opening, match:class firefox
+      windowrule = idle_inhibit fullscreen, float on, pin on, move ((monitor_w*0.5)) ((monitor_h*0.01)), match:title ^Picture-in-Picture$
 
-        "idleinhibit fullscreen, class:vlc"
+      windowrule = float on, match:class ^Matplotlib$
 
-        "float, title:^satty$"
-        "float, class:protonvpn-app"
-      ];
-    };
+      windowrule = float on, match:class protonvpn-app
+
+      windowrule = float on, match:title ^satty$
+
+      windowrule = float on, pin on, no_blur on, opacity 1.0 override 1.0 override, match:title ^Floating Window - Show Me The Key$
+
+      windowrule = idle_inhibit fullscreen, match:class vlc
+    '';
   };
 }

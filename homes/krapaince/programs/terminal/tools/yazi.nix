@@ -18,7 +18,7 @@ let
   prg = config.programs;
   sys = osConfig.modules.system;
 
-  dragon = getExe pkgs.xdragon;
+  dragon = getExe pkgs.dragon-drop;
   flavors =
     (fetchGit {
       url = "https://github.com/yazi-rs/flavors";
