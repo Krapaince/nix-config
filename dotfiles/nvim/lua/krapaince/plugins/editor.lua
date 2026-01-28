@@ -144,18 +144,6 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    config = function(_, opts)
-      local highlight = require('krapaince.utils').highlight
-
-      highlight('GitSignsAddNr', { bg = colors.vscDiffGreenLight, fg = colors.vscFront })
-      highlight('GitSignsChangeNr', { bg = '#6F490B', fg = colors.vscFront })
-      highlight('GitSignsDeleteNr', { bg = colors.vscDiffRedDark, fg = colors.vscFront })
-
-      vim.api.nvim_set_hl(0, 'GitSignsChangedeleteNr', { link = 'GitSignsDeleteNr' })
-      vim.api.nvim_set_hl(0, 'GitSignsTopdeleteNr', { link = 'GitSignsDeleteNr' })
-
-      require('gitsigns').setup(opts)
-    end,
     opts = {
       signcolumn = false,
       numhl = true,
