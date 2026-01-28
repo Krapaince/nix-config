@@ -61,6 +61,7 @@ in
         programs = {
           git = {
             email = identidy.email;
+            name = identidy.userFullName;
             signKey = identidy.gpg_key;
           };
         };
