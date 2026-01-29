@@ -13,6 +13,9 @@ return {
         GitSignsAdd = { bg = vscDiffGreenLight, fg = vscFront },
         GitSignsChange = { bg = '#6F490B', fg = vscFront },
         GitSignsDelete = { bg = vscDiffRedDark, fg = vscFront },
+        GitSignsStagedAddNr = { bg = '#75864e', fg = vscFront },
+        GitSignsStagedChangeNr = { bg = '#86580d', fg = vscFront },
+        GitSignsStagedDeleteNr = { bg = '#852b2b', fg = vscFront },
       },
     },
     config = function(_, opts)
