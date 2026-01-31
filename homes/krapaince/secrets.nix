@@ -6,7 +6,6 @@
   ...
 }:
 let
-  inherit (builtins) toString;
   inherit (lib) mergeAttrsList optionalAttrs;
 
   secretsPath = toString inputs.secrets;

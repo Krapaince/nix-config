@@ -1,6 +1,6 @@
 { lib }:
 let
-  inherit (builtins) isNull isInt;
+  inherit (builtins) isInt;
   inherit (lib)
     concatMapStringsSep
     filter
@@ -9,7 +9,6 @@ let
     hasInfix
     isAttrs
     optionals
-    removeAttrs
     ;
 
   resolveMonitors = (
