@@ -73,32 +73,31 @@ let
   computeRelativePosition = (
     unresolvedMonitor: relativeMonitor:
     let
-      directionToMultiplier = (
-        direction: {
-          v =
-            if hasInfix "north" direction then
-              -1
-            else if hasInfix "south" direction then
-              1
-            else
-              0;
-          h =
-            if hasInfix "west" direction then
-              -1
-            else if hasInfix "east" direction then
-              1
-            else
-              0;
-        }
-      );
+      # A coordinate corresponds to the top-left corner of a monitor
+      direction = unresolvedMonitor.direction;
+      offset = {
+        y =
+          if hasInfix "north" direction then
+            -unresolvedMonitor.height
+          else if hasInfix "south" direction then
+            relativeMonitor.height
+          else
+            0;
+        x =
+          if hasInfix "west" direction then
+            -unresolvedMonitor.width
+          else if hasInfix "east" direction then
+            relativeMonitor.width
+          else
+            0;
+      };
 
-      multiplier = directionToMultiplier unresolvedMonitor.direction;
       rotation = unresolvedMonitor.transform.rotation;
       shouldInvert = rotation == 90 || rotation == 270;
-      width = if shouldInvert then unresolvedMonitor.height else unresolvedMonitor.width;
-      height = if shouldInvert then unresolvedMonitor.width else unresolvedMonitor.height;
-      x = relativeMonitor.x + (multiplier.h * width) + unresolvedMonitor.offsetX;
-      y = relativeMonitor.y + (multiplier.v * height) + unresolvedMonitor.offsetY;
+      xOffset = if shouldInvert then offset.y else offset.x;
+      yOffset = if shouldInvert then offset.x else offset.y;
+      x = relativeMonitor.x + xOffset + unresolvedMonitor.offsetX;
+      y = relativeMonitor.y + yOffset + unresolvedMonitor.offsetY;
     in
     unresolvedMonitor // { inherit x y; }
   );
