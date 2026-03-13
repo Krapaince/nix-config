@@ -33,7 +33,7 @@ in
       };
 
       # https://github.com/NixOS/nixpkgs/issues/160923
-      xdgOpenUsePortal = true;
+      xdgOpenUsePortal = false;
     };
   };
 }

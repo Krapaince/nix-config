@@ -62,6 +62,8 @@ in
         rust-analyzer
 
         yaml-language-server
+
+        xdg-utils
       ];
     };
     xdg.configFile."nvim/" = {
