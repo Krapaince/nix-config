@@ -9,7 +9,7 @@ let
   inherit (builtins) isString;
   inherit (lib) mkIf;
 
-  gitPkg = pkgs.gitFull;
+  gitPkg = pkgs.git;
 
   watchGitlog = pkgs.writeShellApplication {
     name = "watch-gitlog";
