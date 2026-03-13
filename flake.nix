@@ -18,7 +18,13 @@
 
     hardware.url = "github:nixos/nixos-hardware";
 
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        nixpkgs.follows = "";
+        home-manager.follows = "";
+      };
+    };
 
     sops-nix = {
       url = "github:mic92/sops-nix";
