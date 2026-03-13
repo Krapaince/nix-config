@@ -15,6 +15,7 @@ in
   config = mkIf (gui_prg.enable && prg.media.enableDefaultPackages) {
     home.packages = with pkgs; [
       imv
+      kdePackages.gwenview
       pavucontrol
       qpwgraph
       vlc
