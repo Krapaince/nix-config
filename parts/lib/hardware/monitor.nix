@@ -74,29 +74,27 @@ let
     let
       # A coordinate corresponds to the top-left corner of a monitor
       direction = unresolvedMonitor.direction;
+      rotation = unresolvedMonitor.transform.rotation;
+      shouldInvert = rotation == 90 || rotation == 270;
       offset = {
         y =
           if hasInfix "north" direction then
-            -unresolvedMonitor.height
+            if shouldInvert then -unresolvedMonitor.width else -unresolvedMonitor.height
           else if hasInfix "south" direction then
             relativeMonitor.height
           else
             0;
         x =
           if hasInfix "west" direction then
-            -unresolvedMonitor.width
+            if shouldInvert then -unresolvedMonitor.height else -unresolvedMonitor.width
           else if hasInfix "east" direction then
             relativeMonitor.width
           else
             0;
       };
 
-      rotation = unresolvedMonitor.transform.rotation;
-      shouldInvert = rotation == 90 || rotation == 270;
-      xOffset = if shouldInvert then offset.y else offset.x;
-      yOffset = if shouldInvert then offset.x else offset.y;
-      x = relativeMonitor.x + xOffset + unresolvedMonitor.offsetX;
-      y = relativeMonitor.y + yOffset + unresolvedMonitor.offsetY;
+      x = relativeMonitor.x + offset.x + unresolvedMonitor.offsetX;
+      y = relativeMonitor.y + offset.y + unresolvedMonitor.offsetY;
     in
     unresolvedMonitor // { inherit x y; }
   );
