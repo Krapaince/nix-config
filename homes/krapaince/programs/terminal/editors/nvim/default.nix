@@ -27,8 +27,8 @@ in
 
         clang-tools
 
-        nodePackages.bash-language-server
-        nodePackages.typescript-language-server
+        bash-language-server
+        typescript-language-server
 
         dockerfile-language-server
 
