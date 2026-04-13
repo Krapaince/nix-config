@@ -1,6 +1,8 @@
 -- {{@@ header() @@}}
 
 local opt = vim.opt
+local sev = vim.diagnostic.severity
+local signs = require('krapaince.config.init').icons.diagnostics
 
 vim.g.mapleader = ','
 
@@ -43,4 +45,12 @@ vim.diagnostic.config({
   update_in_insert = false,
   virtual_lines = { current_line = true },
   severity_sort = true,
+  signs = {
+    text = {
+      [sev.ERROR] = signs.Error,
+      [sev.WARN] = signs.Warn,
+      [sev.INFO] = signs.Info,
+      [sev.HINT] = signs.Hint,
+    },
+  },
 })
