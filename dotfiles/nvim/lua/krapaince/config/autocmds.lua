@@ -20,9 +20,20 @@ vim.api.nvim_create_autocmd('FileType', {
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('spell'),
-  pattern = { 'gitcommit', 'markdown', 'latex', 'tex' },
+  pattern = { 'gitcommit', 'markdown', 'latex', 'tex', 'text', 'plaintext' },
   callback = function()
-    vim.opt_local.spell = true
+    vim.opt_local = {
+      formatexpr = '',
+      spell = true,
+      textwidth = 80,
+    }
+  end,
+})
+
+-- Highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    (vim.hl or vim.highlight).on_yank()
   end,
 })
 

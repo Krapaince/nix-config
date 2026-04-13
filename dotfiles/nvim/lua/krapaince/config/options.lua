@@ -8,7 +8,7 @@ vim.g.mapleader = ','
 
 opt.autochdir = false
 opt.autoindent = true -- Take indent for new line from previous line
-opt.clipboard = 'unnamedplus' -- Sync with system clipboard
+opt.clipboard = vim.env.SSY_TTY and '' or 'unnamedplus' -- Sync with system clipboard
 opt.cmdheight = 1
 opt.completeopt = { 'menuone', 'noselect' }
 opt.cursorline = true -- Highligh the screen line of the cursor
@@ -33,6 +33,7 @@ opt.tabstop = 2 -- Number of spaces that <Tab> in files uses
 opt.termguicolors = true
 opt.termguicolors = true
 opt.timeoutlen = 200 -- Shorten key sequence timeout (ms)
+opt.updatetime = 300
 opt.undofile = true
 opt.undolevels = 10000
 opt.wildignore:append({ '*.o', '*.gcno', '*.gcda' }) -- Files matching these patterns are not completed
