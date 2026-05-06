@@ -233,18 +233,10 @@ return {
   },
 
   {
-    'kevinhwang91/nvim-ufo',
-    dependencies = { 'kevinhwang91/promise-async' },
-    init = function()
-      local bufnr = vim.api.nvim_get_current_buf()
-      require('ufo').setFoldVirtTextHandler(bufnr, utils.fold_handler)
-    end,
+    'chrisgrieser/nvim-origami',
+    event = 'VeryLazy',
     opts = {
-      open_fold_hl_timeout = 100,
-      provider_selector = function(bufnr, filetype, buftype)
-        return { 'treesitter', 'indent' }
-      end,
-      fold_virt_text_handler = utils.fold_handler,
+      autoFold = { enabled = false },
     },
   },
 
