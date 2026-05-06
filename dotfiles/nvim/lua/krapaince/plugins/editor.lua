@@ -59,36 +59,11 @@ return {
     dependencies = {
       { 'nvim-lua/popup.nvim' },
       { 'nvim-lua/plenary.nvim' },
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     keys = {
-      { '<C-p>', '<cmd>Telescope find_files<CR>' },
-      { '/', '<cmd>Telescope live_grep<CR>' },
-      {
-        '/',
-        function()
-          vim.cmd('noau normal! "zy"')
-          local text = vim.fn.getreg('z')
-          vim.fn.setreg('z', {})
-
-          text = string.gsub(text, '\n', '')
-
-          if string.len(text) == 0 then
-            text = ''
-          end
-
-          require('telescope.builtin').live_grep({ default_text = text })
-        end,
-        mode = { 'v' },
-      },
       { '<C-s>', '<cmd>Telescope lsp_document_symbols<CR>' },
       { '<C-f>', '<cmd>Telescope current_buffer_fuzzy_find<CR>' },
     },
-    init = function()
-      local telescope = require('telescope')
-
-      telescope.load_extension('fzf')
-    end,
     opts = function()
       local actions = require('telescope.actions')
 
@@ -135,6 +110,57 @@ return {
         },
       }
     end,
+  },
+  {
+    'dmtrKovalenko/fff.nvim',
+    build = 'nix run .#release',
+    opts = {
+      layout = {
+        prompt_position = 'top',
+      },
+      prompt = '> ',
+      keymaps = {
+        move_up = { '<C-k>' },
+        move_down = { '<C-j>' },
+      },
+      grep = {
+        modes = { 'fuzzy', 'regex', 'plain' },
+      },
+    },
+    lazy = false,
+    keys = {
+      {
+        '<C-p>',
+        function()
+          require('fff').find_files()
+        end,
+        desc = 'FFFind files',
+      },
+      {
+        '/',
+        function()
+          require('fff').live_grep()
+        end,
+        desc = 'Live fffuzy grep',
+      },
+      {
+        '/',
+        function()
+          vim.cmd('noau normal! "zy"')
+          local query = vim.fn.getreg('z')
+          vim.fn.setreg('z', {})
+
+          query = string.gsub(query, '\n', '')
+
+          if string.len(query) == 0 then
+            query = ''
+          end
+
+          require('fff').live_grep({ query = query, grep = { modes = { 'plain', 'fuzzy', 'regex' } } })
+        end,
+        mode = { 'v' },
+      },
+    },
   },
 
   { 'tpope/vim-fugitive' },
