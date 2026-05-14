@@ -1,4 +1,9 @@
-{ lib, osConfig, pkgs, ... }:
+{
+  lib,
+  osConfig,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
 
@@ -6,6 +11,6 @@ let
 in
 {
   config = mkIf prg.discord.enable {
-    home.packages = [ pkgs.webcord ];
+    home.packages = [ pkgs.legcord ];
   };
 }
