@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+NIX_CONFIG_PATH=$( cd "$(dirname "${BASH_SOURCE[0]}")/.." ; pwd -P )
+
+cd "$NIX_CONFIG_PATH/dotfiles/nvim"
+find . -type l -print0 | xargs -0 -I {} unlink {}
+# shellcheck disable=SC2016
+find . -type f -print0 | xargs -0 -I {} bash -c 'mv {} $(dirname {})/$(basename -s ".hm.old" {})'
