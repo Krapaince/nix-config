@@ -22,11 +22,11 @@ vim.api.nvim_create_autocmd('FileType', {
   group = augroup('spell'),
   pattern = { 'gitcommit', 'markdown', 'latex', 'tex', 'text', 'plaintext' },
   callback = function()
-    vim.opt_local = {
-      formatexpr = '',
-      spell = true,
-      textwidth = 80,
-    }
+    local opt = vim.opt_local
+
+    opt.formatexpr = ''
+    opt.spell = true
+    opt.textwidth = 80
   end,
 })
 
