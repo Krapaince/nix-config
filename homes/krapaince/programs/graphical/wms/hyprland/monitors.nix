@@ -1,6 +1,10 @@
 { lib, osConfig, ... }:
 let
+  toLua = lib.generators.toLua;
+  inherit (lib) mkIf;
   inherit (lib.custom) resolveMonitors;
+
+  env = osConfig.modules.usrEnv;
 
   monitors = osConfig.modules.device.monitors;
 
@@ -9,19 +13,33 @@ let
     let
       flipped = if m.transform.flipped then 1 else 0;
       rotation = m.transform.rotation / 90;
-      transform =
-        if m.transform.rotation != 0 || m.transform.flipped then
-          ", transform, ${toString (flipped + rotation)}"
-        else
-          "";
     in
-    "${m.name},${
+    {
+      output = m.name;
+    }
+    // (
       if m.enabled then
-        "${toString m.width}x${toString m.height}@${toString m.refreshRate},${toString m.x}x${toString m.y},1${transform}"
+        {
+          mode = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+          position = "${toString m.x}x${toString m.y}";
+          scale = 1;
+          transform = flipped + rotation;
+        }
       else
-        "disable"
-    }"
+        { disabled = !m.enabled; }
+    )
   );
   resolvedMonitors = resolveMonitors monitors;
+  luaMonitors = toLua { } (map toHyprlandMonitor resolvedMonitors);
 in
-map toHyprlandMonitor resolvedMonitors
+{
+  config = mkIf env.wms.hyprland.enable {
+    xdg.configFile."hypr/monitors.lua".text = ''
+      local monitors = ${luaMonitors};
+
+      for _, monitor in ipairs(monitors) do
+        hl.monitor(monitor)
+      end
+    '';
+  };
+}
