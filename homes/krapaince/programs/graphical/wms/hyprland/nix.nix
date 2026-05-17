@@ -15,6 +15,8 @@ let
   lock = getExe self'.packages.lock-script;
 
   table = toLua { } {
+    fontFamily = osConfig.modules.system.font.monospace.family;
+
     script = {
       lock = lock;
       suspend = "${lock} -f && ${getExe self'.packages.suspend-script}";

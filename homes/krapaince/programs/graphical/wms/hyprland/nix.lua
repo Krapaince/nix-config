@@ -1,6 +1,8 @@
 -- A dummy file for the lsp to complete from
 
 local M = {
+	fontFamily = "",
+
 	script = {
 		suspend = "",
 		lock = "",

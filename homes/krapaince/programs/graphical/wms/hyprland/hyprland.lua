@@ -2,6 +2,8 @@ require("bindings")
 require("rules")
 require("monitors")
 
+local nix = require("nix")
+
 local animationEnabled = false
 local focusColor = "#bf8300"
 local unfocusColor = "#595959aa"
@@ -44,15 +46,33 @@ hl.config({
 		repeat_rate = 50,
 	},
 
+	group = {
+		groupbar = {
+			col = {
+				active = focusColor,
+				inactive = unfocusColor,
+			},
+		},
+	},
+
 	misc = {
 		disable_autoreload = false,
 		disable_hyprland_logo = true,
+		font_family = nix.fontFamily,
 		key_press_enables_dpms = true,
 		mouse_move_enables_dpms = true,
 	},
 
 	binds = {
 		movefocus_cycles_fullscreen = false,
+	},
+
+	cursor = {
+		inactive_timeout = 3,
+	},
+
+	ecosystem = {
+		no_update_news = true,
 	},
 
 	dwindle = {
