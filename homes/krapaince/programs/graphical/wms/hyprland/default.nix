@@ -12,7 +12,6 @@ let
 in
 {
   imports = [
-    ./ipc.nix
     ./monitors.nix
     ./nix.nix
   ];
@@ -33,6 +32,7 @@ in
 
     xdg.configFile = {
       "hypr/bindings.lua".source = ./bindings.lua;
+      "hypr/events.lua".source = ./events.lua;
       "hypr/rules.lua".source = ./rules.lua;
     };
   };

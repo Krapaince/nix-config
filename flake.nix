@@ -36,11 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland-ipc = {
-      url = "github:Krapaince/hyprland-ipc";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-config-work = {
       url = "git+ssh://git@gitlab.com/Krapaince/nix-config-work.git?ref=master&shallow=1";
       # nix flake update nix-config-work

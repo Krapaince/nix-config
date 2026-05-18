@@ -1,4 +1,5 @@
 require("bindings")
+require("events")
 require("rules")
 require("monitors")
 
