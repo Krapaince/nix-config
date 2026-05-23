@@ -81,6 +81,10 @@ hl.define_submap("group", function()
 	hl.bind("h", hl.dsp.group.prev())
 	hl.bind("l", hl.dsp.group.next())
 
+	for key, direction in pairs(directions) do
+		hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ into_group = direction }))
+	end
+
 	hl.bind("escape", hl.dsp.submap("reset"))
 end)
 
