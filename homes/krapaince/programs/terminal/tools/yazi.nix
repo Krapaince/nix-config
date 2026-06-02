@@ -22,7 +22,7 @@ let
   flavors =
     (fetchGit {
       url = "https://github.com/yazi-rs/flavors";
-      rev = "2d73b79da7c1a04420c6c5ef0b0974697f947ef6";
+      rev = "0f9204bc948c8313963f5c9d571a82edc201f8aa";
       shallow = true;
     }).outPath;
   theme = mkThemeSwitchHookConf {
@@ -97,7 +97,7 @@ mkMerge [
               use = "image";
             }
             {
-              name = "*.pdf";
+              url = "*.pdf";
               use = "pdf";
             }
           ];
