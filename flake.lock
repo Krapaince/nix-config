@@ -77,28 +77,23 @@
     "nix-config-work": {
       "flake": false,
       "locked": {
-        "lastModified": 1771513178,
-        "narHash": "sha256-DKr+ZjK1RSyrdfAT/BgXk3UrgbY6twh07z+5F5h/yuo=",
-        "ref": "master",
-        "rev": "03ed27153434e10e35ec844d21216a451e8877f1",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
+        "lastModified": 1780325052,
+        "narHash": "sha256-rHJrK5gJHNJqPayB7cne5yvMhNND4aJw1nxBvUwvXXY=",
+        "path": "/home/mpointec/Desktop/GIT/nix-config-work",
+        "type": "path"
       },
       "original": {
-        "ref": "master",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@gitlab.com/Krapaince/nix-config-work.git"
+        "path": "/home/mpointec/Desktop/GIT/nix-config-work",
+        "type": "path"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1778869304,
-        "narHash": "sha256-30sZNZoA1cqF5JNO9fVX+wgiQYjB7HJqqJ4ztCDeBZE=",
+        "lastModified": 1779560665,
+        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d233902339c02a9c334e7e593de68855ad26c4cb",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
         "type": "github"
       },
       "original": {

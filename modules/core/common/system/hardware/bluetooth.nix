@@ -15,9 +15,6 @@ in
       powerOnBoot = true;
     };
 
-    services.blueman = {
-      enable = true;
-      withApplet = false;
-    };
+    services.blueman.enable = true;
   };
 }
