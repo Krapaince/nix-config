@@ -67,17 +67,18 @@ end
 
 local options
 
-function M.setup(opts)
-  require('krapaince.config.autocmds')
-end
-
 M.did_init = false
 function M.init()
   if not M.did_init then
     M.did_init = true
     require('krapaince.config.options')
-    require('krapaince.config.keymaps')
   end
+end
+
+function M.setup()
+  M.init()
+  require('krapaince.config.autocmds')
+  require('krapaince.config.keymaps')
 end
 
 setmetatable(M, {
