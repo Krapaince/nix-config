@@ -31,7 +31,6 @@ opt.smartcase = true -- No ignore case when pattern has uppercase
 opt.syntax = 'enable' -- Enables syntax highlighing
 opt.tabstop = 2 -- Number of spaces that <Tab> in files uses
 opt.termguicolors = true
-opt.termguicolors = true
 opt.timeoutlen = 200 -- Shorten key sequence timeout (ms)
 opt.updatetime = 300
 opt.undofile = true
