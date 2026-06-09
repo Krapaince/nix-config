@@ -15,8 +15,9 @@ let
     name = "watch-gitlog";
     runtimeInputs = with pkgs; [
       coreutils
-      inotify-tools
+      gawk
       gitPkg
+      inotify-tools
       ncurses6
 
       self'.packages.gsettings2
