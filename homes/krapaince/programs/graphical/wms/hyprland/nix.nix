@@ -19,7 +19,7 @@ let
 
     script = {
       lock = lock;
-      suspend = "${lock} -f && ${getExe self'.packages.suspend-script}";
+      suspend = getExe self'.packages.suspend-script;
       pipewireControl = getExe pkgs.polybar-pulseaudio-control;
       screenshot = getExe (writeShellApplication {
         name = "screenshot";
