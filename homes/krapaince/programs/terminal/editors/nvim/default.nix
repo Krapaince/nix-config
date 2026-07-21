@@ -50,9 +50,9 @@ in
         # XML
         lemminx
 
-        elixir
+        beamPackages.elixir
         elixir-ls
-        erlang
+        beamPackages.erlang
         erlang-language-platform
 
         # Nix

@@ -1,6 +1,5 @@
 {
   beamPackages,
-  erlang,
   fetchFromGitHub,
   lib,
   makeWrapper,
@@ -33,7 +32,7 @@ beamPackages.mixRelease {
 
     wrapProgram "$out/bin/wall-gen" --prefix PATH ':' "${
       lib.makeBinPath [
-        erlang
+        beamPackages.erlang
         colorbalance2
       ]
     }"

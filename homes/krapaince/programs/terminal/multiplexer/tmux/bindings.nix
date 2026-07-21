@@ -35,7 +35,9 @@ in
 
       # Split pane H/V
       (mkBind "Control|Alt" "Return" "%")
-      (mkBind "Control" "Return" "\"")
+      # " -> \\u0022
+      # Prevent usage of ' due to the usage of " which breaks the mapping
+      (mkBind "Control" "Return" "\\u0022")
 
       # New/Previous/Next Window
       (mkBind "Super|Shift" "t" "c")

@@ -15,9 +15,9 @@ let
       inherit (host) ssh;
     in
     {
-      hostname = host.ip;
-      user = if ssh ? user then ssh.user else "krapaince";
-      port = if ssh ? port then ssh.port else 22;
+      Hostname = host.ip;
+      User = if ssh ? user then ssh.user else "krapaince";
+      Port = if ssh ? port then ssh.port else 22;
     }
     // (optionalAttrs (ssh ? proxyJump) { proxyJump = ssh.proxyJump; });
 
@@ -27,19 +27,19 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = internalHostConfs // {
+    settings = internalHostConfs // {
       "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        identityFile = mkDefault config.sops.secrets."ssh_key".path;
+        ForwardAgent = false;
+        AddKeysToAgent = "no";
+        IdentityFile = mkDefault config.sops.secrets."ssh_key".path;
       };
       "github.com" = {
-        hostname = "github.com";
-        user = "git";
+        Hostname = "github.com";
+        User = "git";
       };
       "gitlab.com" = {
-        hostname = "gitlab.com";
-        user = "git";
+        Hostname = "gitlab.com";
+        User = "git";
       };
     };
   };
