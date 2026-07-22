@@ -42,7 +42,7 @@ vim.lsp.enable({
   'clangd',
   'cssls',
   'dockerls',
-  'elixirls',
+  vim.fn.executable('expert') == 1 and 'expert' or 'elixirls',
   'elp',
   'html',
   'jsonls',
