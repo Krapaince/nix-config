@@ -36,6 +36,14 @@ in
           height = 1440;
           refreshRate = 143.93;
         }
+        {
+          name = "desc:Samsung Electric Company LS24D60xU HNAX700492";
+          relativeTo = "eDP-1";
+          direction = "north";
+          width = 2560;
+          height = 1440;
+          refreshRate = 59.95100;
+        }
       ];
     };
   };
