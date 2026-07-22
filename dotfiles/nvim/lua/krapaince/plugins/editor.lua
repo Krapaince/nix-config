@@ -202,8 +202,10 @@ return {
     ft = { 'markdown' },
   },
 
+  -- https://github.com/folke/todo-comments.nvim/pull/399
   {
-    'folke/todo-comments.nvim',
+    'shirohana/todo-comments.nvim',
+    commit = 'dd03b9dcf65b93ff7bab880efcf96f14c4a8143f',
     dependencies = 'nvim-lua/plenary.nvim',
     opts = {
       signs = true,
