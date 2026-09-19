@@ -1,5 +1,6 @@
 {
   imports = [
+    ./direnv.nix
     ./gpg.nix
     ./git
     ./gitui.nix

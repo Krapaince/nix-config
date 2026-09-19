@@ -14,7 +14,6 @@ in
     home.packages = with pkgs; [
       bat
       btop
-      direnv
       dust
       eza
       fd
