@@ -6,17 +6,6 @@ let
   cfg = sys.services;
 
   impermanence = sys.impermanence;
-  baseHostKeyPath = "/etc/ssh/ssh_host_ed25519_key";
-  hostKey = {
-    path =
-      if impermanence.enable then
-        # Sops needs access to the keys before the persist dirs are even mounted; so
-        # just persisting the keys won't work, we must point at /persist/system
-        impermanence.mountpoint + "/system" + baseHostKeyPath
-      else
-        baseHostKeyPath;
-    type = "ed25519";
-  };
 in
 {
   config = mkIf cfg.sshd.enable {
@@ -32,7 +21,14 @@ in
 
         GatewayPorts = "clientspecified";
       };
-      hostKeys = [ hostKey ];
+      hostKeys = mkIf impermanence.enable [
+        {
+          # Sops needs access to the keys before the persist dirs are even mounted; so
+          # just persisting the keys won't work, we must point at /persist/system
+          path = impermanence.mountpoint + "/system/etc/ssh/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
     };
   };
 }
