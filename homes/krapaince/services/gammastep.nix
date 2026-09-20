@@ -1,12 +1,6 @@
 { lib, osConfig, ... }:
-let
-  inherit (lib) elem mkIf;
-
-  dev = osConfig.modules.device;
-  acceptedTypes = [ "laptop" ];
-in
 {
-  config = mkIf (elem dev.type acceptedTypes) {
+  config = lib.custom.withDeviceType osConfig [ "laptop" ] {
     services.gammastep = {
       enable = true;
       provider = "manual";

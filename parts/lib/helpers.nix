@@ -1,6 +1,13 @@
 { lib, ... }:
 let
+  inherit (builtins) elem;
   inherit (lib) mkIf;
+
+  isAcceptedDeviceType = config: types: elem config.modules.device.type types;
+
+  withDeviceType =
+    config: types: term:
+    mkIf (isAcceptedDeviceType config types) term;
 
   withMainUser =
     config: fun:
@@ -14,5 +21,5 @@ let
 
 in
 {
-  inherit withMainUser;
+  inherit isAcceptedDeviceType withDeviceType withMainUser;
 }

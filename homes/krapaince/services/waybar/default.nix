@@ -9,13 +9,11 @@
 let
   inherit (builtins) isString;
   inherit (lib)
-    elem
     findFirst
     flatten
     getExe
     getExe'
     mergeAttrs
-    mkIf
     optionals
     ;
 
@@ -28,11 +26,9 @@ let
   monitors = dev.monitors;
   primaryMonitor = (findFirst (m: m.primary) null monitors).name;
   networkInterfaces = sys.networking.interfaces;
-
-  acceptedTypes = [ "laptop" ];
 in
 {
-  config = mkIf (elem dev.type acceptedTypes) {
+  config = lib.custom.withDeviceType osConfig [ "laptop" ] {
     systemd.user.services.waybar = {
       Unit.StartLimitBurst = 30;
     };

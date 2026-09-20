@@ -1,15 +1,12 @@
 { config, lib, ... }:
 let
-  inherit (builtins) elem;
   inherit (lib) mkIf;
+  inherit (lib.custom) isAcceptedDeviceType;
 
-  dev = config.modules.device;
   sys = config.modules.system;
-
-  acceptedTypes = [ "laptop" ];
 in
 {
-  config = mkIf (sys.video.enable && (elem dev.type acceptedTypes)) {
+  config = mkIf (sys.video.enable && (isAcceptedDeviceType config [ "laptop" ])) {
     modules.device = {
       monitors = [
         {
