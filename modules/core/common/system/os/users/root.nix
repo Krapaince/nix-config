@@ -1,8 +1,8 @@
-{ config, ... }:
-let
-  mainUsername = config.modules.system.mainUser.name;
-  passwordKey = "${mainUsername}-password";
-in
+{ config, lib, ... }:
 {
-  users.users.root.hashedPasswordFile = config.sops.secrets.${passwordKey}.path;
+  config = lib.custom.withMainUser config (
+    { username, ... }: {
+      users.users.root.hashedPasswordFile = config.sops.secrets."${username}-password".path;
+    }
+  );
 }

@@ -7,6 +7,7 @@ let
     (import ./modules.nix { inherit inputs lib; })
     (import ./builders.nix { inherit inputs lib; })
     (import ./hardware { inherit lib; })
+    (import ./helpers.nix { inherit lib; })
     (import ./themes.nix { inherit lib; })
   ];
 

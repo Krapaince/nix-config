@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkOption;
-  inherit (lib.types) str;
+  inherit (lib.types) nullOr str;
 
   sys = config.modules.system;
 in
@@ -19,11 +19,11 @@ in
   options.modules.system = {
     mainUser = {
       name = mkOption {
-        type = str;
+        type = nullOr str;
         description = "The main user's name of the system";
       };
       import = mkOption {
-        type = str;
+        type = nullOr str;
         description = "The imported home from homes directory";
         default = sys.mainUser.name;
       };
