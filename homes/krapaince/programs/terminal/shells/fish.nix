@@ -19,7 +19,7 @@ in
       {
         v = "nvim";
         c = "clear";
-        ls = "exa --icons";
+        ls = "exa --icons auto";
 
         cdc = "cd ~/.config";
         cdg = "cd ~/Desktop/GIT";
