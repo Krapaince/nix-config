@@ -5,9 +5,10 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) lists mkIf;
 
-  cfg = config.modules.system.impermanence;
+  sys = config.modules.system;
+  cfg = sys.impermanence;
 in
 {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
@@ -20,11 +21,11 @@ in
     environment.persistence."/persist/system" = {
       hideMounts = true;
       directories = [
-        "/var/lib/bluetooth"
         "/var/lib/nixos"
         "/var/lib/systemd"
-        "/etc/NetworkManager/system-connections"
-      ];
+      ]
+      ++ (lists.optional sys.bluetooth.enable "/var/lib/bluetooth")
+      ++ (lists.optional config.networking.wireless.enable "/etc/NetworkManager/system-connections");
     };
 
     boot.initrd.systemd = {
