@@ -2,8 +2,6 @@
 let
   inherit (builtins)
     filter
-    map
-    toString
     elem
     ;
 

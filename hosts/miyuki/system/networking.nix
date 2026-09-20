@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) elemAt listToAttrs map;
+  inherit (lib) elemAt listToAttrs;
 
   secrets = config.sops.secrets;
   wirelessInterface = config.modules.system.networking.interfaces.wireless;
