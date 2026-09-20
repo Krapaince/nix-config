@@ -13,12 +13,14 @@ in
       type = enum [
         "laptop"
         "server"
+        "netboot"
       ];
       default = null;
       description = ''
         The type/purpose of the device that will be used within the rest of the configuration:
         - laptop: portable device
         - server: server
+        - netboot: a network bootable config
       '';
     };
 

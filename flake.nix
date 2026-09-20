@@ -50,6 +50,7 @@
       systems = import inputs.systems;
 
       imports = [
+        ./devShells
         ./parts
         ./hosts
       ];

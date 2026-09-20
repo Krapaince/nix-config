@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -eu
+
+PERSIST="$SEED_SCRIPT_PERSIST"
+HOST_SSH_KEY="$PERSIST/etc/ssh/ssh_host_ed25519_key"
+
+mkdir -p "$PERSIST"/etc/NetworkManager/system-connections
+mkdir -p "$PERSIST"/etc/ssh
+# https://man.archlinux.org/man/NetworkManager.8.en#/VAR/LIB/NETWORKMANAGER/SECRET_KEY_AND_/ETC/MACHINE-ID
+mkdir -p "$PERSIST"/var/lib/{bluetooth,nixos,systemd,NetworkManager}
+mkdir -p "$PERSIST"/var/log
+
+# Generate machine-id
+head -c4 /dev/urandom | od -A none -t x4 > "$PERSIST/etc/machine-id"
+
+ssh-keygen -t ed25519 -f "$HOST_SSH_KEY" -N ""
+ssh-to-age -private-key -i "$HOST_SSH_KEY" -o key.txt
+echo "Host age recipient:"
+cat key.txt

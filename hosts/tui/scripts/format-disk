@@ -3,10 +3,10 @@
 set -eu
 
 disk="$1"
-disk_p1="${disk}1"
-disk_p2="${disk}2"
+disk_p1="${disk}p1"
+disk_p2="${disk}p2"
 luks_dev="/dev/mapper/cryptroot"
-mntpoint="/mnt"
+mntpoint="$SEED_SCRIPT_MOUNTPOINT"
 swap_size="8"
 
 sgdisk --zap-all "$disk"

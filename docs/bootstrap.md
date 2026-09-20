@@ -4,33 +4,30 @@ Manual operations to set up an host.
 
 ## Reinstall an host
 
-- Make an ISO and boot with it
-  ```bash
-  rm -rf result
-  nix build .#nixosConfigurations.iso.config.system.build.isoImage
-  ```
+1. Serve install medium via PXE
 
-- Clone this repository on the host
-- Format the disk with the [`format-script`](/scripts/format-disk)
+```bash
+nix develop .#devShells.x86_64-linux.netboot --command bash -c "sudo launch-pxe-server"
+```
 
-- Set up persistent directories/file
-  ```bash
-  ./scripts/setup-opt-in-state.sh
-  ```
+2.  Format the disk with the `format-script` script
+3.  Report the system disk's uuid inside the host nix filesystem file
+4.  Bootstrap the host with the `bootstrap` script
+5.  Create a new secret file for the host
 
-- Copy the host's private key
-    - For new machine
-        - Generate the host's key `ssh-keygen -t ed25519 -f ssh_host_ed25519_key`
-        - Convert host key to age key for secret `cat ssh_host_ed25519_key.pub | ssh-to-age`
-        - Generate a new key for the user-host couple via age `age-keygen`
+    ```bash
+    SOPS_AGE_KEY_FILE=key.txt sops edit -a <host-age-recipient> hosts/<host>.yaml
+    SOPS_AGE_KEY_FILE=key.txt sops updatekeys hosts/<host>.yaml
 
-- Set up an access to gitlab via ssh (to fetch secrets repo)
-- Install host
-  ```bash
-  sudo nixos-install --flake .#<host>
-  ```
-  ask root password but can be ignored
-  
+    # Sync edited nix-config
+    rsync  --progress -avhz nix-config nixos@<ip>:
+    ```
 
-- After install, ask for root password but doesn't requires it after reboot
-- Reboot
+6.  Set up Gitlab ssh key to fetch secret repo
+7.  Install host
+
+    ```bash
+    sudo nixos-install --flake .#<host> --no-root-password
+    ```
+
+8.  Reboot

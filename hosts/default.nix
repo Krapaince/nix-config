@@ -120,5 +120,13 @@
           ];
         };
       };
+
+      tui = mkNixosSystem {
+        inherit withSystem;
+        hostname = "tui";
+        system = "x86_64-linux";
+        specialArgs = { inherit lib; };
+        modules = mkModuleFor "tui" { roles = [ headless ]; };
+      };
     };
 }
