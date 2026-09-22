@@ -1,14 +1,15 @@
-{ lib, self, ... }:
+{ self, ... }:
 let
   inherit (self) inputs;
-
-  flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
 in
 {
   nix = {
     # Add each flake input as a registry and nix path
-    registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+    };
+
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
 
     settings = {
       auto-optimise-store = true;
