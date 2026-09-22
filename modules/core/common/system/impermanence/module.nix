@@ -18,7 +18,7 @@ in
       mutableUsers = false;
     };
 
-    environment.persistence."/persist/system" = {
+    environment.persistence."${cfg.mountpoint}/system" = {
       hideMounts = true;
       directories = [
         "/var/lib/nixos"
@@ -59,7 +59,7 @@ in
     };
 
     boot.initrd.systemd.services.persisted-files = {
-      description = "Hard-link persisted files from /persist";
+      description = "Hard-link persisted files from ${cfg.mountpoint}";
       wantedBy = [ "initrd.target" ];
       after = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
@@ -67,7 +67,7 @@ in
       # man 7 bootup
       script = ''
         mkdir -p /sysroot/etc
-        ln -snfT /persist/system/etc/machine-id /sysroot/etc/machine-id
+        ln -snfT ${cfg.mountpoint}/system/etc/machine-id /sysroot/etc/machine-id
       '';
     };
   };
