@@ -1,5 +1,12 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  osConfig,
+  ...
+}:
 let
+  inherit (lib.custom) isAcceptedDeviceType;
+
   browser = [ "firefox.desktop" ];
   terminal = [ "Alacritty.desktop" ];
 
@@ -19,7 +26,7 @@ in
 
     userDirs = {
       enable = true;
-      createDirectories = true;
+      createDirectories = isAcceptedDeviceType osConfig [ "laptop" ];
 
       desktop = homeDir + "/Desktop";
       documents = homeDir + "/Documents";

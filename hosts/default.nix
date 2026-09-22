@@ -68,6 +68,22 @@
         |> flatten;
     in
     {
+      appa = mkNixosSystem {
+        inherit withSystem;
+        hostname = "appa";
+        system = "x86_64-linux";
+        specialArgs = { inherit lib; };
+        modules = mkModuleFor "appa" {
+          roles = [
+            server
+            headless
+          ];
+          extraModules = [
+            homes
+          ];
+        };
+      };
+
       pabu = mkNixosSystem {
         inherit withSystem;
         hostname = "pabu";
