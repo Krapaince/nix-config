@@ -4,7 +4,7 @@ local colors = require('vscode.colors').get_colors()
 return {
   {
     'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
+    branch = 'v3.x',
     cmd = 'Neotree',
     dependencies = {
       { 'nvim-lua/plenary.nvim' },
@@ -12,9 +12,10 @@ return {
       { 'MunifTanjim/nui.nvim' },
       {
         's1n7ax/nvim-window-picker',
-        tag = 'v1.5',
+        version = '2.*',
         opts = function()
           return {
+            hint = 'floating-big-letter',
             autoselect_one = true,
             include_current = false,
             filter_rules = {
@@ -33,6 +34,9 @@ return {
       { '<Leader>t', '<cmd>Neotree toggle<CR>' },
     },
     opts = {
+      filesystem = {
+        use_libuv_file_watcher = true,
+      },
       window = {
         mappings = {
           ['o'] = 'open_with_window_picker',
