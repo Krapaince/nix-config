@@ -14,7 +14,8 @@ let
   machines = {
     momo_boot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMEgXfQBRl6Zo4heEVLXIpfXOwNzUFPFM1gUmYKT7ke5";
     momo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICIEv+m1Mldyg23rJTw4bece5/p6wdCZkew6g8mI56PS";
-    appa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTeo+Mywjhv91A92B6bA2x1O0h3+6oawp8JcGYib4RF";
+    appa_boot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMj9YUWtjAVAdCRhEAYqFbRykLWkdKKwk9OUlQyLf040";
+    appa = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP3VWkjWdLm6TYkj5JWYXXe4h9rfxwfpA1x5//w5CkKl";
   };
 
   publicKeys = { inherit machines users; };

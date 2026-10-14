@@ -1,6 +1,7 @@
 {
   imports = [
     ./fs
+    ./hardware-configuration.nix
   ];
 
   modules = {
