@@ -2,6 +2,10 @@ let
   cryptroot_device = "/dev/disk/by-uuid/abbd3174-c910-4f87-a9a1-53529d191c7e";
 in
 {
+  imports = [
+    ./storage.nix
+  ];
+
   boot.initrd = {
     availableKernelModules = [
       "cryptd"
