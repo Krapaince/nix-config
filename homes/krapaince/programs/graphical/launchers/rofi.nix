@@ -15,9 +15,9 @@ in
     programs.rofi = {
       enable = true;
 
-      font = font.regular.family + " 10";
+      settings = {
+        font = font.regular.family + " 10";
 
-      extraConfig = {
         icon-theme = "Papirus";
         show-icons = true;
 
