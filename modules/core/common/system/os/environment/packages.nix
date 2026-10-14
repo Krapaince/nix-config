@@ -7,6 +7,7 @@
       comma
       curl
       htop
+      man-pages
       neovim
       rsync
       screen
