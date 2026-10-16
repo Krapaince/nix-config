@@ -17,16 +17,28 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+local text_filetypes = { 'gitcommit', 'markdown', 'latex', 'tex', 'text', 'plaintext' }
+
 -- wrap and check for spell in text filetypes
 vim.api.nvim_create_autocmd('FileType', {
   group = augroup('spell'),
-  pattern = { 'gitcommit', 'markdown', 'latex', 'tex', 'text', 'plaintext' },
+  pattern = text_filetypes,
   callback = function()
     local opt = vim.opt_local
 
     opt.formatexpr = ''
     opt.spell = true
     opt.textwidth = 80
+  end,
+})
+
+-- LSP (null-ls/prettierd) sets formatexpr on attach; keep Vim's builtin formatting
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = augroup('text_formatexpr'),
+  callback = function(event)
+    if vim.tbl_contains(text_filetypes, vim.bo[event.buf].filetype) then
+      vim.bo[event.buf].formatexpr = ''
+    end
   end,
 })
 
