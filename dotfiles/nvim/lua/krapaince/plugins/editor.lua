@@ -195,6 +195,24 @@ return {
       end,
     },
   },
+  {
+    'CoreyKaylor/diffbandit.nvim',
+    cmd = {
+      'DiffBandit',
+      'DiffBanditBuffers',
+      'DiffBanditFolderDiff',
+      'DiffBanditGit',
+      'DiffBanditGitCurrent',
+      'DiffBanditCommitPanel',
+      'DiffBanditGitMenu',
+      'DiffBanditGitLog',
+      'DiffBanditGitCommit',
+      'DiffBanditGitCompare',
+      'DiffBanditGitCheckout',
+      'DiffBanditMerge',
+    },
+    opts = {},
+  },
 
   {
     'iamcco/markdown-preview.nvim',
