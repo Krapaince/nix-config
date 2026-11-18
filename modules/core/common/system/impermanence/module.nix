@@ -29,7 +29,6 @@ in
     };
 
     boot.initrd.systemd = {
-      enable = true;
       services.rollback = {
         description = "Rollback BTRFS subvolume";
         wantedBy = [ "initrd.target" ];
