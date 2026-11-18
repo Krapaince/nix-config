@@ -4,6 +4,7 @@
       wireless = {
         connections = {
           base.enable = true;
+          pouet.enable = true;
           secretBase.enable = true;
         };
       };

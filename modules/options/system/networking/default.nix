@@ -47,6 +47,7 @@ in
       connections =
         [
           "base"
+          "pouet"
           "secretBase"
         ]
         |> (map mkConnection)

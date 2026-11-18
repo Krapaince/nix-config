@@ -84,6 +84,10 @@ in
           "wireless/base/ssid" = { };
           "wireless/base/psk" = { };
         })
+        (mkIf wireless.connections.pouet'.enable {
+          "wireless/pouet/ssid" = { };
+          "wireless/pouet/psk" = { };
+        })
         (mkIf wireless.connections.secretBase'.enable {
           "wireless/secret-base/ssid" = { };
           "wireless/secret-base/psk" = { };
