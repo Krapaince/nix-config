@@ -22,6 +22,7 @@ local bindings = {
 
 	{ "Print", hl.dsp.exec_cmd(nix.script.screenshot) },
 	{ mainMod .. " + Print", hl.dsp.exec_cmd(nix.script.screenshotEdit) },
+	{ "CTRL + Print", hl.dsp.exec_cmd(nix.script.ocr) },
 
 	{ mainMod .. " + SHIFT + Q", hl.dsp.window.close() },
 	{ mainMod .. " + SHIFT + E", hl.dsp.exec_cmd('loginctl terminate-user ""') },

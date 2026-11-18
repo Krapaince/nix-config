@@ -21,6 +21,31 @@ let
       lock = lock;
       suspend = getExe self'.packages.suspend-script;
       pipewireControl = getExe pkgs.polybar-pulseaudio-control;
+      ocr = getExe (writeShellApplication {
+        name = "ocr";
+        text = ''
+          umask 077
+
+          workdir="$(mktemp --directory)"
+          # shellcheck disable=SC2064
+          trap "rm --recursive --force \"$workdir\"" EXIT
+          echo "$workdir"
+          input="$workdir/input.png"
+          output="$workdir/output"
+
+          slurp | grim -g - "$input"
+          tesseract "$input" "$output" -l eng
+
+          wl-copy < "$output.txt"
+        '';
+        runtimeInputs = with pkgs; [
+          coreutils-full
+          grim
+          slurp
+          tesseract
+          wl-clipboard
+        ];
+      });
       screenshot = getExe (writeShellApplication {
         name = "screenshot";
         text = "slurp | grim -g - - | wl-copy";
