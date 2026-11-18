@@ -12,8 +12,8 @@ local M = {
 	},
 
 	program = {
-		alacritty = "",
 		brightnessctl = "",
+		kitty = "",
 		pactl = "",
 		playerctl = "",
 		["swaync-client"] = "",

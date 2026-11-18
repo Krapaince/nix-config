@@ -8,7 +8,7 @@ let
   inherit (lib.custom) isAcceptedDeviceType;
 
   browser = [ "firefox.desktop" ];
-  terminal = [ "Alacritty.desktop" ];
+  terminal = [ "kitty.desktop" ];
 
   homeDir = config.home.homeDirectory;
 

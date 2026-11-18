@@ -11,7 +11,7 @@ local directions = {
 
 local bindings = {
 	-- TODO make it start a tmux session
-	{ mainMod .. " + Return", hl.dsp.exec_cmd(nix.program.alacritty .. " -e " .. nix.program.tmux .. " new") },
+	{ mainMod .. " + Return", hl.dsp.exec_cmd(nix.program.kitty .. " " .. nix.program.tmux .. " new") },
 	{ mainMod .. " + D", hl.dsp.exec_cmd(nix.program.rofi .. " -show drun -theme ~/.config/rofi/config.rasi") },
 
 	{ "SUPER + Up", hl.dsp.exec_cmd(nix.script.lock .. " -f && " .. nix.script.suspend) },

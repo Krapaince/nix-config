@@ -1,16 +1,19 @@
 { lib, pkgs, ... }:
 let
   inherit (builtins) isString;
-  inherit (lib) filter concatStringsSep concatMapStringsSep;
-in
-{
-  alacritty =
+  inherit (lib)
+    filter
+    concatStringsSep
+    concatMapStringsSep
+    replaceStrings
+    toLower
+    ;
+
+  # Terminal key bindings sending the tmux prefix (C-b) followed by `chars`.
+  # Written in Alacritty's notation, `\e` stands for the escape character.
+  terminal =
     let
-      mkBindWithPrefix = prefix: mods: key: char: {
-        inherit key mods;
-        chars = "${prefix}${char}";
-      };
-      mkBind = mkBindWithPrefix "\\u0002";
+      mkBind = mods: key: chars: { inherit mods key chars; };
     in
     [
       # Move window
@@ -18,33 +21,54 @@ in
       (mkBind "Super|Shift" ">" ">")
 
       # Resize pane
-      (mkBind "Control|Shift" "h" "\\u001b[1;5D")
-      (mkBind "Control|Shift" "j" "\\u001b[1;5B")
-      (mkBind "Control|Shift" "k" "\\u001b[1;5A")
-      (mkBind "Control|Shift" "l" "\\u001b[1;5C")
+      (mkBind "Control|Shift" "h" "\\e[1;5D")
+      (mkBind "Control|Shift" "j" "\\e[1;5B")
+      (mkBind "Control|Shift" "k" "\\e[1;5A")
+      (mkBind "Control|Shift" "l" "\\e[1;5C")
 
       # Force close pane
       (mkBind "Super" "w" "x")
 
       # Move between panes
       # https://github.com/alacritty/alacritty/issues/474#issuecomment-2137353585
-      (mkBind "Super" "h" "\\u001b[D")
-      (mkBind "Super" "j" "\\u001b[B")
-      (mkBind "Super" "k" "\\u001b[A")
-      (mkBind "Super" "l" "\\u001b[C")
+      (mkBind "Super" "h" "\\e[D")
+      (mkBind "Super" "j" "\\e[B")
+      (mkBind "Super" "k" "\\e[A")
+      (mkBind "Super" "l" "\\e[C")
 
       # Split pane H/V
       (mkBind "Control|Alt" "Return" "%")
-      # " -> \\u0022
-      # Prevent usage of ' due to the usage of " which breaks the mapping
-      (mkBind "Control" "Return" "\\u0022")
+      (mkBind "Control" "Return" "\"")
 
       # New/Previous/Next Window
       (mkBind "Super|Shift" "t" "c")
       (mkBind "Super|Shift" "h" "p")
       (mkBind "Super|Shift" "l" "n")
-      (mkBind "Super|Shift" "q" "\\u0026")
+      (mkBind "Super|Shift" "q" "&")
     ];
+in
+{
+  alacritty = map (b: {
+    inherit (b) key mods;
+    # " and & are escaped, a raw " breaks the mapping
+    chars = "\\u0002" + replaceStrings [ "\\e" "\"" "&" ] [ "\\u001b" "\\u0022" "\\u0026" ] b.chars;
+  }) terminal;
+
+  kitty =
+    let
+      keyNames = {
+        "<" = ",";
+        ">" = ".";
+        "Return" = "enter";
+      };
+      mods = m: replaceStrings [ "|" "control" ] [ "+" "ctrl" ] (toLower m);
+    in
+    lib.listToAttrs (
+      map (b: {
+        name = "${mods b.mods}+${keyNames.${b.key} or b.key}";
+        value = "send_text all \\x02${replaceStrings [ "\\e" ] [ "\\x1b" ] b.chars}";
+      }) terminal
+    );
 
   tmux =
     let

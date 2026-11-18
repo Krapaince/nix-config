@@ -41,8 +41,8 @@ let
       });
     };
     program = {
-      alacritty = getExe pkgs.alacritty;
       brightnessctl = getExe pkgs.brightnessctl;
+      kitty = getExe pkgs.kitty;
       pactl = getExe' pkgs.pulseaudio "pactl";
       playerctl = getExe pkgs.playerctl;
       "swaync-client" = getExe' pkgs.swaynotificationcenter "swaync-client";

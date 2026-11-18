@@ -34,6 +34,7 @@ in
 
     terminals = {
       alacritty.enable = mkEnableOption "Alacritty";
+      kitty.enable = mkEnableOption "Kitty";
     };
 
     git = {

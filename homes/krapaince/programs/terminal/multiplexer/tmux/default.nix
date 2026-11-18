@@ -33,6 +33,7 @@ in
 
       set -g default-terminal "tmux-256color"
       set -as terminal-features ",alacritty*:RGB"
+      set -as terminal-features ",xterm-kitty*:RGB"
       set -g base-index 0
       setw -g pane-base-index 0
 
@@ -60,5 +61,6 @@ in
     '';
 
     programs.alacritty.settings.keyboard.bindings = mkIf prg.alacritty.enable bindings.alacritty;
+    programs.kitty.keybindings = mkIf prg.kitty.enable bindings.kitty;
   };
 }

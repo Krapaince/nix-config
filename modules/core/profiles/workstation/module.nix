@@ -15,5 +15,6 @@ in
 
     dev.enable = true;
     terminals.alacritty.enable = true;
+    terminals.kitty.enable = true;
   };
 }
