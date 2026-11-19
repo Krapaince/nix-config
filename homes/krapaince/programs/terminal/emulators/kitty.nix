@@ -22,7 +22,7 @@ in
         programs.kitty = {
           enable = true;
           font = {
-            name = font.monospace.family + " style=regular";
+            name = font.monospace.family;
             size = 10;
           };
 
@@ -33,6 +33,7 @@ in
             mouse_hide_wait = -1;
             clear_all_shortcuts = true;
             remember_window_size = "no";
+            enable_audio_bell = "no";
           };
 
           keybindings = {
